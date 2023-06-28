@@ -24,8 +24,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Layanan</th>
-                                <th>Berita</th>
+                                <th>Judul</th>
+                                <th>Isi Informasi</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>

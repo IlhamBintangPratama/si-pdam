@@ -27,7 +27,7 @@
                                 <th>Nama</th>
                                 <th>No Telp</th>
                                 <th>Alamat</th>
-                                <th>Password</th>
+                                <th>Email</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -50,7 +50,7 @@
                                 {{ $item->alamat }}
                             </td>
                             <td class="budget">
-                                {{ $item->password }}
+                                {{ $item->email }}
                             </td>
                             <td>  
                                 <a href="{{ url('/menu-admin/pelanggan/'.$item->id.'/edit') }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>

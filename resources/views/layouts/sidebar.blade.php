@@ -27,6 +27,13 @@
         Menu
     </div>
 
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{url('menu-admin/pelanggan')}}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Data Pelanggan</span></a>
+    </li>
+        
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link" href="{{url('menu-admin/pengaduan')}}">
@@ -34,14 +41,7 @@
             <span>Data Pengaduan</span></a>
     </li>
 
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{url('menu-admin/pelanggan')}}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Data Pelanggan</span></a>
-    </li>
-
-    
+        
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">

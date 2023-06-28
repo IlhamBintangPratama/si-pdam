@@ -11,12 +11,12 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Data Pengaduan</h6>
-                <a href="#" class="btn btn-primary btn-icon-split" style="float: right;">
+                {{-- <a href="#" class="btn btn-primary btn-icon-split" style="float: right;">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
                     <span class="text">Tambah Data</span>
-                </a>
+                </a> --}}
             </div>
             <div class="card-body">
                 <div class="table-responsive">
