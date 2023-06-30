@@ -5,6 +5,12 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\User\BeritaController;
+use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\PasangBaruController;
+use App\Http\Controllers\User\PengaduanController as UserPengaduanController;
+use App\Http\Controllers\User\TentangKamiController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,8 +21,16 @@ use App\Http\Controllers\InformasiController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// route user
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/tentangkami', [TentangKamiController::class, 'index']);
+Route::get('/berita', [BeritaController::class, 'index']);
+Route::get('/pengaduan', [UserPengaduanController::class, 'index']);
+Route::get('/pasang', [PasangBaruController::class, 'index']);
 
-Route::get('/', function () {
+
+
+Route::get('/admin', function () {
     return view('dashboard');
 });
 //route pengaduan
