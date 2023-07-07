@@ -32,7 +32,7 @@
                             </tr>
                             <tr>
                                 <td style="width: 20%">Foto</td>
-                                <td>: <img src="/galeri/informasi{{ $informasi->foto }}" width="150px"></td>
+                                <td>: <img src="/galeri/informasi/{{ $informasi->foto }}" width="150px"></td>
                             </tr>
                             
                         </tbody>

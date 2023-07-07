@@ -40,9 +40,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="isi_informasi">Isi Informasi</label>
-                            <input class="form-control @error('isi_informasi')
+                            <textarea class="form-control @error('isi_informasi')
                                 is-invalid
-                                @enderror" id="isi_informasi" value="{{ old('name', $informasi->isi_informasi) }}" name="isi_informasi" type="text"  placeholder="Masukan isi informasi">
+                                @enderror" id="isi_informasi" name="isi_informasi" type="text"  placeholder="Masukan isi informasi">
+                                {{ old('name', $informasi->isi_informasi) }}
+                            </textarea>
                                 @error('isi_informasi')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -54,7 +56,7 @@
                             <input class="form-control @error('foto')
                                 is-invalid
                                 @enderror" id="foto" value="{{ old('name', $informasi->foto) }}" name="foto" type="file" >
-                                <img src="/galeri/informasi{{ $informasi->foto }}" width="150px">
+                                <img src="/galeri/informasi/{{ $informasi->foto }}" width="150px">
                                 @error('foto')
                             <div class="invalid-feedback">
                                 {{$message}}
