@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PelangganController;
+// use App\Http\Controllers\PasangbaruController;
 use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\PasangbaruController as ControllersPasangbaru;
 use App\Http\Controllers\User\BeritaController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\PasangBaruController;
@@ -70,3 +72,6 @@ Route::post('menu-admin/tagihan/{id}/update', [TagihanController::class, 'update
 Route::get('menu-admin/tagihan/{id}/show', [TagihanController::class, 'show']);
 Route::post('menu-admin/tagihan/{id}/delete', [TagihanController::class, 'destroy']);
 Route::get('search-items', [TagihanController::class, 'index']);
+
+Route::get('menu-admin/pasangbaru/create', [ControllersPasangbaru::class, 'create']);
+Route::post('menu-admin/pasangbaru', [ControllersPasangbaru::class, 'store']);
