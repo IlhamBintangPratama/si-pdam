@@ -33,7 +33,8 @@
                                 <img src="{{asset('Sailor')}}/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
                             </div>
                             <h2 class="entry-title">
-                                <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui
+                                <a href="{{url('detail-berita/1')}}">Dolorum optio tempore voluptas dignissimos cumque
+                                    fuga qui
                                     quibusdam
                                     quia</a>
                             </h2>

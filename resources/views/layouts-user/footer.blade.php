@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="footer-info">
                         <h3>Tirta Baribis</h3>
                         <p>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-6 footer-links">
+                <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Links</h4>
                     <ul>
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
@@ -28,17 +28,6 @@
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Berita</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Pengaduan</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Pasang Baru</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-6 footer-links">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
                     </ul>
                 </div>
 

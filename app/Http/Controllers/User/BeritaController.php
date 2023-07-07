@@ -11,4 +11,9 @@ class BeritaController extends Controller
     {
         return view('user.berita');
     }
+
+    public function detail($id)
+    {
+        return view('user.detail_berita');
+    }
 }

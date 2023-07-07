@@ -25,6 +25,7 @@ use App\Http\Controllers\User\TentangKamiController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/tentangkami', [TentangKamiController::class, 'index']);
 Route::get('/berita', [BeritaController::class, 'index']);
+Route::get('/detail-berita/{id}', [BeritaController::class, 'detail']);
 Route::get('/pengaduan', [UserPengaduanController::class, 'index']);
 Route::get('/pasang', [PasangBaruController::class, 'index']);
 
