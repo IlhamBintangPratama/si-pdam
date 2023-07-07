@@ -13,9 +13,9 @@
                             <strong>Email :</strong> tirtabaribis.brebes@gmail.com<br>
                         </p>
                         <div class="social-links mt-3">
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="whatsaap"><i class="bx bxl-whatsapp"></i></a>
+                            <a href="https://www.facebook.com/pdambrebes/" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="https://www.instagram.com/tirtabaribis/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="" class="whatsaap"><i class="bx bxl-whatsapp"></i></a>
                         </div>
                     </div>
                 </div>
@@ -23,11 +23,11 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Links</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Tentang Kami</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Berita</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Pengaduan</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Pasang Baru</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/') }}">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('tentangkami') }}">Tentang Kami</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('berita') }}">Berita</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('pengaduan') }}">Pengaduan</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('pasang') }}">Pasang Baru</a></li>
                     </ul>
                 </div>
 

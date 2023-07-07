@@ -10,12 +10,13 @@
         <div class="carousel-inner" role="listbox">
 
             <!-- Slide 1 -->
-            <div class="carousel-item active" style="background-image: url(Sailor/assets/img/slide/slide-1.jpg)">
+            <div class="carousel-item active" style="background-image: url(Sailor/assets/img/slide/slide-1.png)">
                 <div class="carousel-container">
                     <div class="container">
                         <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Tirta Baribis</span></h2>
                         <p class="animate__animated animate__fadeInUp">Sistem Informasi PDAM Kabupaten Brebes.</p>
-                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read
+                        <a href="{{url('tentangkami')}}"
+                            class="btn-get-started animate__animated animate__fadeInUp scrollto">Read
                             More</a>
                     </div>
                 </div>
@@ -25,13 +26,13 @@
             <div class="carousel-item" style="background-image: url(Sailor/assets/img/slide/slide-2.jpg)">
                 <div class="carousel-container">
                     <div class="container">
-                        <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
+                        <!-- <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
                         <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui
                             aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem
                             mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti
                             vel. Minus et tempore modi architecto.</p>
                         <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read
-                            More</a>
+                            More</a> -->
                     </div>
                 </div>
             </div>
@@ -40,13 +41,13 @@
             <div class="carousel-item" style="background-image: url(Sailor/assets/img/slide/slide-3.jpg)">
                 <div class="carousel-container">
                     <div class="container">
-                        <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
+                        <!-- <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
                         <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui
                             aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem
                             mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti
                             vel. Minus et tempore modi architecto.</p>
                         <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read
-                            More</a>
+                            More</a> -->
                     </div>
                 </div>
             </div>
@@ -99,7 +100,32 @@
             </div>
         </div>
     </div>
+    <!-- cek tagihan -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="testimonial-item">
+                        <h3><strong>Cek Tagihan Anda !!</strong></h3>
+                        <small>silahkan isi nomor pelanggan anda</small>
+                        <form action="" method="post">
+                            <div class="col-md-12 mt-2 form-group">
+                                <input type="text" name="no_pelanggan" class="form-control" id="no_pelanggan"
+                                    placeholder="No Pelanggan" required>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-danger mt-2">Cek Tagihan</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="{{asset('Sailor/assets/img/seacrh.png')}}" alt="" width="75%">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end -->
 </section><!-- End Services Section -->
+
 <div class="container">
     <div class="section-title">
         <h2>News</h2>
@@ -116,22 +142,30 @@
                         <img src="{{asset('Sailor')}}/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
                     </div>
                     <h2 class="entry-title">
-                        <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam
+                        <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga
+                            qui quibusdam
                             quia</a>
                     </h2>
                     <div class="entry-meta">
                         <ul>
-                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
+                                    href="blog-single.html">John Doe</a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
+                                    href="blog-single.html"><time datetime="2020-01-01">Jan 1,
+                                        2020</time></a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
+                                    href="blog-single.html">12 Comments</a></li>
                         </ul>
                     </div>
                     <div class="entry-content">
                         <p>
-                            Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium.
+                            Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
+                            praesentium.
                             Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                            Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum
-                            et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
+                            Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde
+                            soluta. Est cum
+                            et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda
+                            perferendis dolore.
                         </p>
                         <div class="read-more">
                             <a href="blog-single.html">Read More</a>
@@ -145,22 +179,30 @@
                         <img src="{{asset('Sailor')}}/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
                     </div>
                     <h2 class="entry-title">
-                        <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam
+                        <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga
+                            qui quibusdam
                             quia</a>
                     </h2>
                     <div class="entry-meta">
                         <ul>
-                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
+                                    href="blog-single.html">John Doe</a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
+                                    href="blog-single.html"><time datetime="2020-01-01">Jan 1,
+                                        2020</time></a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
+                                    href="blog-single.html">12 Comments</a></li>
                         </ul>
                     </div>
                     <div class="entry-content">
                         <p>
-                            Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium.
+                            Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
+                            praesentium.
                             Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                            Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum
-                            et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
+                            Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde
+                            soluta. Est cum
+                            et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda
+                            perferendis dolore.
                         </p>
                         <div class="read-more">
                             <a href="blog-single.html">Read More</a>

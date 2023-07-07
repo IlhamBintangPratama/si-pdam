@@ -3,7 +3,7 @@
 
         <!-- <h1 class="logo me-auto"><a href="index.html">Sailor</a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index.html" class="logo me-auto"><img src="{{asset('Sailor')}}/assets/img/logo.jpg" alt="" class="img-fluid">Tirta Baribis</a>
+        <a href="{{ url('/') }}" class="logo me-auto"><img src="{{asset('Sailor')}}/assets/img/logo.jpg" alt="" class="img-fluid">Tirta Baribis</a>
 
         <nav id="navbar" class="navbar">
             <ul>
