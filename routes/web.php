@@ -30,18 +30,42 @@ Route::get('/pasang', [PasangBaruController::class, 'index']);
 
 
 
-Route::get('/admin', function () {
+Route::get('/admin-dasboard', function () {
     return view('dashboard');
 });
 //route pengaduan
 Route::get('menu-admin/pengaduan', [PengaduanController::class, 'index']);
+Route::get('menu-admin/pengaduan/create', [PengaduanController::class, 'create']);
+Route::post('menu-admin/pengaduan', [PengaduanController::class, 'store']);
+Route::get('menu-admin/pengaduan/{id}/edit', [PengaduanController::class, 'edit']);
+Route::post('menu-admin/pengaduan/{id}/update', [PengaduanController::class, 'update']);
+Route::get('menu-admin/pengaduan/{id}/show', [PengaduanController::class, 'show']);
+Route::post('menu-admin/pengaduan/{id}/delete', [PengaduanController::class, 'destroy']);
 Route::get('search-items', [PengaduanController::class, 'index']);
 //route pelanggan
 Route::get('menu-admin/pelanggan', [PelangganController::class, 'index']);
+Route::get('menu-admin/pelanggan/create', [PelangganController::class, 'create']);
+Route::post('menu-admin/pelanggan', [PelangganController::class, 'store']);
+Route::get('menu-admin/pelanggan/{id}/edit', [PelangganController::class, 'edit']);
+Route::post('menu-admin/pelanggan/{id}/update', [PelangganController::class, 'update']);
+Route::get('menu-admin/pelanggan/{id}/show', [PelangganController::class, 'show']);
+Route::post('menu-admin/pelanggan/{id}/delete', [PelangganController::class, 'destroy']);
 Route::get('search-items', [PelangganController::class, 'index']);
 //route informasi
 Route::get('menu-admin/informasi', [InformasiController::class, 'index']);
+Route::get('menu-admin/informasi/create', [InformasiController::class, 'create']);
+Route::post('menu-admin/informasi', [InformasiController::class, 'store']);
+Route::get('menu-admin/informasi/{id}/edit', [InformasiController::class, 'edit']);
+Route::post('menu-admin/informasi/{id}/update', [InformasiController::class, 'update']);
+Route::get('menu-admin/informasi/{id}/show', [InformasiController::class, 'show']);
+Route::post('menu-admin/informasi/{id}/delete', [InformasiController::class, 'destroy']);
 Route::get('search-items', [InformasiController::class, 'index']);
 //route tagihan
 Route::get('menu-admin/tagihan', [TagihanController::class, 'index']);
+Route::get('menu-admin/tagihan/create', [TagihanController::class, 'create']);
+Route::post('menu-admin/tagihan', [TagihanController::class, 'store']);
+Route::get('menu-admin/tagihan/{id}/edit', [TagihanController::class, 'edit']);
+Route::post('menu-admin/tagihan/{id}/update', [TagihanController::class, 'update']);
+Route::get('menu-admin/tagihan/{id}/show', [TagihanController::class, 'show']);
+Route::post('menu-admin/tagihan/{id}/delete', [TagihanController::class, 'destroy']);
 Route::get('search-items', [TagihanController::class, 'index']);
