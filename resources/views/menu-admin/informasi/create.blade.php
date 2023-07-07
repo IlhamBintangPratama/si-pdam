@@ -63,7 +63,7 @@
                             @enderror
                         </div>
                         
-                        <div>
+                        <div style="margin-top: 21.5%;">
                             <button type="submit" class="btn btn-primary w-100 mb-2">Simpan</button>
                             <button type="button" id="back" class="btn btn-secondary w-100">Kembali</button>
                         </div>
