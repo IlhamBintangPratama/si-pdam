@@ -71,7 +71,7 @@ class InformasiController extends Controller
         $request->validate([
             'judul' => 'required',
             'isi_informasi' => 'required',
-            'foto' => 'required|mimes:jpg,jpeg,png|max:2048'
+            'foto' => 'mimes:jpg,jpeg,png|max:2048'
         ]);
 
         $informasi = Informasi::find($id);

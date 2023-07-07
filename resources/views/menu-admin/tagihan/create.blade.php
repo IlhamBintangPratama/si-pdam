@@ -4,7 +4,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Tambah Data Informasi</h1>
+        <h1 class="h3 mb-2 text-gray-800">Tambah Data Tagihan Pelanggan</h1>
         <br>
 
         <!-- DataTales Example -->
@@ -14,7 +14,7 @@
                 {{-- <h6 class="m-0 font-weight-bold text-primary">Tambah Data Pelanggan</h6> --}}
                 
 
-                <form method="post" action="{{ url('menu-admin/informasi') }}" name="post" enctype="multipart/form-data">
+                <form method="post" action="{{ url('menu-admin/tagihan') }}" name="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     {{-- <fieldset > --}}
                         {{-- @if ($errors->any())
@@ -27,11 +27,11 @@
                             </div>
                         @endif --}}
                         <div class="mb-3">
-                            <label for="judul">Judul</label>
-                            <input class="form-control @error('judul')
+                            <label for="no_pelanggan">No Pelanggan</label>
+                            <input class="form-control @error('no_pelanggan')
                                 is-invalid
-                                @enderror" id="judul" value="{{old('judul')}}" name="judul" type="text" placeholder="Masukan judul informasi">
-                            @error('judul')
+                                @enderror" id="no_pelanggan" value="{{old('no_pelanggan')}}" name="no_pelanggan" type="number"  placeholder="Masukan nomor pelanggan">
+                            @error('no_pelanggan')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
@@ -39,24 +39,33 @@
                           
                         </div>
                         <div class="mb-3">
-                            <label for="isi_informasi">Isi Informasi</label>
-                            <textarea class="form-control @error('isi_informasi')
+                            <label for="nama">Nama</label>
+                            <input class="form-control @error('nama')
                                 is-invalid
-                                @enderror" value="{{old('isi_informasi')}}" placeholder="Masukan isi informasi" id="isi_informasi" name="isi_informasi" type="text">
-                            </textarea>
-                                @error('isi_informasi')
+                                @enderror" id="nama" value="{{old('nama')}}" name="nama" type="text"  placeholder="Masukan nama pelanggan">
+                                @error('nama')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
                             @enderror
                         </div>
-                        
                         <div class="mb-3">
-                            <label for="foto">Foto</label>
-                            <input class="form-control @error('foto')
+                            <label for="alamat">Alamat</label>
+                            <input class="form-control @error('alamat')
                                 is-invalid
-                                @enderror" id="foto" value="{{old('foto')}}" name="foto" type="file" >
-                                @error('foto')
+                                @enderror" id="alamat" value="{{old('alamat')}}" name="alamat" type="text"  placeholder="Masukan alamat">
+                                @error('alamat')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="jumlah_tagihan">Jumlah Tagihan</label>
+                            <input class="form-control @error('jumlah_tagihan')
+                            is-invalid
+                            @enderror" id="jumlah_tagihan" value="{{old('jumlah_tagihan')}}" name="jumlah_tagihan" type="number" placeholder="Masukan jumlah tagihan">
+                            @error('jumlah_tagihan')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
@@ -71,7 +80,7 @@
                 </form>
                 <script>
                     document.getElementById('back').onclick = function(){
-                        location.href = "{{ url('menu-admin/informasi') }}";
+                        location.href = "{{ url('menu-admin/tagihan') }}";
                     }
                 </script>
 
