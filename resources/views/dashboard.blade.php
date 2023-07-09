@@ -2,6 +2,12 @@
 
 @section('content')
 
+
+@if ($message = Session::get('success'))
+<div class="alert alert-success ml-4 mr-4" role="alert">
+    {{$message}}
+</div>
+@endif
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -99,7 +105,11 @@
     </div>
 
     <!-- Content Row -->
-
+    <script>
+        setTimeout(function() {
+        $('.alert').fadeOut('slow');}, 3000
+        );
+    </script>
     
 
 </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\SessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PelangganController;
@@ -23,6 +24,11 @@ use App\Http\Controllers\User\TentangKamiController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// auth login
+Route::get('/login', [SessionController::class, 'index']);
+Route::post('/session/login', [SessionController::class, 'login']);
+Route::get('/session/logout', [SessionController::class, 'logout']);
 // route user
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/tentangkami', [TentangKamiController::class, 'index']);
@@ -33,8 +39,8 @@ Route::post('send-pengaduan', [UserPengaduanController::class, 'store']);
 Route::get('/pasang', [PasangBaruController::class, 'index']);
 
 
-
-Route::get('/admin-dasboard', function () {
+Route::group(['middleware'=>'isLogin','web'], function () {
+Route::get('/menu-admin/dasboard', function () {
     return view('dashboard');
 });
 //route pengaduan
@@ -76,3 +82,4 @@ Route::get('search-items', [TagihanController::class, 'index']);
 
 Route::get('menu-admin/pasangbaru/create', [ControllersPasangbaru::class, 'create']);
 Route::post('menu-admin/pasangbaru', [ControllersPasangbaru::class, 'store']);
+});
