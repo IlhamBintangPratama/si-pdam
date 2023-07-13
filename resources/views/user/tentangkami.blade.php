@@ -19,19 +19,18 @@
 <section id="about" class="about mt-5 mb-5">
     <div class="container">
         <div class="row content">
-            <div class="col-lg-6">
-                <h2>Eum ipsam laborum deleniti velitena</h2>
-                <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
+            <div class="col-lg-4">
+                <h2>Profil</h2>
+                <h3>Tirta Baribis</h3>
             </div>
-            <div class="col-lg-6 pt-4 pt-lg-0">
+            <div class="col-lg-8 pt-4 pt-lg-0">
                 <p>
-                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                    voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                    sunt in
-                    culpa qui officia deserunt mollit anim id est laborum
+                    Penyedia sarana air bersih di Kabupaten Brebes adalah salah satu wilayah yang keberadaannya sejak
+                    jaman pemerintahan Belanda. PDAM Kabupaten Brebes dikelola berdasarkan PERDA No.7 Tahun 1992.
+                    Dibangunnya menara Persuhaan Daerah Air Minum (PDAM) yang menjulang tinggi setinggi 27 meter di
+                    jalan Taman Siswa yang berdiri pada tahun 1998.
                 </p>
-                <ul>
+                <!-- <ul>
                     <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
                     <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit
                     </li>
@@ -42,7 +41,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore
                     magna aliqua.
-                </p>
+                </p> -->
             </div>
         </div>
     </div>
@@ -72,13 +71,8 @@
                     <div class="tab-pane active show" id="tab-1">
                         <div class="row">
                             <div class="col-lg-8 details order-2 order-lg-1">
-                                <h3>Architecto ut aperiam autem id</h3>
-                                <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde
-                                    sonata raqer a videna mareta paulona marka</p>
-                                <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos
-                                    ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima
-                                    eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique
-                                    accusamus nostrum rem vero</p>
+                                <h3>Visi Tirta Baribis</h3>
+                                <p class="fst-italic"><?= $profil->visi; ?></p>
                             </div>
                             <div class="col-lg-4 text-center order-1 order-lg-2">
                                 <img src="{{asset('Sailor')}}/assets/img/features-1.png" alt="" class="img-fluid">
@@ -88,13 +82,8 @@
                     <div class="tab-pane" id="tab-2">
                         <div class="row">
                             <div class="col-lg-8 details order-2 order-lg-1">
-                                <h3>Et blanditiis nemo veritatis excepturi</h3>
-                                <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde
-                                    sonata raqer a videna mareta paulona marka</p>
-                                <p>Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis
-                                    sunt sunt est. Non aliquid repellendus itaque accusamus eius et velit ipsa
-                                    voluptates. Optio nesciunt eaque beatae accusamus lerode pakto madirna desera vafle
-                                    de nideran pal</p>
+                                <h3>Misi Tirta Baribis</h3>
+                                <p class="fst-italic"><?= $profil->misi; ?></p>
                             </div>
                             <div class="col-lg-4 text-center order-1 order-lg-2">
                                 <img src="{{asset('Sailor')}}/assets/img/features-2.png" alt="" class="img-fluid">
@@ -128,13 +117,8 @@
                     <div class="tab-pane active show" id="tab-3">
                         <div class="row">
                             <div class="col-lg-8 details order-2 order-lg-1">
-                                <h3>Architecto ut aperiam autem id</h3>
-                                <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde
-                                    sonata raqer a videna mareta paulona marka</p>
-                                <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos
-                                    ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima
-                                    eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique
-                                    accusamus nostrum rem vero</p>
+                                <h3>Nomor Telepon</h3>
+                                <p class="fst-italic"><?= $profil->no_telp; ?></p>
                             </div>
                             <div class="col-lg-4 text-center order-1 order-lg-2">
                                 <img src="{{asset('Sailor')}}/assets/img/features-1.png" alt="" class="img-fluid">
@@ -144,13 +128,8 @@
                     <div class="tab-pane" id="tab-4">
                         <div class="row">
                             <div class="col-lg-8 details order-2 order-lg-1">
-                                <h3>Et blanditiis nemo veritatis excepturi</h3>
-                                <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde
-                                    sonata raqer a videna mareta paulona marka</p>
-                                <p>Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis
-                                    sunt sunt est. Non aliquid repellendus itaque accusamus eius et velit ipsa
-                                    voluptates. Optio nesciunt eaque beatae accusamus lerode pakto madirna desera vafle
-                                    de nideran pal</p>
+                                <h3>Email</h3>
+                                <p class="fst-italic"><?= $profil->email; ?></p>
                             </div>
                             <div class="col-lg-4 text-center order-1 order-lg-2">
                                 <img src="{{asset('Sailor')}}/assets/img/features-2.png" alt="" class="img-fluid">
