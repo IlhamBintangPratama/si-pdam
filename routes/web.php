@@ -85,4 +85,7 @@ Route::get('menu-admin/pasangbaru/create', [ControllersPasangbaru::class, 'creat
 Route::post('menu-admin/pasangbaru', [ControllersPasangbaru::class, 'store']);
 
 Route::get('menu-admin/profil', [ProfilController::class, 'index']);
+Route::get('menu-admin/profil/{id}/edit', [ProfilController::class, 'edit']);
+Route::post('menu-admin/profil/{id}/update', [ProfilController::class, 'update']);
+
 });

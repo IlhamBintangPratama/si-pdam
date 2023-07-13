@@ -4,7 +4,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Edit Data Pelanggan</h1>
+        <h1 class="h3 mb-2 text-gray-800">Edit Data Profil</h1>
         <br>
 
         <!-- DataTales Example -->
@@ -14,7 +14,7 @@
                 {{-- <h6 class="m-0 font-weight-bold text-primary">Tambah Data Pelanggan</h6> --}}
                 
 
-                <form method="post" action="{{ url('/menu-admin/pelanggan/'.$pelanggan->id.'/update') }}" name="post" enctype="multipart/form-data">
+                <form method="post" action="{{ url('/menu-admin/profil/'.$profil->id.'/update') }}" name="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     {{-- <fieldset > --}}
                         {{-- @if ($errors->any())
@@ -27,11 +27,13 @@
                             </div>
                         @endif --}}
                         <div class="mb-3">
-                            <label for="nama">Nama Lengkap</label>
-                            <input class="form-control @error('nama')
+                            <label for="profil">Profil Perusahaan</label>
+                            <textarea class="form-control @error('profil')
                                 is-invalid
-                                @enderror" id="nama" value="{{ old('name', $pelanggan->nama) }}" name="nama" type="text"  placeholder="Masukan nama lengkap">
-                            @error('nama')
+                                @enderror" id="profil" name="profil" placeholder="Masukan profil perusahaan">
+                                {{ old('name', $textareaProfil) }}
+                            </textarea>
+                            @error('profil')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
@@ -39,10 +41,32 @@
                           
                         </div>
                         <div class="mb-3">
+                            <label for="facebook">Facebook</label>
+                            <input class="form-control @error('facebook')
+                                is-invalid
+                                @enderror" id="facebook" value="{{ old('name', $profil->facebook) }}" name="facebook" type="text"  placeholder="Masukan link facebook">
+                                @error('facebook')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="instagram">Instagram</label>
+                            <input class="form-control @error('instagram')
+                                is-invalid
+                                @enderror" id="instagram" value="{{ old('name', $profil->instagram) }}" name="instagram" type="text"  placeholder="Masukan link instagram">
+                                @error('instagram')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="no_telp">No Telp</label>
                             <input class="form-control @error('no_telp')
                                 is-invalid
-                                @enderror" id="no_telp" value="{{ old('name', $pelanggan->no_telp) }}" name="no_telp" type="number"  placeholder="Masukan nomor telepon">
+                                @enderror" id="no_telp" value="{{ old('name', $profil->no_telp) }}" name="no_telp" type="number"  placeholder="Masukan nomor telepon">
                                 @error('no_telp')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -50,34 +74,11 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="email">Email Address</label>
+                            <label for="email">Email</label>
                             <input class="form-control @error('email')
-                                is-invalid
-                                @enderror" id="email" value="{{ old('name', $pelanggan->email) }}" name="email" type="email"  placeholder="Masukan email address">
-                                @error('email')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="foto">Foto</label>
-                            <input class="form-control @error('foto')
-                                is-invalid
-                                @enderror" id="foto" value="{{ old('name', $pelanggan->foto) }}" name="foto" type="file" >
-                                <img src="/galeri/{{ $pelanggan->foto }}" width="150px">
-                                @error('foto')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="no_rekening_air">No Rekening Air</label>
-                            <input class="form-control @error('no_rekening_air')
                             is-invalid
-                            @enderror" id="no_rekening_air" value="{{ old('name', $pelanggan->no_rekening_air) }}" name="no_rekening_air" type="number" placeholder="Masukan nomor rekening air">
-                            @error('no_rekening_air')
+                            @enderror" id="email" value="{{ old('name', $profil->email) }}" name="email" type="email" placeholder="Masukan alamat email">
+                            @error('email')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
@@ -87,7 +88,7 @@
                             <label for="alamat">Alamat</label>
                             <input class="form-control @error('alamat')
                                 is-invalid
-                                @enderror" id="alamat" value="{{ old('name', $pelanggan->alamat) }}" name="alamat" type="text"  placeholder="Masukan alamat">
+                                @enderror" id="alamat" value="{{ old('name', $profil->alamat) }}" name="alamat" type="text"  placeholder="Masukan alamat perusahaan">
                                 @error('alamat')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -95,11 +96,26 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="username">Username</label>
-                            <input class="form-control @error('username')
-                            is-invalid
-                            @enderror" id="username" value="{{ old('name', $pelanggan->username) }}" name="username" type="text" >
-                            @error('username')
+                            <label for="visi">Visi</label>
+                            <textarea class="form-control @error('visi')
+                                is-invalid
+                                @enderror" id="visi" name="visi" type="text">
+                                {{ old('name', $profil->visi) }}
+                            </textarea>
+                                @error('visi')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="misi">Misi</label>
+                            <textarea class="form-control @error('misi')
+                                is-invalid
+                                @enderror" id="misi" name="misi" type="text" >
+                                {{ old('name', $profil->misi) }}
+                            </textarea>
+                            @error('misi')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
@@ -124,7 +140,7 @@
                 </form>
                 <script>
                     document.getElementById('back').onclick = function(){
-                        location.href = "{{ url('menu-admin/pelanggan') }}";
+                        location.href = "{{ url('menu-admin/profil') }}";
                     }
                 </script>
 

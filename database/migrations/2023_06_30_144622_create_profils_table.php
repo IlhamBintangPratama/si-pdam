@@ -15,9 +15,10 @@ class CreateProfilsTable extends Migration
     {
         Schema::create('profils', function (Blueprint $table) {
             $table->increments('id', true);
+            $table->string('profil');
             $table->string('facebook');
             $table->string('instagram');
-            $table->integer('no_telp')->unique();
+            $table->bigInteger('no_telp')->unique();
             $table->string('email')->unique();
             $table->string('alamat');
             $table->string('visi');

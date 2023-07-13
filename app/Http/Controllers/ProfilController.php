@@ -14,7 +14,7 @@ class ProfilController extends Controller
      */
     public function index()
     {   
-        $profil = Profil::select('id','facebook','instagram','email','no_telp','alamat','visi','misi')->first();
+        $profil = Profil::select('id','profil','facebook','instagram','email','no_telp','alamat','visi','misi')->first();
         // $profil = Profil::findorfail($id);
 
         return view('menu-admin.profil.index', compact('profil'));
@@ -29,42 +29,13 @@ class ProfilController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $profil = Profil::findorfail($id);
+        $textareaProfil = trim($profil->profil);
+
+        return view('menu-admin.profil.edit', compact('profil', 'textareaProfil'));
     }
 
     /**
@@ -76,7 +47,32 @@ class ProfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'profil' => 'required',
+            'no_telp' => 'required|max:13',
+            'email' => 'required',
+            'facebook' => 'required',
+            'instagram' => 'required',
+            'alamat' => 'required',
+            'visi' => 'required',
+            'misi' => 'required'
+        ]);
+
+        $profil = Profil::find($id);
+
+        
+            $profil->update([
+                'profil' => $request->profil,
+                'no_telp' => $request->no_telp,
+                'email' => $request->email,
+                'facebook' => $request->facebook,
+                'instagram' => $request->instagram,
+                'alamat' => $request->alamat,
+                'visi' => $request->visi,
+                'misi' => $request->misi
+            ]);
+            // dd($profil);
+            return redirect('menu-admin/profil')->with('updated', 'Data berhasil diubah!');
     }
 
     /**

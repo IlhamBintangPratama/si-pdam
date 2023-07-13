@@ -13,16 +13,23 @@
             <div class="card-header py-4">
                 {{-- <h6 class="m-0 font-weight-bold text-primary">Tambah Data Pelanggan</h6> --}}
                 <h6 class="m-0 font-weight-bold text-primary">Data Profil</h6>
-                <a href="{{ url('/menu-admin/profil/'.$profil->id.'/edit') }}" class="btn btn-secondary btn-icon-split" style="float: right;">
+                <a href="{{ url('/menu-admin/profil/'.$profil->id.'/edit') }}" class="btn btn-primary btn-icon-split" style="float: right;">
                     <span class="icon text-white-50">
                         {{-- <i class="fas fa-plus"></i> --}}
                         <i class="fa fa-edit"></i>
                     </span>
                     <span class="text">Ubah Profil</span>
                 </a>
+                <div>
+                    <img src="" alt="">
+                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <tbody>
+                            <tr>
+                                <td style="width: 20%">Profil Perusahaan</td>
+                                <td>: {{ $profil->profil }}</td>
+                            </tr>
                             <tr>
                                 <td style="width: 20%">Facebook</td>
                                 <td>: {{ $profil->facebook }}</td>
@@ -33,7 +40,7 @@
                             </tr>
                             <tr>
                                 <td style="width: 20%">No Telp</td>
-                                <td>: {{ $profil->no_telp }}</td>
+                                <td>: 0{{ $profil->no_telp }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Email</td>
@@ -48,8 +55,8 @@
                                 <td>: {{ $profil->visi }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 20%">Misi</td>
-                                <td>: {{ $profil->misi }}</td>
+                                <td style="width: 20%;">Misi</td>
+                                <td>: {{$profil->misi}}</td>
                             </tr>
                         </tbody>
                     </table>

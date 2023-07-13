@@ -15,6 +15,7 @@ class ProfilSeeder extends Seeder
     public function run()
     {
         Profil::create([
+            'profil' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa officiis voluptatem natus. Mollitia a neque, vitae iusto sunt deleniti eveniet.',
             'facebook' => 'https://www.facebook.com/pdambrebes/',
             'instagram' => 'https://www.instagram.com/tirtabaribis/',
             'no_telp' => '085713134141',
