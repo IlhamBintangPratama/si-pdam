@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class SessionController extends Controller
 {
@@ -25,17 +26,16 @@ class SessionController extends Controller
 
         $infologin = [
             'username' => $request->username,
-            'password' => md5($request->password)
+            'password' => Hash::make(md5($request->password))
         ];
+
         // dd($infologin);
         if(Auth::guard('web')->attempt($infologin))
         {
             return redirect('/menu-admin/dasboard')->with('success', 'Selamat datang d ihalaman admin dashboard');
-        }elseif(Auth::guard('costumer')->attempt($infologin))
-        {
-            return 'sukses';
+        
         }else{
-            return 'gagal';
+            return redirect('login')->with('error', 'Username dan passwword salah');
         }
 
     }

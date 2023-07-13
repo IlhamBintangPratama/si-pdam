@@ -8,6 +8,7 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\PasangbaruController as ControllersPasangbaru;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\User\BeritaController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\PasangBaruController;
@@ -82,4 +83,6 @@ Route::get('search-items', [TagihanController::class, 'index']);
 
 Route::get('menu-admin/pasangbaru/create', [ControllersPasangbaru::class, 'create']);
 Route::post('menu-admin/pasangbaru', [ControllersPasangbaru::class, 'store']);
+
+Route::get('menu-admin/profil', [ProfilController::class, 'index']);
 });

@@ -32,6 +32,11 @@
     <div class="container">
 
         <!-- Outer Row -->
+        @if ($message = Session::get('error'))
+        <div class="alert alert-error ml-4 mr-4" role="alert">
+            {{$message}}
+        </div>
+        @endif
         <div class="row justify-content-center">
             
             <div class="col-xl-7 col-lg-8 col-md-9">
@@ -73,19 +78,19 @@
                                             Login
                                         </button>
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                        {{-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
+                                        </a> --}}
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="#">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <a class="small" href="#">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
