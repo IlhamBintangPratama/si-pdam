@@ -7,15 +7,16 @@
                     <div class="footer-info">
                         <h3>Tirta Baribis</h3>
                         <p>
-                            Jalan Taman Siswa No 3, Brebes, <br>
-                            Jawa Tengah, Indonesia<br><br>
-                            <strong>Whatsaap :</strong> 085713134141<br>
-                            <strong>Email :</strong> tirtabaribis.brebes@gmail.com<br>
+                            <strong>Alamat :</strong> <?= $profil->alamat; ?><br>
+                            <strong>Whatsaap :</strong> <?= $profil->no_telp; ?><br>
+                            <strong>Email :</strong> <?= $profil->email; ?><br>
                         </p>
                         <div class="social-links mt-3">
-                            <a href="https://www.facebook.com/pdambrebes/" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="https://www.instagram.com/tirtabaribis/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="" class="whatsaap"><i class="bx bxl-whatsapp"></i></a>
+                            <a href="<?= $profil->facebook; ?>" target="_blank" class="facebook"><i
+                                    class="bx bxl-facebook"></i></a>
+                            <a href="<?= $profil->instagram; ?>" target="_blank" class="instagram"><i
+                                    class="bx bxl-instagram"></i></a>
+                            <!-- <a href="" class="whatsaap"><i class="bx bxl-whatsapp"></i></a> -->
                         </div>
                     </div>
                 </div>
@@ -57,7 +58,8 @@
     </div>
 </footer><!-- End Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="{{asset('Sailor')}}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -2,6 +2,15 @@
 
 @section('title', 'Berita')
 
+<style>
+    .crop-text-2 {
+        -webkit-line-clamp: 8;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+    }
+</style>
 @section('content')
 <!-- ======= Breadcrumbs ======= -->
 <section id="breadcrumbs" class="breadcrumbs">
@@ -27,148 +36,42 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="row">
+                    @foreach ($berita as $data )
                     <div class="col-lg-6 entries">
                         <article class="entry">
                             <div class="entry-img">
-                                <img src="{{asset('Sailor')}}/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                                <img src="{{asset('galeri/informasi/'. $data->foto)}}" alt="" class="img-fluid">
                             </div>
                             <h2 class="entry-title">
-                                <a href="{{url('detail-berita/1')}}">Dolorum optio tempore voluptas dignissimos cumque
-                                    fuga qui
-                                    quibusdam
-                                    quia</a>
+                                <a href="{{url('detail-berita/'. $data->id)}}">{{ $data->judul  }}</a>
                             </h2>
                             <div class="entry-meta">
                                 <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">Administrator</a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="<?= $data->created_at; ?>"><?= $data->created_at; ?></time></a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="entry-content">
-                                <p>
-                                    Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                                    praesentium.
-                                    Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                                    Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta.
-                                    Est cum
-                                    et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis
-                                    dolore.
+                                <p class="crop-text-2">
+                                    {{ $data->isi_informasi }}
                                 </p>
                                 <div class="read-more">
-                                    <a href="blog-single.html">Read More</a>
+                                    <a href="{{url('detail-berita/'. $data->id)}}">Read More</a>
                                 </div>
                             </div>
                         </article>
                     </div>
-                    <div class="col-lg-6 entries">
-                        <article class="entry">
-                            <div class="entry-img">
-                                <img src="{{asset('Sailor')}}/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                            </div>
-                            <h2 class="entry-title">
-                                <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui
-                                    quibusdam
-                                    quia</a>
-                            </h2>
-                            <div class="entry-meta">
-                                <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="entry-content">
-                                <p>
-                                    Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                                    praesentium.
-                                    Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                                    Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta.
-                                    Est cum
-                                    et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis
-                                    dolore.
-                                </p>
-                                <div class="read-more">
-                                    <a href="blog-single.html">Read More</a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-lg-6 entries">
-                        <article class="entry">
-                            <div class="entry-img">
-                                <img src="{{asset('Sailor')}}/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                            </div>
-                            <h2 class="entry-title">
-                                <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui
-                                    quibusdam
-                                    quia</a>
-                            </h2>
-                            <div class="entry-meta">
-                                <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="entry-content">
-                                <p>
-                                    Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                                    praesentium.
-                                    Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                                    Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta.
-                                    Est cum
-                                    et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis
-                                    dolore.
-                                </p>
-                                <div class="read-more">
-                                    <a href="blog-single.html">Read More</a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-lg-6 entries">
-                        <article class="entry">
-                            <div class="entry-img">
-                                <img src="{{asset('Sailor')}}/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                            </div>
-                            <h2 class="entry-title">
-                                <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui
-                                    quibusdam
-                                    quia</a>
-                            </h2>
-                            <div class="entry-meta">
-                                <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="entry-content">
-                                <p>
-                                    Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                                    praesentium.
-                                    Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                                    Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta.
-                                    Est cum
-                                    et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis
-                                    dolore.
-                                </p>
-                                <div class="read-more">
-                                    <a href="blog-single.html">Read More</a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                    @endforeach
                 </div>
 
-                <div class="blog-pagination">
+                <!-- <div class="blog-pagination">
                     <ul class="justify-content-center">
                         <li><a href="#">1</a></li>
                         <li class="active"><a href="#">2</a></li>
                         <li><a href="#">3</a></li>
                     </ul>
-                </div>
+                </div> -->
             </div>
 
 
