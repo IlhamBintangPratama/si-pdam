@@ -5,13 +5,15 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
+use App\Models\Profil;
 use Illuminate\Support\Facades\File;
 
 class PengaduanController extends Controller
 {
     public function index()
     {
-        return view('user.pengaduan');
+        $profil = Profil::findorfail(1);
+        return view('user.pengaduan', compact('profil'));
     }
 
     public function store(Request $request)
