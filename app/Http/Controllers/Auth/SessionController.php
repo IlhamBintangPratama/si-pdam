@@ -26,13 +26,13 @@ class SessionController extends Controller
 
         $infologin = [
             'username' => $request->username,
-            'password' => Hash::make(md5($request->password))
+            'password' => md5($request->password)
         ];
 
         // dd($infologin);
-        if(Auth::guard('web')->attempt($infologin))
+        if(Auth::attempt($infologin))
         {
-            return redirect('/menu-admin/dasboard')->with('success', 'Selamat datang d ihalaman admin dashboard');
+            return redirect('/menu-admin/dasboard')->with('success', 'Selamat datang dihalaman admin dashboard');
         
         }else{
             return redirect('login')->with('error', 'Username dan passwword salah');
