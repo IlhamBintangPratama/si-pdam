@@ -30,7 +30,7 @@
                             <label for="profil">Profil Perusahaan</label>
                             <textarea class="form-control @error('profil')
                                 is-invalid
-                                @enderror" id="profil" name="profil" placeholder="Masukan profil perusahaan">
+                                @enderror" id="profil" name="profil" style="resize: none; white-space: pre-line;" rows="4" cols="20" placeholder="Masukan profil perusahaan">
                                 {{ old('name', $textareaProfil) }}
                             </textarea>
                             @error('profil')
@@ -99,7 +99,7 @@
                             <label for="visi">Visi</label>
                             <textarea class="form-control @error('visi')
                                 is-invalid
-                                @enderror" id="visi" name="visi" type="text">
+                                @enderror" id="visi" name="visi" style="resize: none; white-space: pre-line;" rows="4" cols="20" type="text">
                                 {{ old('name', $profil->visi) }}
                             </textarea>
                                 @error('visi')
@@ -112,7 +112,7 @@
                             <label for="misi">Misi</label>
                             <textarea class="form-control @error('misi')
                                 is-invalid
-                                @enderror" id="misi" name="misi" type="text" >
+                                @enderror" id="misi" name="misi" type="text" style="resize: none; white-space: pre-line;" rows="4" cols="20" >
                                 {{ old('name', $profil->misi) }}
                             </textarea>
                             @error('misi')

@@ -48,7 +48,7 @@
                             <input id="search-focus" type="search" placeholder="Search..." id="form1" class="form-control" />
                             {{-- <label class="form-label" for="form1" style="margin-top: -10%">Search</label> --}}
                         </div>
-                        <button type="button" class="btn btn-primary" style="height: 37px">
+                        <button type="submit" class="btn btn-primary" style="height: 37px">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>

@@ -24,15 +24,15 @@
                         <tbody>
                             <tr>
                                 <td style="width: 20%">Judul</td>
-                                <td>: {{ $informasi->judul }}</td>
+                                <td>{{ $informasi->judul }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Isi Informasi</td>
-                                <td>: {{ $informasi->isi_informasi }}</td>
+                                <td style="white-space: pre-line;">{{ $informasi->isi_informasi }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Foto</td>
-                                <td>: <img src="/galeri/informasi/{{ $informasi->foto }}" width="150px"></td>
+                                <td><img src="/galeri/informasi/{{ $informasi->foto }}" width="150px"></td>
                             </tr>
                             
                         </tbody>

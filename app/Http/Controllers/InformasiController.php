@@ -99,7 +99,12 @@ class InformasiController extends Controller
             // dd($informasi);
             return redirect('menu-admin/informasi')->with('updated', 'Data berhasil diubah!');
         }
-        return redirect('menu-admin/informasi')->with('error', 'Data gagal diubah!');
+        $informasi->update([
+            'judul' => $request->judul,
+            'isi_informasi' => $request->isi_informasi
+        ]);
+        // dd($informasi);
+        return redirect('menu-admin/informasi')->with('updated', 'Data berhasil diubah!');
     }
 
     public function show($id)

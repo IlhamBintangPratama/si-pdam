@@ -118,7 +118,16 @@ class PelangganController extends Controller
             // dd($pelanggan);
             return redirect('menu-admin/pelanggan')->with('updated', 'Data berhasil diubah!');
         }
-        return redirect('menu-admin/pelanggan')->with('error', 'Data gagal diubah!');
+        $pelanggan->update([
+            'nama' => $request->nama,
+            'no_telp' => $request->no_telp,
+            'email' => $request->email,
+            // 'foto' => $filename,
+            'no_rekening_air' => $request->no_rekening_air,
+            'alamat' => $request->alamat,
+            'username' => $request->username
+        ]);
+        return redirect('menu-admin/pelanggan')->with('updated', 'Data berhasil diubah!');
     }
 
     public function show($id)
