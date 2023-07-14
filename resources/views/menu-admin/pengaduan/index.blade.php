@@ -85,8 +85,8 @@
                                 {{ $item->keluhan }}
                             </td>
                             <td> 
-                                <a href="{{ url('/menu-admin/pengaduan/'.$item->id.'/show') }}" class="btn btn-warning"><i class="fa fa-eye"></i></a>
-                                <a href="{{ url('/menu-admin/pengaduan/'.$item->id.'/edit') }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                <a href="{{ url('/menu-admin/pengaduan/'.$item->id.'/pesan') }}" class="btn btn-success"><i class="fab fa-lg fa-whatsapp"></i></a>
+                                <a href="{{ url('/menu-admin/pengaduan/'.$item->id.'/print') }}" class="btn btn-secondary"><i class="fa fa-print"></i></a>
                                 <a class="btn btn-danger" data-toggle="modal" id="smallButton" data-target="#smallModal" onclick="return openModal({{$item->id}})"><i class="fa fa-trash"></i></a>
                             </td>
                             </tr>

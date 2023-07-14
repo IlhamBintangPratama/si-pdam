@@ -32,6 +32,8 @@
         {{$message}}
     </div>
     @endif
+    {{-- <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js" integrity="sha384-sCI3dTBIJuqT6AwL++zH7qL8ZdKaHpxU43dDt9SyOzimtQ9eyRhkG3B7KMl6AO19" crossorigin="anonymous"></script> --}}
+
     <div class="container-fluid">
 
         <!-- Page Heading -->
@@ -131,6 +133,7 @@
                     </div>
                 </div>
                 {{-- <script src="{{asset('js')}}/jquery.min.js"></script> --}}
+                
                 <script>
                     setTimeout(function() {
                     $('.alert').fadeOut('slow');}, 3000

@@ -51,6 +51,9 @@ Route::post('menu-admin/pengaduan', [PengaduanController::class, 'store']);
 Route::get('menu-admin/pengaduan/{id}/edit', [PengaduanController::class, 'edit']);
 Route::post('menu-admin/pengaduan/{id}/update', [PengaduanController::class, 'update']);
 Route::get('menu-admin/pengaduan/{id}/show', [PengaduanController::class, 'show']);
+Route::get('menu-admin/pengaduan/{id}/print', [PengaduanController::class, 'print']);
+Route::get('menu-admin/pengaduan/{id}/pesan', [PengaduanController::class, 'pesan']);
+Route::post('menu-admin/pengaduan/{id}/resWhatsapp', [PengaduanController::class, 'resWhatsapp']);
 Route::post('menu-admin/pengaduan/{id}/delete', [PengaduanController::class, 'destroy']);
 Route::get('search-items', [PengaduanController::class, 'index']);
 //route pelanggan

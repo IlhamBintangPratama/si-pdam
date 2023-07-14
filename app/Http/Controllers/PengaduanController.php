@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use PDF;
 
 class PengaduanController extends Controller
 {
@@ -70,6 +71,51 @@ class PengaduanController extends Controller
         $pengaduan = Pengaduan::findorfail($id);
         // dd($pengaduan->id_p)
         return view('menu-admin.pengaduan.edit', compact('pengaduan'));
+    }
+    public function pesan($id)
+    {
+        $pengaduan = Pengaduan::findorfail($id);
+        // dd($pengaduan->id_p)
+        return view('menu-admin.pengaduan.pesan', compact('pengaduan'));
+    }
+    public function resWhatsapp(Request $request)
+    {
+        $token = '3u1cu_RH+pn@qegbmD9S';
+        $target = $request->no_telp;
+        $pesan = $request->pesan;
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.fonnte.com/send',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array(
+        'target' => $target,
+        'message' => $pesan, 
+        // 'countryCode' => '62', //optional
+        ),
+        CURLOPT_HTTPHEADER => array(
+            "Authorization: $token" //change TOKEN to your actual token
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return back()->with('created', 'Pesan berhasil dikirim!');
+    }
+
+    public function print($id)
+    {
+        $pengaduan = Pengaduan::find($id);
+        $pdf = PDF::loadView('menu-admin.pengaduan.cetak', ['pengaduan'=> $pengaduan]);
+        return $pdf->download('pengaduan.pdf');
     }
 
     public function update(Request $request, $id){
