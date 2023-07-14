@@ -1,6 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
 
+use App\Models\Pelanggan;
 use App\Models\Tagihan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -29,14 +30,25 @@ class TagihanController extends Controller
 
     public function create()
     {
-        return view('menu-admin.tagihan.create');
+        $pelanggan = Pelanggan::groupBy('id')->get('id');
+        return view('menu-admin.tagihan.create', compact('pelanggan'));
+    }
+
+    function listdata($id, Request $request){
+
+        $pelanggan= new Pelanggan();
+        $pelanggan = $pelanggan->select('id','nama','alamat')
+                        ->where('id','=',$id);
+        
+        return response()->json($pelanggan->get());
+        // dd($pelanggan);
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'nama' => 'required',
-            'no_pelanggan' => 'required',
+            'no_pelanggan' => 'required|unique:tagihans',
             'jumlah_tagihan' => 'required',
             'alamat' => 'required'
         ]);
@@ -65,7 +77,8 @@ class TagihanController extends Controller
     {
         $tagihan = Tagihan::findorfail($id);
         // dd($tagihan->id_p)
-        return view('menu-admin.tagihan.edit', compact('tagihan'));
+        $pelanggan = Pelanggan::groupBy('id')->get('id');
+        return view('menu-admin.tagihan.edit', compact('tagihan','pelanggan'));
     }
 
     public function update(Request $request, $id){

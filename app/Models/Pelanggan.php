@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pelanggan extends Authenticatable
 {
     protected $fillable = [
+        'id',
         'nama',
         'alamat',
         'no_telp',

@@ -80,7 +80,7 @@
                             <label for="keluhan">Keluhan</label>
                             <textarea class="form-control @error('keluhan')
                                 is-invalid
-                                @enderror" id="keluhan" name="keluhan" type="text">
+                                @enderror" id="keluhan" style="resize: none; white-space: pre-line;" rows="4" cols="20" name="keluhan" type="text">
                                 {{ old('name', $pengaduan->keluhan) }}
                             </textarea>
                                 @error('keluhan')

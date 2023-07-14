@@ -42,7 +42,7 @@
                             <label for="isi_informasi">Isi Informasi</label>
                             <textarea class="form-control @error('isi_informasi')
                                 is-invalid
-                                @enderror" id="isi_informasi" name="isi_informasi" type="text"  placeholder="Masukan isi informasi">
+                                @enderror" id="isi_informasi" name="isi_informasi" type="text" style="resize: none; white-space: pre-line;" rows="4" cols="20" placeholder="Masukan isi informasi">
                                 {{ old('name', $informasi->isi_informasi) }}
                             </textarea>
                                 @error('isi_informasi')
@@ -75,7 +75,7 @@
                             </div>
                             @enderror
                         </div> --}}
-                        <div style="margin-top: 21.5%;">
+                        <div style="margin-top: 12%;">
                             <button type="submit" class="btn btn-primary w-100 mb-2">Simpan</button>
                             <button type="button" id="back" class="btn btn-secondary w-100">Kembali</button>
                         </div>

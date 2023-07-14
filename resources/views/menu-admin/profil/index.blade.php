@@ -28,35 +28,35 @@
                         <tbody>
                             <tr>
                                 <td style="width: 20%">Profil Perusahaan</td>
-                                <td>: {{ $profil->profil }}</td>
+                                <td style="white-space: pre-line;">{{ $profil->profil }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Facebook</td>
-                                <td>: {{ $profil->facebook }}</td>
+                                <td>{{ $profil->facebook }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Instagram</td>
-                                <td>: {{ $profil->instagram }}</td>
+                                <td>{{ $profil->instagram }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">No Telp</td>
-                                <td>: 0{{ $profil->no_telp }}</td>
+                                <td>0{{ $profil->no_telp }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Email</td>
-                                <td>: {{ $profil->email }}</td>
+                                <td>{{ $profil->email }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Alamat</td>
-                                <td>: {{ $profil->alamat }}</td>
+                                <td>{{ $profil->alamat }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Visi</td>
-                                <td>: {{ $profil->visi }}</td>
+                                <td style="white-space: pre-line;">{{ $profil->visi }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%;">Misi</td>
-                                <td>: {{$profil->misi}}</td>
+                                <td style="white-space: pre-line;">{{$profil->misi}}</td>
                             </tr>
                         </tbody>
                     </table>

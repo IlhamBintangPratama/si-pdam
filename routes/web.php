@@ -79,6 +79,7 @@ Route::get('menu-admin/tagihan/{id}/edit', [TagihanController::class, 'edit']);
 Route::post('menu-admin/tagihan/{id}/update', [TagihanController::class, 'update']);
 Route::get('menu-admin/tagihan/{id}/show', [TagihanController::class, 'show']);
 Route::post('menu-admin/tagihan/{id}/delete', [TagihanController::class, 'destroy']);
+Route::get('menu-admin/tagihan/listdata/{id}', [TagihanController::class, 'listdata']);
 Route::get('search-items', [TagihanController::class, 'index']);
 
 Route::get('menu-admin/pasangbaru/create', [ControllersPasangbaru::class, 'create']);

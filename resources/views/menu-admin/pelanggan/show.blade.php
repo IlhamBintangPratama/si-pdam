@@ -24,31 +24,31 @@
                         <tbody>
                             <tr>
                                 <td style="width: 20%">Nama Lengkap</td>
-                                <td>: {{ $pelanggan->nama }}</td>
+                                <td>{{ $pelanggan->nama }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">No Telp</td>
-                                <td>: {{ $pelanggan->no_telp }}</td>
+                                <td> {{ $pelanggan->no_telp }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Email</td>
-                                <td>: {{ $pelanggan->email }}</td>
+                                <td> {{ $pelanggan->email }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Foto</td>
-                                <td>: <img src="/galeri/{{ $pelanggan->foto }}" width="150px"></td>
+                                <td> <img src="/galeri/{{ $pelanggan->foto }}" width="150px"></td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">No Rekening Air</td>
-                                <td>: {{ $pelanggan->no_rekening_air }}</td>
+                                <td> {{ $pelanggan->no_rekening_air }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Alamat</td>
-                                <td>: {{ $pelanggan->alamat }}</td>
+                                <td> {{ $pelanggan->alamat }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Username</td>
-                                <td>: {{ $pelanggan->username }}</td>
+                                <td> {{ $pelanggan->username }}</td>
                             </tr>
                         </tbody>
                     </table>
