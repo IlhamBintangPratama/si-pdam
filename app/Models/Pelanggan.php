@@ -15,9 +15,7 @@ class Pelanggan extends Authenticatable
         'no_telp',
         'email',
         'foto',
-        'no_rekening_air',
-        'username',
-        'password'
+        'no_rekening_air'
     ];
     
     public function pengaduan()

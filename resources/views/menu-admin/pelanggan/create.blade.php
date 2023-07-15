@@ -93,28 +93,6 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="mb-3">
-                            <label for="username">Username</label>
-                            <input class="form-control @error('username')
-                            is-invalid
-                            @enderror" id="username" value="{{old('username')}}" name="username" type="text" >
-                            @error('username')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="password">Password</label>
-                            <input class="form-control @error('password')
-                            is-invalid
-                            @enderror" id="password" value="{{old('password')}}" name="password" type="password" >
-                            @error('password')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
-                        </div>
                         <div>
                             <button type="submit" class="btn btn-primary w-100 mb-2">Simpan</button>
                             <button type="button" id="back" class="btn btn-secondary w-100">Kembali</button>

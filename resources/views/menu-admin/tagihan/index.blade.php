@@ -66,7 +66,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>No Pelanggan</th>
+                                <th>No Rekening Air</th>
                                 <th>Nama</th>
                                 <th>Aksi</th>
                             </tr>
@@ -79,7 +79,7 @@
                             <th scope="row">
                                 <div class="media align-items-center">
                                 <div class="media-body">
-                                    <span class="name mb-0 text-sm">{{ $item->no_pelanggan }}</span>
+                                    <span class="name mb-0 text-sm">{{ $item->no_rekening_air }}</span>
                                 </div>
                                 </div>
                             </th>

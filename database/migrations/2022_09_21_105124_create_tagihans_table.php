@@ -15,7 +15,7 @@ class CreateTagihansTable extends Migration
     {
         Schema::create('tagihans', function (Blueprint $table) {
             $table->increments('id', true);
-            $table->string('no_pelanggan');
+            $table->string('no_rekening_air');
             $table->string('nama');
             $table->string('alamat');
             $table->string('jumlah_tagihan');

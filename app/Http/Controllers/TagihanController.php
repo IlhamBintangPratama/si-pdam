@@ -30,15 +30,15 @@ class TagihanController extends Controller
 
     public function create()
     {
-        $pelanggan = Pelanggan::groupBy('id')->get('id');
+        $pelanggan = Pelanggan::groupBy('no_rekening_air')->get('no_rekening_air');
         return view('menu-admin.tagihan.create', compact('pelanggan'));
     }
 
-    function listdata($id, Request $request){
+    function listdata($no_rekening_air, Request $request){
 
         $pelanggan= new Pelanggan();
-        $pelanggan = $pelanggan->select('id','nama','alamat')
-                        ->where('id','=',$id);
+        $pelanggan = $pelanggan->select('no_rekening_air','nama','alamat')
+                        ->where('no_rekening_air','=',$no_rekening_air);
         
         return response()->json($pelanggan->get());
         // dd($pelanggan);
@@ -48,7 +48,7 @@ class TagihanController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'no_pelanggan' => 'required|unique:tagihans',
+            'no_rekening_air' => 'required|unique:tagihans',
             'jumlah_tagihan' => 'required',
             'alamat' => 'required'
         ]);
@@ -59,7 +59,7 @@ class TagihanController extends Controller
         // try {
             $nilai = Tagihan::create([
                 'nama' => $request->nama,
-                'no_pelanggan' => $request->no_pelanggan,
+                'no_rekening_air' => $request->no_rekening_air,
                 'jumlah_tagihan' => $request->jumlah_tagihan,
                 'alamat' => $request->alamat
             ]);
@@ -77,7 +77,7 @@ class TagihanController extends Controller
     {
         $tagihan = Tagihan::findorfail($id);
         // dd($tagihan->id_p)
-        $pelanggan = Pelanggan::groupBy('id')->get('id');
+        $pelanggan = Pelanggan::groupBy('no_rekening_air')->get('no_rekening_air');
         return view('menu-admin.tagihan.edit', compact('tagihan','pelanggan'));
     }
 
@@ -85,7 +85,7 @@ class TagihanController extends Controller
 
         $request->validate([
             'nama' => 'required',
-            'no_pelanggan' => 'required',
+            'no_rekening_air' => 'required',
             'jumlah_tagihan' => 'required',
             'alamat' => 'required'
         ]);
@@ -95,7 +95,7 @@ class TagihanController extends Controller
             //for update in table
             $tagihan->update([
                 'nama' => $request->nama,
-                'no_pelanggan' => $request->no_pelanggan,
+                'no_rekening_air' => $request->no_rekening_air,
                 'jumlah_tagihan' => $request->jumlah_tagihan,
                 'alamat' => $request->alamat
             ]);

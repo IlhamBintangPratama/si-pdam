@@ -41,9 +41,7 @@ class PelangganController extends Controller
             'email' => 'required|unique:pelanggans,email',
             'foto' => 'required|mimes:jpg,jpeg,png|max:2048',
             'no_rekening_air' => 'required',
-            'alamat' => 'required',
-            'username' => 'required',
-            'password' => 'required'
+            'alamat' => 'required'
         ]);
 
         
@@ -56,9 +54,7 @@ class PelangganController extends Controller
                 'email' => $request->email,
                 'foto' => $namaFile,
                 'no_rekening_air' => $request->no_rekening_air,
-                'alamat' => $request->alamat,
-                'username' => $request->username,
-                'password' => $request->password
+                'alamat' => $request->alamat
             ]);
             
             $nilai->save();
@@ -85,8 +81,7 @@ class PelangganController extends Controller
             'email' => 'required',
             'foto' => 'mimes:jpg,jpeg,png|max:2048',
             'no_rekening_air' => 'required',
-            'alamat' => 'required',
-            'username' => 'required'
+            'alamat' => 'required'
         ]);
 
         $pelanggan = Pelanggan::find($id);
@@ -112,8 +107,7 @@ class PelangganController extends Controller
                 'email' => $request->email,
                 'foto' => $filename,
                 'no_rekening_air' => $request->no_rekening_air,
-                'alamat' => $request->alamat,
-                'username' => $request->username
+                'alamat' => $request->alamat
             ]);
             // dd($pelanggan);
             return redirect('menu-admin/pelanggan')->with('updated', 'Data berhasil diubah!');
@@ -124,8 +118,7 @@ class PelangganController extends Controller
             'email' => $request->email,
             // 'foto' => $filename,
             'no_rekening_air' => $request->no_rekening_air,
-            'alamat' => $request->alamat,
-            'username' => $request->username
+            'alamat' => $request->alamat
         ]);
         return redirect('menu-admin/pelanggan')->with('updated', 'Data berhasil diubah!');
     }

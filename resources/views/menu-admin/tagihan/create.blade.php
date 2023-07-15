@@ -27,19 +27,27 @@
                             </div>
                         @endif --}}
                         <div class="mb-3">
-                            <label for="no_pelanggan">No Pelanggan</label>
-                            {{-- <input class="form-control @error('no_pelanggan')
+                            <label for="no_rekening_air">No Pelanggan</label>
+                            {{-- <input class="form-control @error('no_rekening_air')
                                 is-invalid
-                                @enderror" id="no_pelanggan" value="{{old('no_pelanggan')}}" name="no_pelanggan" type="number"  placeholder="Masukan nomor pelanggan"> --}}
-                            <select name="no_pelanggan" id="no_pelanggan" class="form-control @error('no_pelanggan')
+                                @enderror" id="no_rekening_air" value="{{old('no_rekening_air')}}" name="no_rekening_air" type="number"  placeholder="Masukan nomor pelanggan"> --}}
+                            <select name="no_rekening_air" id="no_rekening_air" class="form-control @error('no_rekening_air')
                             is-invalid
                             @enderror" onchange="getData(this)">
                                 <option value="" selected disabled>- pilih -</option>
                                 @foreach ($pelanggan as $data)
-                                <option value="{{$data->id}}">{{$data->id}}</option>
+                                {{-- @php
+                                    $code = $data->id;
+                                    $urutan = (int)substr($code, 1,3);
+                                    $urutan++;
+                                    $huruf = 'NP';
+                                    $kd = $huruf . sprintf("%03s",$urutan);
+                                    // echo $code;
+                                @endphp --}}
+                                <option value="{{$data->no_rekening_air}}">{{$data->no_rekening_air}}</option>
                                 @endforeach
                             </select>
-                            @error('no_pelanggan')
+                            @error('no_rekening_air')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
@@ -90,11 +98,11 @@
                     }
                     function getData(pelanggan){
                         $.ajax({
-                            url : 'listdata/' + $('#no_pelanggan').val(),
+                            url : 'listdata/' + $('#no_rekening_air').val(),
                             type : 'GET',
                             dataType : 'json',
                             success : function(data){
-                                let newData = data.find((item) => item.id == pelanggan.value)
+                                let newData = data.find((item) => item.no_rekening_air == pelanggan.value)
 
                                 $('#nama').val(newData.nama).show(),
                                 $('#nama-1').val(newData.nama).show(),
