@@ -9,7 +9,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h2>Tentang Kami</h2>
             <ol>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{url('/')}}">Home</a></li>
                 <li>Tentang Kami</li>
             </ol>
         </div>
@@ -25,10 +25,7 @@
             </div>
             <div class="col-lg-8 pt-4 pt-lg-0">
                 <p>
-                    Penyedia sarana air bersih di Kabupaten Brebes adalah salah satu wilayah yang keberadaannya sejak
-                    jaman pemerintahan Belanda. PDAM Kabupaten Brebes dikelola berdasarkan PERDA No.7 Tahun 1992.
-                    Dibangunnya menara Persuhaan Daerah Air Minum (PDAM) yang menjulang tinggi setinggi 27 meter di
-                    jalan Taman Siswa yang berdiri pada tahun 1998.
+                    <?= $profil->profil; ?>
                 </p>
                 <!-- <ul>
                     <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>

@@ -117,7 +117,8 @@
                     <div class="testimonial-item">
                         <h3><strong>Cek Tagihan Anda !!</strong></h3>
                         <small>silahkan isi nomor pelanggan anda</small>
-                        <form action="" method="post">
+                        <form action="{{ url('cek-tagihan')}}" method="post">
+                            @csrf
                             <div class="col-md-12 mt-2 form-group">
                                 <input type="text" name="no_pelanggan" class="form-control" id="no_pelanggan"
                                     placeholder="No Pelanggan" required>
