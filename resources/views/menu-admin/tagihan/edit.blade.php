@@ -27,16 +27,16 @@
                             </div>
                         @endif --}}
                         <div class="mb-3">
-                            <label for="no_pelanggan">No Pelanggan</label>
-                            <select name="no_pelanggan" id="no_pelanggan" class="form-control @error('no_pelanggan')
+                            <label for="no_rekening_air">No Rekening Air</label>
+                            <select name="no_rekening_air" id="no_rekening_air" class="form-control @error('no_rekening_air')
                             is-invalid
                             @enderror" onchange="getData(this)">
                                 <option value="" selected disabled>- pilih -</option>
                                 @foreach ($pelanggan as $data)
-                                <option {{$tagihan->id == $data->id ? 'selected' :''}} value="{{$data->id}}">{{$data->id}}</option>
+                                <option {{$tagihan->no_rekening_air == $data->no_rekening_air ? 'selected' :''}} value="{{$data->no_rekening_air}}">{{$data->no_rekening_air}}</option>
                                 @endforeach
                             </select>
-                            @error('no_pelanggan')
+                            @error('no_rekening_air')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
@@ -86,7 +86,7 @@
                     }
                     function getData(pelanggan){
                         $.ajax({
-                            url : 'listdata/' + $('#no_pelanggan').val(),
+                            url : 'listdata/' + $('#no_rekening_air').val(),
                             type : 'GET',
                             dataType : 'json',
                             success : function(data){

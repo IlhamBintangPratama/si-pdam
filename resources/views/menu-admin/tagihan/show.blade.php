@@ -23,8 +23,8 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <td style="width: 20%">No Pelanggan</td>
-                                <td>: {{ $tagihan->no_pelanggan }}</td>
+                                <td style="width: 20%">No Rekening Air</td>
+                                <td>: {{ $tagihan->no_rekening_air }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%">Nama</td>

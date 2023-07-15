@@ -94,17 +94,6 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="mb-3">
-                            <label for="username">Username</label>
-                            <input class="form-control @error('username')
-                            is-invalid
-                            @enderror" id="username" value="{{ old('name', $pelanggan->username) }}" name="username" type="text" >
-                            @error('username')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
-                        </div>
                         {{-- <div class="mb-3">
                             <label for="password">Password</label>
                             <input class="form-control @error('password')

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\SessionController;
+use App\Http\Controllers\BroadcastController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PelangganController;
@@ -94,4 +95,6 @@ Route::get('menu-admin/profil', [ProfilController::class, 'index']);
 Route::get('menu-admin/profil/{id}/edit', [ProfilController::class, 'edit']);
 Route::post('menu-admin/profil/{id}/update', [ProfilController::class, 'update']);
 
+Route::get('menu-admin/broadcast/pesan', [BroadcastController::class, 'pesan']);
+Route::post('menu-admin/broadcast/broadcastWhatsapp', [BroadcastController::class, 'broadcastWhatsapp']);
 });

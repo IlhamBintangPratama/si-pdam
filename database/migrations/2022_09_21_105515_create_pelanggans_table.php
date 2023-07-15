@@ -21,8 +21,6 @@ class CreatePelanggansTable extends Migration
             $table->string('foto')->nullable();
             $table->bigInteger('no_rekening_air')->unique();
             $table->string('alamat');
-            $table->string('username');
-            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
