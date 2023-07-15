@@ -15,7 +15,7 @@ class ProfilSeeder extends Seeder
     public function run()
     {
         Profil::create([
-            'profil' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa officiis voluptatem natus. Mollitia a neque, vitae iusto sunt deleniti eveniet.',
+            'profil' => 'Penyedia sarana air bersih di Kabupaten Brebes adalah salah satu wilayah yang keberadaannya sejak jaman pemerintahan Belanda. PDAM Kabupaten Brebes dikelola berdasarkan PERDA No.7 Tahun 1992. Dibangunnya menara Persuhaan Daerah Air Minum (PDAM) yang menjulang tinggi setinggi 27 meter di jalan Taman Siswa yang berdiri pada tahun 1998.',
             'facebook' => 'https://www.facebook.com/pdambrebes/',
             'instagram' => 'https://www.instagram.com/tirtabaribis/',
             'no_telp' => '085713134141',

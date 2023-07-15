@@ -8,7 +8,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h2>Berita</h2>
             <ol>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{url('/')}}">Home</a></li>
                 <li>Berita</li>
             </ol>
         </div>
@@ -35,8 +35,10 @@
 
                     <div class="entry-meta">
                         <ul>
-                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">Administrator</a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="<?= $berita->created_at; ?>"><?= $berita->created_at; ?></time></a>
+                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
+                                    href="#">Administrator</a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
+                                        datetime="<?= $berita->created_at; ?>"><?= $berita->created_at; ?></time></a>
                             </li>
                         </ul>
                     </div>

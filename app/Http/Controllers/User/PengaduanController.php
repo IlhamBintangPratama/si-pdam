@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
 use App\Models\Profil;
@@ -14,6 +15,19 @@ class PengaduanController extends Controller
     {
         $profil = Profil::findorfail(1);
         return view('user.pengaduan', compact('profil'));
+    }
+
+    public function cek(Request $request)
+    {
+        $request->validate([
+            'no_pelanggan' => 'required',
+        ],
+        [ 'no_pelanggan.required' => ':attribute harus di isi.']);
+        
+        $profil = Profil::findorfail(1);
+        $no_rekening_air = $request->get('no_pelanggan');
+        $pengaduan = Pelanggan::where('no_rekening_air' , $no_rekening_air)->first();
+        return view('user.detail_pengaduan', compact('profil','pengaduan'));    
     }
 
     public function store(Request $request)
@@ -32,7 +46,7 @@ class PengaduanController extends Controller
 
         $nilai = Pengaduan::create([
             'nama' => $request->nama,
-            'id_pelanggan' => 1,
+            'id_pelanggan' => $request->id_pelanggan,
             'keluhan' => $request->keluhan,
             'foto' => $namaFile,
             'alamat' => $request->alamat
@@ -40,6 +54,6 @@ class PengaduanController extends Controller
         // dd($nilai);
 
         $nilai->save();
-        return redirect('pengaduan')->with('created', 'Data berhasil disimpan');
+        return redirect('pengaduan')->with('created', 'Pengaduan berhasil dikirim');
     }
 }

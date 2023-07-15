@@ -3,13 +3,13 @@
 @section('title', 'Berita')
 
 <style>
-    .crop-text-2 {
-        -webkit-line-clamp: 8;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-    }
+.crop-text-2 {
+    -webkit-line-clamp: 8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
 </style>
 @section('content')
 <!-- ======= Breadcrumbs ======= -->
@@ -19,7 +19,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h2>Berita</h2>
             <ol>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{url('/')}}">Home</a></li>
                 <li>Berita</li>
             </ol>
         </div>
@@ -47,8 +47,11 @@
                             </h2>
                             <div class="entry-meta">
                                 <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">Administrator</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="<?= $data->created_at; ?>"><?= $data->created_at; ?></time></a>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
+                                            href="blog-single.html">Administrator</a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
+                                            href="blog-single.html"><time
+                                                datetime="<?= $data->created_at; ?>"><?= $data->created_at; ?></time></a>
                                     </li>
                                 </ul>
                             </div>

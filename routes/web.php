@@ -32,10 +32,12 @@ Route::post('/session/login', [SessionController::class, 'login']);
 Route::get('/session/logout', [SessionController::class, 'logout']);
 // route user
 Route::get('/', [HomeController::class, 'index']);
+Route::post('/cek-tagihan', [HomeController::class, 'cek_tagihan']);
 Route::get('/tentangkami', [TentangKamiController::class, 'index']);
 Route::get('berita', [BeritaController::class, 'index']);
 Route::get('/detail-berita/{id}', [BeritaController::class, 'detail']);
 Route::get('pengaduan', [UserPengaduanController::class, 'index']);
+Route::post('cek-pengaduan', [UserPengaduanController::class, 'cek']);
 Route::post('send-pengaduan', [UserPengaduanController::class, 'store']);
 Route::get('/pasang', [PasangBaruController::class, 'index']);
 

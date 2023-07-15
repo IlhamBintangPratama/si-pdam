@@ -71,6 +71,11 @@
 
 <!-- Template Main JS File -->
 <script src="{{asset('Sailor')}}/assets/js/main.js"></script>
+<script>
+setTimeout(function() {
+    $('.alert').fadeOut('slow');
+}, 3000);
+</script>
 
 </body>
 
