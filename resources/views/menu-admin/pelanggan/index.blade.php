@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     <!-- Begin Page Content -->
-    {{-- <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <!-- {{-- <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="check-circle-fill" viewBox="0 0 16 16">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
         </symbol>
@@ -11,7 +11,7 @@
         <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
             <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
         </symbol>
-    </svg> --}}
+    </svg> --}} -->
     @if ($message = Session::get('created'))
     <div class="alert alert-success ml-4 mr-4" role="alert">
         {{$message}}
@@ -71,7 +71,7 @@
                                 <th>Nama</th>
                                 <th>No Telp</th>
                                 <th>Alamat</th>
-                                <th>Email</th>
+                                <!-- <th>Email</th> -->
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -93,9 +93,9 @@
                             <td class="budget">
                                 {{ $item->alamat }}
                             </td>
-                            <td class="budget">
+                            <!-- <td class="budget">
                                 {{ $item->email }}
-                            </td>
+                            </td> -->
                             <td>
                                 <a href="{{ url('/menu-admin/pelanggan/'.$item->id.'/show') }}" class="btn btn-warning"><i class="fa fa-eye"></i></a>
                                 <a href="{{ url('/menu-admin/pelanggan/'.$item->id.'/edit') }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
@@ -105,6 +105,7 @@
                             @endforeach
                             </tbody>
                     </table>
+                    
                 </div>
                 <div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
@@ -134,50 +135,45 @@
                 </div>
                 {{-- <script src="{{asset('js')}}/jquery.min.js"></script> --}}
                 
-                <script>
-                    setTimeout(function() {
-                    $('.alert').fadeOut('slow');}, 3000
-                    );
-                    $(document).on('click', '#smallButton', function(event) {
-                    event.preventDefault();
-                    let href = $(this).attr('data-attr');
-                    $.ajax({
-                        url: href
-                        , beforeSend: function() {
-                            $('#loader').show();
-                        },
-                        // return the result
-                        success: function(result) {
-                            $('#smallModal').modal("show");
-                            $('#smallBody').html(result).show();
-                        }
-                        , complete: function() {
-                            $('#loader').hide();
-                        }
-                        , error: function(jqXHR, testStatus, error) {
-                            console.log(error);
-                            alert("Page " + href + " cannot open. Error:" + error);
-                            $('#loader').hide();
-                        }
-                        , timeout: 8000
-                    })
-                });
-                    function openModal(id){
-                    var form = document.querySelector('#form_id');
-                    form.action = `{{url('/menu-admin/pelanggan/${id}/delete')}}`
-                }
-                </script>
-                
-                <div class="card-footer py-4">
-                    <nav aria-label="...">
-                        <ul class="pagination justify-content-end mb-0">
-                        {{ $pelanggan->links()}}
-                        </ul>
-                    </nav>
-                </div>
             </div>
         </div>
 
     </div>
     <!-- /.container-fluid -->
+@endsection
+
+@section("footer.script")
+<script>
+    setTimeout(function() {
+    $('.alert').fadeOut('slow');}, 3000
+    );
+    $(document).on('click', '#smallButton', function(event) {
+    event.preventDefault();
+    let href = $(this).attr('data-attr');
+    $.ajax({
+        url: href
+        , beforeSend: function() {
+            $('#loader').show();
+        },
+        // return the result
+        success: function(result) {
+            $('#smallModal').modal("show");
+            $('#smallBody').html(result).show();
+        }
+        , complete: function() {
+            $('#loader').hide();
+        }
+        , error: function(jqXHR, testStatus, error) {
+            console.log(error);
+            alert("Page " + href + " cannot open. Error:" + error);
+            $('#loader').hide();
+        }
+        , timeout: 8000
+    })
+});
+    function openModal(id){
+    var form = document.querySelector('#form_id');
+    form.action = `{{url('/menu-admin/pelanggan/${id}/delete')}}`
+}
+</script>
 @endsection

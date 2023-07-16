@@ -35,7 +35,10 @@
                             <label for="no_telp">No Telp</label>
                             <input class="form-control @error('no_telp')
                                 is-invalid
-                                @enderror" id="no_telp" value="{{ old('name', $pengaduan->pelanggan->no_telp) }}" name="no_telp" type="text">
+                                @enderror" id="no_telp" value="{{ old('name', $pengaduan->pelanggan->no_telp) }}" hidden name="no_telp" type="text">
+                                <input class="form-control @error('no_telp')
+                                is-invalid
+                                @enderror" id="no_telp" value="{{ old('name', $pengaduan->pelanggan->no_telp) }}" disabled name="no_telp" type="text">
                             @error('no_telp')
                             <div class="invalid-feedback">
                                 {{$message}}
