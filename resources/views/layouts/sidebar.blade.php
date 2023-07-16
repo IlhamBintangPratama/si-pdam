@@ -57,9 +57,16 @@
             <span>Data Tagihan Pelanggan</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{url('menu-admin/pasangbaru/create')}}">
+        @php
+            use App\Models\Pasangbaru;
+            $pasangbaru = Pasangbaru::select('id')->first('id');
+            // dd(echo $pasangbaru);
+        @endphp 
+        {{-- @foreach ($pasangbaru as $key => $data) --}}
+        <a class="nav-link" href="{{url('menu-admin/pasangbaru/'.$pasangbaru->id.'/edit')}}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Pemasangan Sambung Baru</span></a>
+        {{-- @endforeach --}}
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{url('menu-admin/broadcast/pesan')}}">

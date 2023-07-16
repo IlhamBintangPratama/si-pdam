@@ -15,31 +15,28 @@ class PasangbaruController extends Controller
      */
     
 
-    public function create()
+    public function edit($id)
     {
-        return view('menu-admin.pasang_baru.create');
+        $pasang_baru = Pasangbaru::findorfail($id);
+        // dd($pasang_baru->id_p)
+        return view('menu-admin.pasang_baru.edit', compact('pasang_baru'));
     }
 
-    public function store(Request $request)
-    {
+    public function update(Request $request, $id){
+
         $request->validate([
             'persyaratan' => 'required',
             'harga_pasang' => 'required'
-            
         ]);
 
-        // try {
-            $nilai = Pasangbaru::create([
+        $pasang_baru = Pasangbaru::find($id);
+
+        
+            $pasang_baru->update([
                 'persyaratan' => $request->persyaratan,
                 'harga_pasang' => $request->harga_pasang
             ]);
-            
-            $nilai->save();
-            // dd($nilai);
-            return redirect('menu-admin/pasangbaru/create')->with('created', 'Data berhasil dipublish');
-        // } catch (Exception $e) {
-        //     return redirect('menu-admin/pelanggan')->with('error', 'Terjadi kesalahan! Mohon periksa kembali.');
-        // }
-        
+            // dd($pasang_baru);
+            return view('menu-admin.pasang_baru.edit',compact('pasang_baru'))->with('updated', 'Data berhasil dipublish!')->with('updated', 'Data berhasil dipublish!');
     }
 }
