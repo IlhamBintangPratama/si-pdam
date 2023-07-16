@@ -16,6 +16,11 @@ class BroadcastController extends Controller
     public function broadcastWhatsapp(Request $request)
     {
         $token = '3u1cu_RH+pn@qegbmD9S';
+        $request->validate([
+            'pesan' => 'required'
+            
+        ]);
+
         $target = $request->no_telp;
         // $broadcast = implode('`, `',$target);
 

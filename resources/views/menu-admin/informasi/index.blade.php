@@ -159,3 +159,4 @@
     </div>
     <!-- /.container-fluid -->
 @endsection
+@section("footer.script")

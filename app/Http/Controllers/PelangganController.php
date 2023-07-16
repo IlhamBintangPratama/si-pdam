@@ -16,9 +16,9 @@ class PelangganController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
-        $pelanggan = Pelanggan::paginate(8);
+        $pelanggan = Pelanggan::paginate();
         if($search != ""){
-        $pelanggan = Pelanggan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate(8)->setPath ( '' );
+        $pelanggan = Pelanggan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate()->setPath ( '' );
         $pagination = $pelanggan->appends ( array (
             'search' => $request->get('search') 
             ) );
@@ -80,7 +80,7 @@ class PelangganController extends Controller
 
         $request->validate([
             'nama' => 'required',
-            'no_telp' => 'required|max:13',
+            'no_telp' => 'required|unique:pelanggans,no_telp|max:13',
             'email' => 'required',
             'foto' => 'mimes:jpg,jpeg,png|max:2048',
             'no_rekening_air' => 'required',

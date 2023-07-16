@@ -16,9 +16,9 @@ class PengaduanController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
-        $pengaduan = Pengaduan::paginate(8);
+        $pengaduan = Pengaduan::paginate();
         if($search != ""){
-        $pengaduan = Pengaduan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate (8)->setPath ( '' );
+        $pengaduan = Pengaduan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate ()->setPath ( '' );
         $pagination = $pengaduan->appends ( array (
             'search' => $request->get('search') 
             ) );
@@ -81,6 +81,11 @@ class PengaduanController extends Controller
     public function resWhatsapp(Request $request)
     {
         $token = '3u1cu_RH+pn@qegbmD9S';
+        $request->validate([
+            'pesan' => 'required'
+            
+        ]);
+
         $target = $request->no_telp;
         $pesan = $request->pesan;
 

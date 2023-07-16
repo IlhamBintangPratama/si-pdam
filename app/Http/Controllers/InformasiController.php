@@ -15,9 +15,9 @@ class InformasiController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
-        $informasi = Informasi::paginate(8);
+        $informasi = Informasi::paginate();
         if($search != ""){
-        $informasi = Informasi::where ('judul', 'LIKE', '%' . $search . '%' )->paginate (8)->setPath ( '' );
+        $informasi = Informasi::where ('judul', 'LIKE', '%' . $search . '%' )->paginate ()->setPath ( '' );
         $pagination = $informasi->appends ( array (
             'search' => $request->get('search') 
             ) );

@@ -16,9 +16,9 @@ class TagihanController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
-        $tagihan = Tagihan::paginate(8);
+        $tagihan = Tagihan::paginate();
         if($search != ""){
-        $tagihan = Tagihan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate (8)->setPath ( '' );
+        $tagihan = Tagihan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate ()->setPath ( '' );
         $pagination = $tagihan->appends ( array (
             'search' => $request->get('search') 
             ) );
