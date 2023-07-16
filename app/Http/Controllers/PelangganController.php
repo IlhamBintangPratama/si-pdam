@@ -15,17 +15,20 @@ class PelangganController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('keyword');
-        $pelanggan = Pelanggan::paginate(8);
-        if($keyword != ""){
-        $pelanggan = Pelanggan::where ('nama', 'LIKE', '%' . $keyword . '%' )->paginate (8)->setPath ( '' );
+        $search = $request->get('search');
+        $pelanggan = Pelanggan::select('nama','email','no_telp','foto','alamat','no_rekening_air')->paginate(8);
+        if($search != ""){
+        $pelanggan = Pelanggan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate(8)->setPath ( '' );
         $pagination = $pelanggan->appends ( array (
-            'keyword' => $request->get('keyword') 
+            'search' => $request->get('search') 
             ) );
         }
+        
+
         // $profil = User::select('name','level')->where('level', '=', 1)->first();
         // dd($profil);
         return view('menu-admin.pelanggan.index', compact('pelanggan'));
+        
     }
 
     public function create()
