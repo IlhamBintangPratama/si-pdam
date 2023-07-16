@@ -1,13 +1,13 @@
 @extends('layouts-user.main')
 
 <style>
-.crop-text-2 {
-    -webkit-line-clamp: 8;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-}
+    .crop-text-2 {
+        -webkit-line-clamp: 8;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+    }
 </style>
 @section('title', 'Home')
 <!-- ======= Hero Section Carousel ======= -->
@@ -24,8 +24,7 @@
                     <div class="container">
                         <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Tirta Baribis</span></h2>
                         <p class="animate__animated animate__fadeInUp">Sistem Informasi PDAM Kabupaten Brebes.</p>
-                        <a href="{{url('tentangkami')}}"
-                            class="btn-get-started animate__animated animate__fadeInUp scrollto">Read
+                        <a href="{{url('tentangkami')}}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read
                             More</a>
                     </div>
                 </div>
@@ -116,12 +115,18 @@
                 <div class="col-lg-6">
                     <div class="testimonial-item">
                         <h3><strong>Cek Tagihan Anda !!</strong></h3>
-                        <small>silahkan isi nomor pelanggan anda</small>
+                        <small>silahkan isi nomor rekening air anda</small>
                         <form action="{{ url('cek-tagihan')}}" method="post">
                             @csrf
                             <div class="col-md-12 mt-2 form-group">
-                                <input type="text" name="no_pelanggan" class="form-control" id="no_pelanggan"
-                                    placeholder="No Pelanggan" required>
+                                <input type="text" name="no_pelanggan" class="form-control @error('no_pelanggan')
+                                is-invalid
+                                @enderror" id="no_pelanggan" placeholder="Masukan No Rekening Air" required>
+                                @error('no_pelanggan')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-sm btn-danger mt-2">Cek Tagihan</button>
                         </form>
@@ -157,11 +162,8 @@
                     </h2>
                     <div class="entry-meta">
                         <ul>
-                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                    href="blog-single.html">Administrator</a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                    href="blog-single.html"><time
-                                        datetime="<?= $data->created_at; ?>"><?= $data->created_at; ?></time></a>
+                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">Administrator</a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="<?= $data->created_at; ?>"><?= $data->created_at; ?></time></a>
                             </li>
                         </ul>
                     </div>

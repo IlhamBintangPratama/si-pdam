@@ -19,15 +19,22 @@ class PengaduanController extends Controller
 
     public function cek(Request $request)
     {
-        $request->validate([
-            'no_pelanggan' => 'required',
-        ],
-        [ 'no_pelanggan.required' => ':attribute harus di isi.']);
-        
+        $request->validate(
+            [
+                'no_pelanggan' => 'required',
+            ],
+            ['no_pelanggan.required' => ':attribute harus di isi.']
+        );
+
         $profil = Profil::findorfail(1);
         $no_rekening_air = $request->get('no_pelanggan');
-        $pengaduan = Pelanggan::where('no_rekening_air' , $no_rekening_air)->first();
-        return view('user.detail_pengaduan', compact('profil','pengaduan'));    
+        $pengaduan = Pelanggan::where('no_rekening_air', $no_rekening_air)->first();
+
+        if ($pengaduan == null) {
+            return redirect('pengaduan')->with('error', 'No Rekening Tidak Terdaftar');
+        } else {
+            return view('user.detail_pengaduan', compact('profil', 'pengaduan'));
+        }
     }
 
     public function store(Request $request)

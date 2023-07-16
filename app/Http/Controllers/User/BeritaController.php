@@ -13,7 +13,8 @@ class BeritaController extends Controller
     {
         $profil = Profil::findOrFail(1);
         $berita = Informasi::all();
-        return view('user.berita', compact('profil', 'berita'));
+        $beritabaru = Informasi::orderBy('id', 'DESC')->get();
+        return view('user.berita', compact('profil', 'berita', 'beritabaru'));
     }
 
     public function detail($id)
