@@ -9,6 +9,7 @@ class Tagihan extends Model
 {
     // use HasFactory;
     protected $fillable = [
+        'id',
         'no_rekening_air',
         'nama',
         'alamat',

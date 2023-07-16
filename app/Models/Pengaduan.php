@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pengaduan extends Model
 {
     protected $fillable = [
+        'id',
         'id_pelanggan',
         'nama',
         'alamat',

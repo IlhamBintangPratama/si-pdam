@@ -15,12 +15,12 @@ class PengaduanController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('keyword');
+        $search = $request->get('search');
         $pengaduan = Pengaduan::paginate(8);
-        if($keyword != ""){
-        $pengaduan = Pengaduan::where ('nama', 'LIKE', '%' . $keyword . '%' )->paginate (8)->setPath ( '' );
+        if($search != ""){
+        $pengaduan = Pengaduan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate (8)->setPath ( '' );
         $pagination = $pengaduan->appends ( array (
-            'keyword' => $request->get('keyword') 
+            'search' => $request->get('search') 
             ) );
         }
         // $profil = User::select('name','level')->where('level', '=', 1)->first();

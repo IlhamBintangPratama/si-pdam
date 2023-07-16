@@ -36,7 +36,7 @@
                             </tr>
                             <tr>
                                 <td style="width: 20%">Jumlah Tagihan</td>
-                                <td>: @currency($tagihan->jumlah_tagihan)</td>
+                                <td>: Rp.{{number_format($tagihan->jumlah_tagihan)}}</td>
                             </tr>
                         </tbody>
                     </table>

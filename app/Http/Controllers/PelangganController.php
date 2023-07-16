@@ -16,7 +16,7 @@ class PelangganController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
-        $pelanggan = Pelanggan::select('nama','email','no_telp','foto','alamat','no_rekening_air')->paginate(8);
+        $pelanggan = Pelanggan::paginate(8);
         if($search != ""){
         $pelanggan = Pelanggan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate(8)->setPath ( '' );
         $pagination = $pelanggan->appends ( array (

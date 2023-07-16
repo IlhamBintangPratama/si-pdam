@@ -15,12 +15,12 @@ class TagihanController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('keyword');
+        $search = $request->get('search');
         $tagihan = Tagihan::paginate(8);
-        if($keyword != ""){
-        $tagihan = Tagihan::where ('nama', 'LIKE', '%' . $keyword . '%' )->paginate (8)->setPath ( '' );
+        if($search != ""){
+        $tagihan = Tagihan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate (8)->setPath ( '' );
         $pagination = $tagihan->appends ( array (
-            'keyword' => $request->get('keyword') 
+            'search' => $request->get('search') 
             ) );
         }
         // $profil = User::select('name','level')->where('level', '=', 1)->first();

@@ -31,7 +31,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Informasi</h6>
-                <form action="{{ url('search-items')}}" id="navbar-search-main" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form action="{{ url('search-informasi')}}" id="navbar-search-main" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group py-2" style="margin-left: -1em">
                         <div class="form-outline pr-2">
                             <input id="search-focus" type="text" name="search" placeholder="Search..." id="form1" class="form-control" />
