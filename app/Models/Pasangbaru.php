@@ -9,6 +9,7 @@ class Pasangbaru extends Model
 {
     // use HasFactory;
     protected $fillable = [
+        'id',
         'persyaratan',
         'harga_pasang'
     ];

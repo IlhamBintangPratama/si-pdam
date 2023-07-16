@@ -35,7 +35,7 @@
                 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group py-2" style="margin-left: -1em">
                     <div class="form-outline pr-2">
-                        <input id="search-focus" type="search" placeholder="Search..." id="form1"
+                        <input id="search-focus" type="text" name="search" placeholder="Search..." id="form1"
                             class="form-control" />
                         {{-- <label class="form-label" for="form1" style="margin-top: -10%">Search</label> --}}
                     </div>
@@ -126,6 +126,7 @@
                     </div>
                 </div>
             </div>
+            <script src="{{asset('js')}}/jquery.min.js"></script>
             <script>
             setTimeout(function() {
                 $('.alert').fadeOut('slow');
