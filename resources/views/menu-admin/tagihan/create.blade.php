@@ -27,7 +27,7 @@
                             </div>
                         @endif --}}
                         <div class="mb-3">
-                            <label for="no_rekening_air">No Pelanggan</label>
+                            <label for="no_rekening_air">No Rekening Air</label>
                             {{-- <input class="form-control @error('no_rekening_air')
                                 is-invalid
                                 @enderror" id="no_rekening_air" value="{{old('no_rekening_air')}}" name="no_rekening_air" type="number"  placeholder="Masukan nomor pelanggan"> --}}

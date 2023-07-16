@@ -9,6 +9,7 @@ class Informasi extends Model
 {
     // use HasFactory;
     protected $fillable = [
+        'id',
         'judul',
         'isi_informasi',
         'foto'

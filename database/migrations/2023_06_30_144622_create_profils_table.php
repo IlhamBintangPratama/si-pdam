@@ -18,7 +18,7 @@ class CreateProfilsTable extends Migration
             $table->longText('profil');
             $table->string('facebook');
             $table->string('instagram');
-            $table->bigInteger('no_telp')->unique();
+            $table->stringr('no_telp')->unique();
             $table->string('email')->unique();
             $table->string('alamat');
             $table->string('visi');

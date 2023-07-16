@@ -14,12 +14,12 @@ class InformasiController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('keyword');
+        $search = $request->get('search');
         $informasi = Informasi::paginate(8);
-        if($keyword != ""){
-        $informasi = Informasi::where ('judul', 'LIKE', '%' . $keyword . '%' )->paginate (8)->setPath ( '' );
+        if($search != ""){
+        $informasi = Informasi::where ('judul', 'LIKE', '%' . $search . '%' )->paginate (8)->setPath ( '' );
         $pagination = $informasi->appends ( array (
-            'keyword' => $request->get('keyword') 
+            'search' => $request->get('search') 
             ) );
         }
         // $profil = User::select('name','level')->where('level', '=', 1)->first();
