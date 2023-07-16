@@ -3,13 +3,13 @@
 @section('title', 'Berita')
 
 <style>
-.crop-text-2 {
-    -webkit-line-clamp: 8;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-}
+    .crop-text-2 {
+        -webkit-line-clamp: 8;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+    }
 </style>
 @section('content')
 <!-- ======= Breadcrumbs ======= -->
@@ -47,11 +47,8 @@
                             </h2>
                             <div class="entry-meta">
                                 <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                            href="blog-single.html">Administrator</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                            href="blog-single.html"><time
-                                                datetime="<?= $data->created_at; ?>"><?= $data->created_at; ?></time></a>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">Administrator</a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="{{$data->created_at}}">{{$data->created_at}}</time></a>
                                     </li>
                                 </ul>
                             </div>
@@ -80,45 +77,23 @@
 
             <div class="col-lg-4">
                 <div class="sidebar">
-                    <h3 class="sidebar-title">Search</h3>
+                    <!-- <h3 class="sidebar-title">Search</h3>
                     <div class="sidebar-item search-form">
                         <form action="">
                             <input type="text">
                             <button type="submit"><i class="bi bi-search"></i></button>
                         </form>
-                    </div><!-- End sidebar search formn-->
+                    </div>End sidebar search formn -->
 
-                    <h3 class="sidebar-title">Recent Posts</h3>
+                    <h3 class="sidebar-title">Berita Terkini</h3>
                     <div class="sidebar-item recent-posts">
+                        @foreach ($beritabaru as $data )
                         <div class="post-item clearfix">
-                            <img src="{{asset('Sailor')}}/assets/img/blog/blog-recent-1.jpg" alt="">
-                            <h4><a href="blog-single.html">Nihil blanditiis at in nihil autem</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
+                            <img src="{{asset('galeri/informasi/'. $data->foto)}}" alt="" class="img-thumbnail">
+                            <h4><a href="{{url('detail-berita/'. $data->id)}}">{{ $data->judul  }}</a></h4>
+                            <time datetime="{{$data->created_at}}">{{$data->created_at}}</time>
                         </div>
-
-                        <div class="post-item clearfix">
-                            <img src="{{asset('Sailor')}}/assets/img/blog/blog-recent-2.jpg" alt="">
-                            <h4><a href="blog-single.html">Quidem autem et impedit</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-
-                        <div class="post-item clearfix">
-                            <img src="{{asset('Sailor')}}/assets/img/blog/blog-recent-3.jpg" alt="">
-                            <h4><a href="blog-single.html">Id quia et et ut maxime similique occaecati ut</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-
-                        <div class="post-item clearfix">
-                            <img src="{{asset('Sailor')}}/assets/img/blog/blog-recent-4.jpg" alt="">
-                            <h4><a href="blog-single.html">Laborum corporis quo dara net para</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-
-                        <div class="post-item clearfix">
-                            <img src="{{asset('Sailor')}}/assets/img/blog/blog-recent-5.jpg" alt="">
-                            <h4><a href="blog-single.html">Et dolores corrupti quae illo quod dolor</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
+                        @endforeach
                     </div><!-- End sidebar recent posts-->
                 </div><!-- End sidebar -->
 
