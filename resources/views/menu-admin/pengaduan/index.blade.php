@@ -61,6 +61,7 @@
                             <th>Alamat</th>
                             <th>Foto</th>
                             <th>Keluhan</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -85,6 +86,26 @@
                             </td>
                             <td class="budget">
                                 {{ $item->keluhan }}
+                            </td>
+                            <td class="budget">
+                                <style>
+                                    .badge-dot{
+                                        border-radius: 5px;
+                                        width: 10px;
+                                        height: 10px;
+                                    }
+                                </style>
+                                @if ($item->status == 0)
+                                    <span class="badge badge-dot bg-primary"><i class="bg-primary"></i></span>
+                                    <span class="status">Baru</span>
+                                    
+                                @else
+                                    <span class="badge badge-dot {{($item->status == 2) ?
+                                        'bg-success' : 'bg-warning'}}"><i class="{{($item->status == 2) ?
+                                        'bg-success' : 'bg-warning'}}"></i></span>
+                                    <span class="status">{{($item->status == 2) ? 'Selesai' : 'Proses'}}</span>
+                                    
+                                @endif
                             </td>
                             <td>
                                 <a href="{{ url('/menu-admin/pengaduan/'.$item->id.'/pesan') }}"

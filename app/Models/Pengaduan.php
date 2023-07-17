@@ -13,7 +13,8 @@ class Pengaduan extends Model
         'nama',
         'alamat',
         'foto',
-        'keluhan'
+        'keluhan',
+        'status'
     ];
 
     public function pelanggan()

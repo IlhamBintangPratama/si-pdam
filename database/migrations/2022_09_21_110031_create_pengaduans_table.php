@@ -20,6 +20,7 @@ class CreatePengaduansTable extends Migration
             $table->string('alamat');
             $table->string('foto');
             $table->text('keluhan');
+            $table->integer('status')->default(0)->nullable();
             $table->timestamps();
 
             $table->foreign('id_pelanggan')->references('id')->on('pelanggans')->onDelete('cascade')->onUpdate('cascade');
