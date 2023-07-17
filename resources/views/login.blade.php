@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('SBAdmin')}}/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('toastr')}}/toastr.min.css">
 
 </head>
 <style>
@@ -32,11 +33,7 @@
     <div class="container">
 
         <!-- Outer Row -->
-        @if ($message = Session::get('error'))
-        <div class="alert alert-error ml-4 mr-4" role="alert">
-            {{$message}}
-        </div>
-        @endif
+        
         <div class="row justify-content-center">
             
             <div class="col-xl-7 col-lg-8 col-md-9">
@@ -107,7 +104,16 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('SBAdmin')}}/js/sb-admin-2.min.js"></script>
-
+    <script src="{{asset('toastr')}}/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @if (Session::has('error'))
+        <script>
+            toastr.options = {
+                "progressBar" : true,
+                "closeButton" : true,
+            }
+            toastr.error("{{ Session::get('error') }}",'Login gagal!', {timeOut:4000});
+        </script>
+    @endif
 </body>
 
 </html>
