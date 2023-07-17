@@ -38,7 +38,15 @@
     <li class="nav-item">
         <a class="nav-link" href="{{url('menu-admin/pengaduan')}}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Data Pengaduan</span></a>
+            <span>Data Pengaduan</span>
+            @php
+                use App\Models\Pengaduan;
+                $data = Pengaduan::select('status')->where('status', 0)->count();
+            @endphp
+            @if ($data)
+                <span class="badge badge-danger ml-2">{{ $data }}</span>
+            @endif
+        </a>
     </li>
 
         

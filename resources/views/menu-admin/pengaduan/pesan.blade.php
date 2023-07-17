@@ -59,6 +59,18 @@
                             </div>
                             @enderror
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" value="1" id="status1" <?php if($pengaduan['status']=='1') echo 'checked'?>>
+                            <label class="form-check-label" for="status1">
+                                Proses
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" value="2" id="status2" <?php if($pengaduan['status']=='2') echo 'checked'?>>
+                            <label class="form-check-label" for="status2">
+                                Selesai
+                            </label>
+                        </div>
                         
                         <div style="margin-top: 22%;">
                             <button type="submit" class="btn btn-primary w-100 mb-2">Kirim Pesan</button>

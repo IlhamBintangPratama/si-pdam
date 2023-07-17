@@ -78,7 +78,7 @@ class PengaduanController extends Controller
         // dd($pengaduan->id_p)
         return view('menu-admin.pengaduan.pesan', compact('pengaduan'));
     }
-    public function resWhatsapp(Request $request)
+    public function resWhatsapp(Request $request, $id)
     {
         $token = '3u1cu_RH+pn@qegbmD9S';
         $request->validate([
@@ -89,6 +89,7 @@ class PengaduanController extends Controller
         $target = $request->no_telp;
         $pesan = $request->pesan;
 
+        $changestatus = Pengaduan::find($id);
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -109,6 +110,9 @@ class PengaduanController extends Controller
             "Authorization: $token" //change TOKEN to your actual token
         ),
         ));
+        $changestatus->update([
+            'status' => $request->status
+        ]);
 
         $response = curl_exec($curl);
 
