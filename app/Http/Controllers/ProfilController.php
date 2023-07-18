@@ -56,6 +56,16 @@ class ProfilController extends Controller
             'alamat' => 'required',
             'visi' => 'required',
             'misi' => 'required'
+        ],
+        [
+            'profil.required' => 'Profil wajib diisi',
+            'no_telp.required' => 'No telp wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'facebook.required' => 'Facebook wajib diisi',
+            'instagram.required' => 'Instagram wajib diisi',
+            'alamat.required' => 'Alamat wajib diisi',
+            'visi.required' => 'Visi wajib diisi',
+            'misi.required' => 'Misi wajib diisi'
         ]);
 
         $profil = Profil::find($id);

@@ -45,6 +45,16 @@ class PelangganController extends Controller
             'foto' => 'required|mimes:jpg,jpeg,png|max:2048',
             'no_rekening_air' => 'required',
             'alamat' => 'required'
+        ],
+        [
+            'nama.required' => 'Nama wajib disi',
+            'no_telp.required' => 'No telp wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'email.unique' => 'Email sudah terdaftar',
+            'no_rekening_air.required' => 'No rekening air wajib diisi',
+            'alamat.required' => 'Alamat wajib diisi',
+            'foto.required' => 'Foto wajib diisi',
+            'foto.mimes' => 'Jenis foto harus berformat jpg,jpeg,png'
         ]);
 
         
@@ -85,6 +95,16 @@ class PelangganController extends Controller
             'foto' => 'mimes:jpg,jpeg,png|max:2048',
             'no_rekening_air' => 'required',
             'alamat' => 'required'
+        ],
+        [
+            'nama.required' => 'Nama wajib diisi',
+            'no_telp.required' => 'No telp wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'email.unique' => 'Email sudah terdaftar',
+            'no_rekening_air.required' => 'No rekening air wajib diisi',
+            'alamat.required' => 'Alamat wajib diisi',
+            'foto.required' => 'Foto wajib diisi',
+            'foto.mimes' => 'Jenis foto harus berformat jpg,jpeg,png'
         ]);
 
         $pelanggan = Pelanggan::find($id);

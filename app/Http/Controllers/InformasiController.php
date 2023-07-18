@@ -38,6 +38,12 @@ class InformasiController extends Controller
             'judul' => 'required',
             'isi_informasi' => 'required',
             'foto' => 'required|mimes:jpg,jpeg,png|max:2048'
+        ],
+        [
+            'judul.required' => 'Judul wajib diisi',
+            'isi_informasi.required' => 'Isi informasi wajib diisi',
+            'foto.required' => 'Foto wajib diisi',
+            'foto.mimes' => 'Jenis foto harus berformat jpg,jpeg,png'
         ]);
 
         
@@ -72,6 +78,12 @@ class InformasiController extends Controller
             'judul' => 'required',
             'isi_informasi' => 'required',
             'foto' => 'mimes:jpg,jpeg,png|max:2048'
+        ],
+        [
+            'judul.required' => 'Judul wajib diisi',
+            'isi_informasi.required' => 'Isi informasi wajib diisi',
+            'foto.required' => 'Foto wajib diisi',
+            'foto.mimes' => 'Jenis foto harus berformat jpg,jpeg,png'
         ]);
 
         $informasi = Informasi::find($id);

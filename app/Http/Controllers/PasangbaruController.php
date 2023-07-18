@@ -27,6 +27,10 @@ class PasangbaruController extends Controller
         $request->validate([
             'persyaratan' => 'required',
             'harga_pasang' => 'required'
+        ],
+        [
+            'persyaratan.required' => 'Persyaratan wajib diisi',
+            'harga_pasang.required' => 'Keterangan harga pasang wajib diisi'
         ]);
 
         $pasang_baru = Pasangbaru::find($id);

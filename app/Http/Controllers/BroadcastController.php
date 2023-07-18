@@ -19,6 +19,9 @@ class BroadcastController extends Controller
         $request->validate([
             'pesan' => 'required'
             
+        ],
+        [
+            'pesan.required' => 'Pesan wajib diisi'
         ]);
 
         $target = $request->no_telp;

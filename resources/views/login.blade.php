@@ -55,22 +55,24 @@
                                                 is-invalid @enderror" value="{{old('username')}}"
                                                 id="username" name="username"
                                                 placeholder="Masukan username anda ...">
+                                            @error('username')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
                                         </div>
-                                        @error('username')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
-                                        </div>
-                                        @enderror
+                                        
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user @error('password')
                                                 is-invalid @enderror" name="password" value="{{old('password')}}"
                                                 id="password" placeholder="Masukan password anda ...">
+                                            @error('password')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
                                         </div>
-                                        @error('password')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
-                                        </div>
-                                        @enderror
+                                        
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
