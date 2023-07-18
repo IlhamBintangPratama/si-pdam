@@ -42,7 +42,33 @@
                                 <td style="width: 20%">Keluhan</td>
                                 <td>{{ $pengaduan->keluhan }}</td>
                             </tr>
-                            
+                            <tr>
+                                <td style="width: 20%"> Tanggal</td>
+                                <td>{{ $pengaduan->created_at->format('d-m-Y') }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%"> Status</td>
+                                <td>
+                                    <style>
+                                        .badge-dot{
+                                            border-radius: 5px;
+                                            width: 10px;
+                                            height: 10px;
+                                        }
+                                    </style>
+                                    @if ($pengaduan->status == 0)
+                                        <span class="badge badge-dot bg-primary"><i class="bg-primary"></i></span>
+                                        <span class="status">Baru</span>
+                                        
+                                    @else
+                                        <span class="badge badge-dot {{($pengaduan->status == 2) ?
+                                            'bg-success' : 'bg-warning'}}"><i class="{{($pengaduan->status == 2) ?
+                                            'bg-success' : 'bg-warning'}}"></i></span>
+                                        <span class="status">{{($pengaduan->status == 2) ? 'Selesai' : 'Proses'}}</span>
+                                        
+                                    @endif
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
