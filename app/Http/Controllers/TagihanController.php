@@ -51,6 +51,13 @@ class TagihanController extends Controller
             'no_rekening_air' => 'required|unique:tagihans',
             'jumlah_tagihan' => 'required',
             'alamat' => 'required'
+        ],
+        [
+            'profil.required' => 'Profil wajib diisi',
+            'no_rekening_air.required' => 'No rekening air wajib diisi',
+            'no_rekening_air.unique' => 'No rekening air sudah terdaftar',
+            'jumlah_tagihan.required' => 'Jumlah tagihan wajib diisi',
+            'alamat.required' => 'Alamat wajib diisi'
         ]);
 
         
@@ -88,6 +95,13 @@ class TagihanController extends Controller
             'no_rekening_air' => 'required',
             'jumlah_tagihan' => 'required',
             'alamat' => 'required'
+        ],
+        [
+            'profil.required' => 'Profil wajib diisi',
+            'no_rekening_air.required' => 'No rekening air wajib diisi',
+            'no_rekening_air.unique' => 'No rekening air sudah terdaftar',
+            'jumlah_tagihan.required' => 'Jumlah tagihan wajib diisi',
+            'alamat.required' => 'Alamat wajib diisi'
         ]);
 
         $tagihan = Tagihan::find($id);
