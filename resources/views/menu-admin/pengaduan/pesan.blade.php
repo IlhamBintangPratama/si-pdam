@@ -60,16 +60,25 @@
                             @enderror
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" value="1" id="status1" <?php if($pengaduan['status']=='1') echo 'checked'?>>
+                            <input class="form-check-input @error('status')
+                            is-invalid
+                            @enderror" type="radio" name="status" value="1" id="status1" <?php if($pengaduan['status']=='1') echo 'checked'?>>
                             <label class="form-check-label" for="status1">
                                 Proses
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" value="2" id="status2" <?php if($pengaduan['status']=='2') echo 'checked'?>>
+                            <input class="form-check-input @error('status')
+                            is-invalid
+                            @enderror" type="radio" name="status" value="2" id="status2" <?php if($pengaduan['status']=='2') echo 'checked'?>>
                             <label class="form-check-label" for="status2">
                                 Selesai
                             </label>
+                            @error('status')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
                         </div>
                         
                         <div style="margin-top: 22%;">

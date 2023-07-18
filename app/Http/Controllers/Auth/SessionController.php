@@ -35,7 +35,7 @@ class SessionController extends Controller
             return redirect('/menu-admin/dasboard')->with('success', 'Selamat datang dihalaman admin dashboard');
         
         }else{
-            return redirect('login')->with('error', 'Username dan passwword salah');
+            return redirect('login')->with('error', 'Username dan password salah');
         }
 
     }

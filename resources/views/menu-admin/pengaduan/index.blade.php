@@ -59,8 +59,6 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Alamat</th>
-                            <th>Foto</th>
-                            <th>Keluhan</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
@@ -81,12 +79,12 @@
                             <td class="budget">
                                 {{ $item->alamat }}
                             </td>
-                            <td class="budget">
+                            {{-- <td class="budget">
                                 {{ $item->foto }}
                             </td>
                             <td class="budget">
                                 {{ $item->keluhan }}
-                            </td>
+                            </td> --}}
                             <td class="budget">
                                 <style>
                                     .badge-dot{
@@ -108,6 +106,8 @@
                                 @endif
                             </td>
                             <td>
+                                <a href="{{ url('/menu-admin/pengaduan/'.$item->id.'/show') }}"
+                                    class="btn btn-warning"><i class="fa fa-eye"></i></a>
                                 <a href="{{ url('/menu-admin/pengaduan/'.$item->id.'/pesan') }}"
                                     class="btn btn-success"><i class="fab fa-lg fa-whatsapp"></i></a>
                                 <a href="{{ url('/menu-admin/pengaduan/'.$item->id.'/print') }}"

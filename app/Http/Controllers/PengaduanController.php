@@ -82,7 +82,8 @@ class PengaduanController extends Controller
     {
         $token = '3u1cu_RH+pn@qegbmD9S';
         $request->validate([
-            'pesan' => 'required'
+            'pesan' => 'required',
+            'status' => 'required'
             
         ]);
 
