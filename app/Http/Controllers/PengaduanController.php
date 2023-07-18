@@ -16,12 +16,26 @@ class PengaduanController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        $baru = $request->get('baru');
+        $selesai = $request->get('selesai');
         $pengaduan = Pengaduan::paginate();
         if($search != ""){
         $pengaduan = Pengaduan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate ()->setPath ( '' );
         $pagination = $pengaduan->appends ( array (
             'search' => $request->get('search') 
             ) );
+        }
+        if($baru != ""){
+            $pengaduan = Pengaduan::where ('status', 'LIKE', '%' . $baru . '%' )->paginate ()->setPath ( '' );
+            $pagination = $pengaduan->appends ( array (
+                'baru' => $request->get('baru') 
+                ) );
+        }
+        if($selesai != ""){
+            $pengaduan = Pengaduan::where ('status', 'LIKE', '%' . $selesai . '%' )->paginate ()->setPath ( '' );
+            $pagination = $pengaduan->appends ( array (
+                'selesai' => $request->get('selesai') 
+                ) );
         }
         // $profil = User::select('name','level')->where('level', '=', 1)->first();
         // dd($profil);

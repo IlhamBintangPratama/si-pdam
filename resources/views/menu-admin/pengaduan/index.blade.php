@@ -44,15 +44,30 @@
                     </button>
                 </div>
             </form>
-            {{-- <a href="#" class="btn btn-primary btn-icon-split" style="float: right;">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Tambah Data</span>
-                </a> --}}
+                
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                <div style="float: right; display: flex;">
+                <form action="{{ url('search-baru')}}" method="GET">
+                    <input id="search-focus" type="text" name="baru" value="0" hidden class="form-control" />
+                    <button type="submit" class="btn btn-primary btn-icon-split" style="margin-right:5px;">
+                        <!-- <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span> -->
+                        <span class="text">Baru</span>
+                    </button>
+                </form>
+                <form action="{{ url('search-selesai')}}" method="GET">
+                    <input id="search-focus" type="text" name="selesai" value="2" hidden class="form-control" />
+                    <button type="submit" class="btn btn-success btn-icon-split">
+                        <!-- <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span> -->
+                        <span class="text">Selesai</span>
+                    </button>
+                </form>
+                </div>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
