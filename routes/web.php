@@ -59,6 +59,7 @@ Route::get('menu-admin/pengaduan/{id}/pesan', [PengaduanController::class, 'pesa
 Route::post('menu-admin/pengaduan/{id}/resWhatsapp', [PengaduanController::class, 'resWhatsapp']);
 Route::post('menu-admin/pengaduan/{id}/delete', [PengaduanController::class, 'destroy']);
 Route::get('search-pengaduan', [PengaduanController::class, 'index']);
+Route::get('search-date', [PengaduanController::class, 'index']);
 Route::get('search-baru', [PengaduanController::class, 'index']);
 Route::get('search-selesai', [PengaduanController::class, 'index']);
 //route pelanggan

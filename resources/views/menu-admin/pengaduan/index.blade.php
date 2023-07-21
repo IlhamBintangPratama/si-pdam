@@ -31,21 +31,39 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Pengaduan</h6>
-            <form action="{{ url('search-pengaduan')}}" id="navbar-search-main" method="GET"
-                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                <div class="input-group py-2" style="margin-left: -1em">
-                    <div class="form-outline pr-2">
-                        <input id="search-focus" type="text" name="search" placeholder="Search..." id="form1"
-                            class="form-control" />
-                        {{-- <label class="form-label" for="form1" style="margin-top: -10%">Search</label> --}}
+            <div style="display:flex">
+                <form action="{{ url('search-pengaduan')}}" id="navbar-search-main" method="GET"
+                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group py-2" style="margin-left: -1em">
+                        <div class="form-outline pr-2">
+                            <input id="search-focus" type="text" name="search" placeholder="Search..." id="form1"
+                                class="form-control" />
+                            {{-- <label class="form-label" for="form1" style="margin-top: -10%">Search</label> --}}
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="height: 37px">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="height: 37px">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </form>
+                </form>
                 
+                <form action="{{ url('search-date')}}" method="get" style="display:flex; margin-top:10px;">
+                    <div class="row" style="float:right;">
+                    <div style="display:flex;">
+                        <label for="" style="margin-right: 10px; margin-top:5px;">From</label>
+                        <input type="date" name="date_from" class="form-control" style="width:10em;" value="{{ $datefrom }}">
+                    </div>
+                    <div style="display:flex">
+                        <label for="" style="margin-right: 10px; margin-left:10px; margin-top:5px;">To</label>
+                        <input type="date" name="date_to" class="form-control" style="width:10em;" value="{{ $dateto }}">
+                    </div>
+                        <div class="col-md-2 form-group">
+                        <input type="submit" class="btn btn-primary" value="Search">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
+        
         <div class="card-body">
             <div class="table-responsive">
                 <div style="float: right; display: flex;">
@@ -74,6 +92,7 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Alamat</th>
+                            <th>Tanggal</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
@@ -93,6 +112,9 @@
 
                             <td class="budget">
                                 {{ $item->alamat }}
+                            </td>
+                            <td class="budget">
+                                {{ $item->created_at->format('d-m-Y') }}
                             </td>
                             {{-- <td class="budget">
                                 {{ $item->foto }}

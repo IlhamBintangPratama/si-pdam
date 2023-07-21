@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\File;
 use PDF;
 
@@ -18,6 +20,9 @@ class PengaduanController extends Controller
         $search = $request->get('search');
         $baru = $request->get('baru');
         $selesai = $request->get('selesai');
+        $datefrom = $request->get('date_from');
+        $dateto = $request->get('date_to');
+
         $pengaduan = Pengaduan::paginate();
         if($search != ""){
         $pengaduan = Pengaduan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate ()->setPath ( '' );
@@ -25,6 +30,7 @@ class PengaduanController extends Controller
             'search' => $request->get('search') 
             ) );
         }
+            
         if($baru != ""){
             $pengaduan = Pengaduan::where ('status', 'LIKE', '%' . $baru . '%' )->paginate ()->setPath ( '' );
             $pagination = $pengaduan->appends ( array (
@@ -37,9 +43,21 @@ class PengaduanController extends Controller
                 'selesai' => $request->get('selesai') 
                 ) );
         }
+        if($datefrom != "" && $dateto != ""){
+            $pengaduan = Pengaduan::orderBy ('id', 'desc')->when($datefrom && $dateto, function (Builder $builder) use ($datefrom, $dateto) {
+                $builder->whereBetween(
+                    DB::raw('DATE(created_at)'),
+                    [
+                        $datefrom,
+                        $dateto
+                    ]
+                );
+            }
+            )->paginate();
+        }
         // $profil = User::select('name','level')->where('level', '=', 1)->first();
         // dd($profil);
-        return view('menu-admin.pengaduan.index', compact('pengaduan'));
+        return view('menu-admin.pengaduan.index', compact('pengaduan','datefrom','dateto'));
     }
 
     public function create()
