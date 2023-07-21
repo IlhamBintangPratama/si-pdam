@@ -90,7 +90,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             </div>
         </div>
@@ -106,7 +105,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('SBAdmin')}}/js/sb-admin-2.min.js"></script>
-    <script src="{{asset('toastr')}}/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{asset('toastr')}}/toastr.min.js"></script>
     @if (Session::has('error'))
         <script>
             toastr.options = {
