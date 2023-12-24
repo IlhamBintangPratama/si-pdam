@@ -65,6 +65,7 @@
             <span>Data Tagihan Pelanggan</span></a>
     </li>
     <li class="nav-item">
+        @
         @php
             use App\Models\Pasangbaru;
             $pasangbaru = Pasangbaru::select('id')->first('id');

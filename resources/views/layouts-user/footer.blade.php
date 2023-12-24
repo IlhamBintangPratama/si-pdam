@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <div class="footer-info">
                         <h3>Tirta Baribis</h3>
                         <p>
@@ -32,13 +32,13 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-4 col-md-6 footer-newsletter">
+                <!-- <div class="col-lg-4 col-md-6 footer-newsletter">
                     <h4>Our Newsletter</h4>
                     <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
                     <form action="" method="post">
                         <input type="email" name="email"><input type="submit" value="Subscribe">
                     </form>
-                </div>
+                </div> -->
 
             </div>
         </div>

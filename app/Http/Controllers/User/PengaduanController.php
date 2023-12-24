@@ -26,27 +26,34 @@ class PengaduanController extends Controller
             ['no_pelanggan.required' => ':attribute harus di isi.']
         );
 
-        $profil = Profil::findorfail(1);
-        $no_rekening_air = $request->get('no_pelanggan');
+        $no_rekening_air = $request->no_pelanggan;
         $pengaduan = Pelanggan::where('no_rekening_air', $no_rekening_air)->first();
 
         if ($pengaduan == null) {
             return redirect('pengaduan')->with('error', 'No Rekening Tidak Terdaftar');
         } else {
-            return view('user.detail_pengaduan', compact('profil', 'pengaduan'));
+            return redirect()->route('cek-pengaduan', $no_rekening_air);
         }
+    }
+
+    public function getPengaduan($id)
+    {
+        $profil = Profil::findorfail(1);
+        $pengaduan = Pelanggan::where('no_rekening_air', $id)->first();
+        return view('user.detail_pengaduan', compact('profil', 'pengaduan'));
     }
 
     public function store(Request $request)
     {
+
         $request->validate([
-            'nama' => 'required',
+            // 'nama' => 'required',
             // 'id_pelanggan' => 'required',
             'keluhan' => 'required',
+            'tema' => 'required',
             'foto' => 'required|mimes:jpg,jpeg,png|max:2048',
-            'alamat' => 'required'
+            // 'alamat' => 'required'
         ]);
-
 
         $namaFile = $request->file('foto')->getClientOriginalName();
         $request->file('foto')->move('galeri/pengaduan', $namaFile);
@@ -55,6 +62,7 @@ class PengaduanController extends Controller
             'nama' => $request->nama,
             'id_pelanggan' => $request->id_pelanggan,
             'keluhan' => $request->keluhan,
+            'tema' => $request->tema,
             'foto' => $namaFile,
             'alamat' => $request->alamat
         ]);

@@ -81,28 +81,28 @@
             <div class="col-md-3">
                 <div class="icon-box">
                     <i class="bi bi-house-door"></i>
-                    <h4><a href="#">Tentang Kami</a></h4>
+                    <h4><a href="{{ url('tentangkami') }}">Tentang Kami</a></h4>
                     <p>Informasi Profil Tirta Baribis Brebes</p>
                 </div>
             </div>
             <div class="col-md-3 mt-4 mt-md-0">
                 <div class="icon-box">
                     <i class="bi bi-newspaper"></i>
-                    <h4><a href="#">Berita</a></h4>
+                    <h4><a href="{{ url('berita') }}">Berita</a></h4>
                     <p>Informasi Berita Terkini</p>
                 </div>
             </div>
             <div class="col-md-3 mt-4 mt-md-0">
                 <div class="icon-box">
                     <i class="bi bi-bookmark-plus-fill"></i>
-                    <h4><a href="#">Pengaduan</a></h4>
+                    <h4><a href="{{ url('pengaduan') }}">Pengaduan</a></h4>
                     <p>Forum Pengaduan Pelanggan PDAM</p>
                 </div>
             </div>
             <div class="col-md-3 mt-4 mt-md-0">
                 <div class="icon-box">
                     <i class="bi bi-info-circle"></i>
-                    <h4><a href="#">Pasang Baru</a></h4>
+                    <h4><a href="{{ url('pasang') }}">Pasang Baru</a></h4>
                     <p>Informasi Cara Pasang Baru</p>
                 </div>
             </div>

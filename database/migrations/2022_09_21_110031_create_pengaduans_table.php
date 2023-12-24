@@ -18,6 +18,7 @@ class CreatePengaduansTable extends Migration
             $table->integer('id_pelanggan')->unsigned();
             $table->string('nama');
             $table->string('alamat');
+            $table->string('tema');
             $table->string('foto');
             $table->text('keluhan');
             $table->integer('status')->default(0)->nullable();

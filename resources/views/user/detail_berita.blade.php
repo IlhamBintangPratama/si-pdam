@@ -35,9 +35,8 @@
 
                     <div class="entry-meta">
                         <ul>
-                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                    href="#">Administrator</a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
+                            <li class="d-flex align-items-center"><i class="bi bi-person"></i><a href="#">Administrator</a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i><a href="#"><time
                                         datetime="<?= $berita->created_at; ?>"><?= $berita->created_at; ?></time></a>
                             </li>
                         </ul>

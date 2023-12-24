@@ -43,6 +43,16 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label for="inputTema" class="col-sm-2 col-form-label">Tema Pengaduan</label>
+                            <div class="col-sm-10">
+                                <select name="tema" id="" class="form-select">
+                                    <option value="Kerusakan">Kerusakan</option>
+                                    <option value="Operasional">Operasional</option>
+                                    <option value="Kualitas Air">Kualitas Air</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label for="formFile" class="col-sm-2 col-form-label">Foto</label>
                             <div class="col-sm-10">
                                 <input class="form-control @error('foto')
