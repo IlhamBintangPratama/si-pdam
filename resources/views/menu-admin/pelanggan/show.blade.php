@@ -26,10 +26,7 @@
                                 <td style="width: 20%">Nama Lengkap</td>
                                 <td>{{ $pelanggan->nama }}</td>
                             </tr>
-                            <tr>
-                                <td style="width: 20%">No Telp</td>
-                                <td> {{ $pelanggan->no_telp }}</td>
-                            </tr>
+                            
                             <tr>
                                 <td style="width: 20%">Email</td>
                                 <td> {{ $pelanggan->email }}</td>
@@ -43,12 +40,12 @@
                                 <td> {{ $pelanggan->no_rekening_air }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 20%">Alamat</td>
-                                <td> {{ $pelanggan->alamat }}</td>
+                                <td style="width: 20%">Kecamatan</td>
+                                <td> {{ $pelanggan->kecamatan->nama_kecamatan }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 20%">Username</td>
-                                <td> {{ $pelanggan->username }}</td>
+                                <td style="width: 20%">Desa/Kelurahan</td>
+                                <td> {{ $pelanggan->desa->nama_desa }}</td>
                             </tr>
                         </tbody>
                     </table>

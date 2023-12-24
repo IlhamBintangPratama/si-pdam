@@ -64,7 +64,6 @@ Route::get('search-baru', [PengaduanController::class, 'index']);
 Route::get('search-selesai', [PengaduanController::class, 'index']);
 //route pelanggan
 Route::get('menu-admin/pelanggan', [PelangganController::class, 'index']);
-Route::get('search-pelanggan', [PelangganController::class, 'index']);
 Route::get('menu-admin/pelanggan/create', [PelangganController::class, 'create']);
 Route::post('menu-admin/pelanggan', [PelangganController::class, 'store']);
 Route::get('menu-admin/pelanggan/{id}/edit', [PelangganController::class, 'edit']);

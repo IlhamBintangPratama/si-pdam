@@ -82,6 +82,11 @@
             <span>Broadcast</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{url('menu-admin/laporan/index')}}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Rekapitulasi Laporan Pengaduan</span></a>
+    </li>
     {{-- <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

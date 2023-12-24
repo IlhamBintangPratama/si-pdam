@@ -11,7 +11,8 @@ class Pelanggan extends Authenticatable
     protected $fillable = [
         'id',
         'nama',
-        'alamat',
+        'id_desa',
+        'id_kecamatan',
         'no_telp',
         'email',
         'foto',
@@ -21,5 +22,15 @@ class Pelanggan extends Authenticatable
     public function pengaduan()
     {
         return $this->hasMany('App\Models\Pengaduan','id_pelanggan');
+    }
+
+    public function kecamatan() {
+
+        return $this->belongsTo('App\Models\Kecamatan', 'id_kecamatan', 'id');
+
+    }
+    public function desa()
+    {
+        return $this->belongsTo('App\Models\Desa', 'id_desa', 'id');
     }
 }
