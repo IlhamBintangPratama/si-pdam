@@ -19,9 +19,13 @@ class Kecamatan extends Model
     
     }
 
-    public function pelanggan() {
-
+    public function pelanggans() {
         return $this->hasMany('App\Models\Pelanggan', 'id_kecamatan');
+    }
+
+    public function pengaduan() {
+
+        return $this->hasMany('App\Models\Pengaduan', 'id_kecamatan');
     
     }
 }

@@ -31,10 +31,10 @@
                                 <td style="width: 20%">Email</td>
                                 <td> {{ $pelanggan->email }}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <td style="width: 20%">Foto</td>
                                 <td> <img src="/galeri/{{ $pelanggan->foto }}" width="150px"></td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <td style="width: 20%">No Rekening Air</td>
                                 <td> {{ $pelanggan->no_rekening_air }}</td>
@@ -46,6 +46,10 @@
                             <tr>
                                 <td style="width: 20%">Desa/Kelurahan</td>
                                 <td> {{ $pelanggan->desa->nama_desa }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%">Alamat Lengkap</td>
+                                <td> {{ $pelanggan->alamat }}</td>
                             </tr>
                         </tbody>
                     </table>

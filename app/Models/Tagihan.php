@@ -13,7 +13,8 @@ class Tagihan extends Model
         'no_rekening_air',
         'nama',
         'alamat',
-        'jumlah_tagihan'
+        'jumlah_tagihan',
+        'status'
     ];
     // protected $table = ['tagihan'];
 }

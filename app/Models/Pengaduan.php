@@ -24,4 +24,14 @@ class Pengaduan extends Model
     {
         return $this->belongsTo('App\Models\Pelanggan','id_pelanggan', 'id');
     }
+    
+    public function desa()
+    {
+        return $this->belongsTo('App\Models\Desa', 'id_desa', 'id');
+    }
+
+    public function kecamatan() {
+
+        return $this->belongsTo('App\Models\Kecamatan', 'id_kecamatan', 'id');
+    }
 }

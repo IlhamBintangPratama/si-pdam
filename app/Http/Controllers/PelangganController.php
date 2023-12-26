@@ -5,6 +5,7 @@ use App\Models\Kecamatan;
 use App\Models\Pelanggan;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class PelangganController extends Controller
@@ -18,7 +19,7 @@ class PelangganController extends Controller
     {
         $search = $request->get('search');
         $kec = $request->get('kecamatan');
-        $pelanggan = Pelanggan::select('id','nama', 'email', 'foto', 'no_rekening_air','id_kecamatan','id_desa');
+        $pelanggan = Pelanggan::select('id','nama', 'email', 'no_telp','alamat', 'no_rekening_air','id_kecamatan','id_desa');
 
         if($search){
            $pelanggan -> where ('nama', 'LIKE', '%' . $search . '%' );
@@ -33,7 +34,8 @@ class PelangganController extends Controller
 
         
         $kecamatan = Kecamatan::get();
-        // dd($kecamatan);
+
+        
         // $profil = User::select('name','level')->where('level', '=', 1)->first();
         // dd($profil);
         return view('menu-admin.pelanggan.index', compact('pelanggan','kecamatan'));

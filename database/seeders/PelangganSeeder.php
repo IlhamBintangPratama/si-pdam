@@ -19,6 +19,7 @@ class PelangganSeeder extends Seeder
         $array = ['17','18','19','20','21','22','23','24'];
         for($i = 1; $i <= 13; $i++){
         $no_rek = '2023122'.sprintf('%03d', $i);
+        // $no_telp = '+62' $faker->randomElement('82983423411', '82983420892', '83078423411')
         // insert data ke table pegawai menggunakan Faker
         Pelanggan::insert([
             'nama' => $faker->name(),
