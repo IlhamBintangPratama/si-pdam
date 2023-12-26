@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5deb2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 24, 2023 at 10:54 PM
--- Server version: 8.0.35-0ubuntu0.20.04.1
--- PHP Version: 8.1.7
+-- Host: 127.0.0.1
+-- Generation Time: Dec 26, 2023 at 12:30 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `desas` (
-  `id` int UNSIGNED NOT NULL,
-  `nama_desa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_kecamatan` int NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `nama_desa` varchar(255) NOT NULL,
+  `id_kecamatan` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -89,13 +88,13 @@ INSERT INTO `desas` (`id`, `nama_desa`, `id_kecamatan`, `created_at`, `updated_a
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -105,10 +104,10 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `informasis` (
-  `id` int UNSIGNED NOT NULL,
-  `judul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `isi_informasi` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `isi_informasi` text NOT NULL,
+  `foto` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -120,9 +119,9 @@ CREATE TABLE `informasis` (
 --
 
 CREATE TABLE `kecamatans` (
-  `id` int UNSIGNED NOT NULL,
-  `nama_kecamatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kode` int NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `nama_kecamatan` varchar(255) NOT NULL,
+  `kode` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -145,9 +144,9 @@ INSERT INTO `kecamatans` (`id`, `nama_kecamatan`, `kode`, `created_at`, `updated
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -175,9 +174,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `pasangbarus` (
-  `id` bigint UNSIGNED NOT NULL,
-  `persyaratan` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `harga_pasang` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `persyaratan` text NOT NULL,
+  `harga_pasang` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -196,8 +195,8 @@ INSERT INTO `pasangbarus` (`id`, `persyaratan`, `harga_pasang`, `created_at`, `u
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -208,14 +207,15 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `pelanggans` (
-  `id` int UNSIGNED NOT NULL,
-  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `no_rekening_air` bigint NOT NULL,
-  `id_desa` int NOT NULL,
-  `id_kecamatan` int NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `no_telp` varchar(14) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `no_rekening_air` bigint(20) NOT NULL,
+  `id_desa` int(11) NOT NULL,
+  `id_kecamatan` int(11) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -224,65 +224,68 @@ CREATE TABLE `pelanggans` (
 -- Dumping data for table `pelanggans`
 --
 
-INSERT INTO `pelanggans` (`id`, `nama`, `email`, `foto`, `no_rekening_air`, `id_desa`, `id_kecamatan`, `remember_token`, `created_at`, `updated_at`) VALUES
-(79, 'Gasti Yuniar', 'gpuspasari@yahoo.com', NULL, 2023120001, 6, 2, NULL, NULL, NULL),
-(80, 'Kamidin Sirait S.Gz', 'hutagalung.dinda@narpati.co', NULL, 2023120002, 7, 1, NULL, NULL, NULL),
-(81, 'Ami Haryanti M.Pd', 'hassanah.nilam@gmail.com', NULL, 2023120003, 4, 1, NULL, NULL, NULL),
-(82, 'Rika Sudiati', 'farida.siska@halimah.co', NULL, 2023120004, 8, 1, NULL, NULL, NULL),
-(83, 'Dalima Laras Prastuti M.M.', 'eman.nasyidah@yahoo.co.id', NULL, 2023120005, 3, 1, NULL, NULL, NULL),
-(84, 'Icha Zulaika S.Gz', 'enteng87@narpati.co', NULL, 2023120006, 2, 1, NULL, NULL, NULL),
-(85, 'Radit Pradana S.H.', 'natalia.sitorus@narpati.biz.id', NULL, 2023120007, 2, 1, NULL, NULL, NULL),
-(86, 'Adikara Prakasa S.Pt', 'chandra68@yahoo.com', NULL, 2023120008, 2, 1, NULL, NULL, NULL),
-(87, 'Latif Mandala S.IP', 'wadi.mansur@yahoo.co.id', NULL, 2023120009, 6, 1, NULL, NULL, NULL),
-(88, 'Violet Sadina Nuraini S.Pd', 'rini.oktaviani@hastuti.tv', NULL, 2023120010, 8, 1, NULL, NULL, NULL),
-(89, 'Humaira Haryanti', 'vwulandari@hasanah.co', NULL, 2023120011, 4, 1, NULL, NULL, NULL),
-(90, 'Putri Rahayu Laksita', 'csuryatmi@latupono.in', NULL, 2023120012, 5, 1, NULL, NULL, NULL),
-(91, 'Yuni Paramita Yulianti S.E.', 'lamar.usada@latupono.co.id', NULL, 2023120013, 7, 1, NULL, NULL, NULL),
-(92, 'Gilda Kania Puspasari', 'dagustina@pradana.tv', NULL, 2023120014, 3, 1, NULL, NULL, NULL),
-(93, 'Galar Nababan S.Psi', 'upurnawati@nasyiah.my.id', NULL, 2023120015, 5, 1, NULL, NULL, NULL),
-(94, 'Tirta Uwais', 'violet.sitompul@yahoo.co.id', NULL, 2023120016, 2, 1, NULL, NULL, NULL),
-(95, 'Ani Sudiati', 'humaira22@sitompul.go.id', NULL, 2023120017, 7, 1, NULL, NULL, NULL),
-(96, 'Banara Tamba', 'imam.andriani@yahoo.co.id', NULL, 2023120018, 3, 1, NULL, NULL, NULL),
-(97, 'Jamalia Betania Palastri M.M.', 'victoria22@manullang.co', NULL, 2023120019, 3, 1, NULL, NULL, NULL),
-(98, 'Jaka Nababan', 'radit.suryono@sihotang.desa.id', NULL, 2023120020, 5, 1, NULL, NULL, NULL),
-(99, 'Farhunnisa Mandasari', 'yhidayanto@zulaika.biz.id', NULL, 2023120021, 5, 1, NULL, NULL, NULL),
-(100, 'Iriana Purwanti', 'harjasa38@gmail.co.id', NULL, 2023120022, 2, 1, NULL, NULL, NULL),
-(101, 'Simon Nasim Pratama M.Ak', 'parman.rahimah@farida.biz', NULL, 2023120023, 5, 1, NULL, NULL, NULL),
-(102, 'Rahmi Rahmawati', 'rahimah.wardaya@kurniawan.go.id', NULL, 2023120024, 7, 1, NULL, NULL, NULL),
-(103, 'Kartika Mardhiyah', 'gasti79@pradana.biz.id', NULL, 2023120025, 3, 1, NULL, NULL, NULL),
-(104, 'Zizi Usada', 'endra94@mardhiyah.info', NULL, 2023120026, 5, 1, NULL, NULL, NULL),
-(106, 'Banawi Sihotang S.T.', 'wibisono.harja@gmail.com', NULL, 2023121001, 12, 2, NULL, NULL, NULL),
-(107, 'Adika Uwais', 'irsad26@gmail.com', NULL, 2023121002, 12, 2, NULL, NULL, NULL),
-(108, 'Radit Narpati', 'himawan.wahyuni@mardhiyah.id', NULL, 2023121003, 9, 2, NULL, NULL, NULL),
-(109, 'Anom Kurniawan', 'aprastuti@yahoo.co.id', NULL, 2023121004, 14, 2, NULL, NULL, NULL),
-(110, 'Farhunnisa Nasyiah', 'enasyidah@gmail.co.id', NULL, 2023121005, 15, 2, NULL, NULL, NULL),
-(111, 'Janet Eka Novitasari M.Kom.', 'hariyah.elvina@yahoo.com', NULL, 2023121006, 12, 2, NULL, NULL, NULL),
-(112, 'Bakidin Sinaga', 'namaga.patricia@gmail.co.id', NULL, 2023121007, 14, 2, NULL, NULL, NULL),
-(113, 'Hartaka Mahesa Simanjuntak S.Kom', 'enteng67@yahoo.co.id', NULL, 2023121008, 10, 2, NULL, NULL, NULL),
-(114, 'Sabrina Puspita S.Farm', 'puspita.dalima@yahoo.co.id', NULL, 2023121009, 16, 2, NULL, NULL, NULL),
-(115, 'Yunita Pertiwi', 'wpuspita@pratiwi.mil.id', NULL, 2023121010, 16, 2, NULL, NULL, NULL),
-(116, 'Jamalia Kania Fujiati', 'harsana.thamrin@yahoo.com', NULL, 2023121011, 9, 2, NULL, NULL, NULL),
-(117, 'Putri Zulaika', 'uusada@pratama.sch.id', NULL, 2023121012, 10, 2, NULL, NULL, NULL),
-(118, 'Anita Nasyidah', 'yulianti.lamar@yahoo.co.id', NULL, 2023121013, 9, 2, NULL, NULL, NULL),
-(119, 'Silvia Latika Kuswandari', 'danuja63@yahoo.com', NULL, 2023121014, 15, 2, NULL, NULL, NULL),
-(120, 'Luwar Firmansyah', 'siska.lazuardi@gmail.com', NULL, 2023121015, 16, 2, NULL, NULL, NULL),
-(121, 'Rahman Wakiman Sihotang', 'uwais.heryanto@yolanda.ac.id', NULL, 2023121016, 9, 2, NULL, NULL, NULL),
-(122, 'Jasmani Nainggolan', 'sinaga.ifa@wahyudin.biz', NULL, 2023121017, 14, 2, NULL, NULL, NULL),
-(123, 'Gara Sihotang', 'parman76@utami.sch.id', NULL, 2023121018, 15, 2, NULL, NULL, NULL),
-(124, 'Alambana Hidayanto', 'lukman.prakasa@yahoo.com', NULL, 2023121019, 11, 2, NULL, NULL, NULL),
-(125, 'Maman Purwadi Sitorus S.E.', 'cengkir.pradana@megantara.info', NULL, 2023122001, 23, 3, NULL, NULL, NULL),
-(126, 'Usman Damanik S.Ked', 'karman.rahayu@yahoo.co.id', NULL, 2023122002, 21, 3, NULL, NULL, NULL),
-(127, 'Kasiran Saptono', 'suwarno.kiandra@haryanti.tv', NULL, 2023122003, 23, 3, NULL, NULL, NULL),
-(128, 'Gamani Pardi Pradipta S.Sos', 'hutagalung.asmadi@zulaika.org', NULL, 2023122004, 23, 3, NULL, NULL, NULL),
-(129, 'Salman Sitompul', 'shardiansyah@maheswara.name', NULL, 2023122005, 23, 3, NULL, NULL, NULL),
-(130, 'Caket Utama', 'purnawati.darmaji@sirait.ac.id', NULL, 2023122006, 23, 3, NULL, NULL, NULL),
-(131, 'Bakianto Prabowo', 'saefullah.daliman@kuswandari.net', NULL, 2023122007, 20, 3, NULL, NULL, NULL),
-(132, 'Elvin Adriansyah', 'bagya39@yahoo.com', NULL, 2023122008, 23, 3, NULL, NULL, NULL),
-(133, 'Juli Safitri', 'usudiati@andriani.co.id', NULL, 2023122009, 21, 3, NULL, NULL, NULL),
-(134, 'Icha Hastuti', 'vanesa.wijayanti@hasanah.go.id', NULL, 2023122010, 18, 3, NULL, NULL, NULL),
-(135, 'Patricia Hasna Anggraini S.E.I', 'rachel57@yahoo.com', NULL, 2023122011, 23, 3, NULL, NULL, NULL),
-(136, 'Wardi Rajasa', 'sitorus.adikara@tampubolon.sch.id', NULL, 2023122012, 23, 3, NULL, NULL, NULL),
-(137, 'Pia Utami', 'lusamah@suryatmi.co', NULL, 2023122013, 23, 3, NULL, NULL, NULL);
+INSERT INTO `pelanggans` (`id`, `nama`, `email`, `no_telp`, `alamat`, `no_rekening_air`, `id_desa`, `id_kecamatan`, `remember_token`, `created_at`, `updated_at`) VALUES
+(79, 'Gasti Yuniar', 'gpuspasari@yahoo.com', '', '', 2023120001, 6, 2, NULL, NULL, NULL),
+(80, 'Kamidin Sirait S.Gz', 'hutagalung.dinda@narpati.co', '', '', 2023120002, 7, 1, NULL, NULL, NULL),
+(81, 'Ami Haryanti M.Pd', 'hassanah.nilam@gmail.com', '', '', 2023120003, 4, 1, NULL, NULL, NULL),
+(82, 'Rika Sudiati', 'farida.siska@halimah.co', '', '', 2023120004, 8, 1, NULL, NULL, NULL),
+(83, 'Dalima Laras Prastuti M.M.', 'eman.nasyidah@yahoo.co.id', '', '', 2023120005, 3, 1, NULL, NULL, NULL),
+(84, 'Icha Zulaika S.Gz', 'enteng87@narpati.co', '', '', 2023120006, 2, 1, NULL, NULL, NULL),
+(85, 'Radit Pradana S.H.', 'natalia.sitorus@narpati.biz.id', '', '', 2023120007, 2, 1, NULL, NULL, NULL),
+(86, 'Adikara Prakasa S.Pt', 'chandra68@yahoo.com', '', '', 2023120008, 2, 1, NULL, NULL, NULL),
+(87, 'Latif Mandala S.IP', 'wadi.mansur@yahoo.co.id', '', '', 2023120009, 6, 1, NULL, NULL, NULL),
+(88, 'Violet Sadina Nuraini S.Pd', 'rini.oktaviani@hastuti.tv', '', '', 2023120010, 8, 1, NULL, NULL, NULL),
+(89, 'Humaira Haryanti', 'vwulandari@hasanah.co', '', '', 2023120011, 4, 1, NULL, NULL, NULL),
+(90, 'Putri Rahayu Laksita', 'csuryatmi@latupono.in', '', '', 2023120012, 5, 1, NULL, NULL, NULL),
+(91, 'Yuni Paramita Yulianti S.E.', 'lamar.usada@latupono.co.id', '', '', 2023120013, 7, 1, NULL, NULL, NULL),
+(92, 'Gilda Kania Puspasari', 'dagustina@pradana.tv', '', '', 2023120014, 3, 1, NULL, NULL, NULL),
+(93, 'Galar Nababan S.Psi', 'upurnawati@nasyiah.my.id', '', '', 2023120015, 5, 1, NULL, NULL, NULL),
+(94, 'Tirta Uwais', 'violet.sitompul@yahoo.co.id', '', '', 2023120016, 2, 1, NULL, NULL, NULL),
+(95, 'Ani Sudiati', 'humaira22@sitompul.go.id', '', '', 2023120017, 7, 1, NULL, NULL, NULL),
+(96, 'Banara Tamba', 'imam.andriani@yahoo.co.id', '', '', 2023120018, 3, 1, NULL, NULL, NULL),
+(97, 'Jamalia Betania Palastri M.M.', 'victoria22@manullang.co', '', '', 2023120019, 3, 1, NULL, NULL, NULL),
+(98, 'Jaka Nababan', 'radit.suryono@sihotang.desa.id', '', '', 2023120020, 5, 1, NULL, NULL, NULL),
+(99, 'Farhunnisa Mandasari', 'yhidayanto@zulaika.biz.id', '', '', 2023120021, 5, 1, NULL, NULL, NULL),
+(100, 'Iriana Purwanti', 'harjasa38@gmail.co.id', '', '', 2023120022, 2, 1, NULL, NULL, NULL),
+(101, 'Simon Nasim Pratama M.Ak', 'parman.rahimah@farida.biz', '', '', 2023120023, 5, 1, NULL, NULL, NULL),
+(102, 'Rahmi Rahmawati', 'rahimah.wardaya@kurniawan.go.id', '', '', 2023120024, 7, 1, NULL, NULL, NULL),
+(103, 'Kartika Mardhiyah', 'gasti79@pradana.biz.id', '', '', 2023120025, 3, 1, NULL, NULL, NULL),
+(104, 'Zizi Usada', 'endra94@mardhiyah.info', '', '', 2023120026, 5, 1, NULL, NULL, NULL),
+(106, 'Banawi Sihotang S.T.', 'wibisono.harja@gmail.com', '', '', 2023121001, 12, 2, NULL, NULL, NULL),
+(107, 'Adika Uwais', 'irsad26@gmail.com', '', '', 2023121002, 12, 2, NULL, NULL, NULL),
+(108, 'Radit Narpati', 'himawan.wahyuni@mardhiyah.id', '', '', 2023121003, 9, 2, NULL, NULL, NULL),
+(109, 'Anom Kurniawan', 'aprastuti@yahoo.co.id', '', '', 2023121004, 14, 2, NULL, NULL, NULL),
+(110, 'Farhunnisa Nasyiah', 'enasyidah@gmail.co.id', '', '', 2023121005, 15, 2, NULL, NULL, NULL),
+(111, 'Janet Eka Novitasari M.Kom.', 'hariyah.elvina@yahoo.com', '', '', 2023121006, 12, 2, NULL, NULL, NULL),
+(112, 'Bakidin Sinaga', 'namaga.patricia@gmail.co.id', '', '', 2023121007, 14, 2, NULL, NULL, NULL),
+(113, 'Hartaka Mahesa Simanjuntak S.Kom', 'enteng67@yahoo.co.id', '', '', 2023121008, 10, 2, NULL, NULL, NULL),
+(114, 'Sabrina Puspita S.Farm', 'puspita.dalima@yahoo.co.id', '', '', 2023121009, 16, 2, NULL, NULL, NULL),
+(115, 'Yunita Pertiwi', 'wpuspita@pratiwi.mil.id', '', '', 2023121010, 16, 2, NULL, NULL, NULL),
+(116, 'Jamalia Kania Fujiati', 'harsana.thamrin@yahoo.com', '', '', 2023121011, 9, 2, NULL, NULL, NULL),
+(117, 'Putri Zulaika', 'uusada@pratama.sch.id', '', '', 2023121012, 10, 2, NULL, NULL, NULL),
+(118, 'Anita Nasyidah', 'yulianti.lamar@yahoo.co.id', '', '', 2023121013, 9, 2, NULL, NULL, NULL),
+(119, 'Silvia Latika Kuswandari', 'danuja63@yahoo.com', '', '', 2023121014, 15, 2, NULL, NULL, NULL),
+(120, 'Luwar Firmansyah', 'siska.lazuardi@gmail.com', '', '', 2023121015, 16, 2, NULL, NULL, NULL),
+(121, 'Rahman Wakiman Sihotang', 'uwais.heryanto@yolanda.ac.id', '', '', 2023121016, 9, 2, NULL, NULL, NULL),
+(122, 'Jasmani Nainggolan', 'sinaga.ifa@wahyudin.biz', '', '', 2023121017, 14, 2, NULL, NULL, NULL),
+(123, 'Gara Sihotang', 'parman76@utami.sch.id', '', '', 2023121018, 15, 2, NULL, NULL, NULL),
+(124, 'Alambana Hidayanto', 'lukman.prakasa@yahoo.com', '', '', 2023121019, 11, 2, NULL, NULL, NULL),
+(125, 'Maman Purwadi Sitorus S.E.', 'cengkir.pradana@megantara.info', '', '', 2023122001, 23, 3, NULL, NULL, NULL),
+(126, 'Usman Damanik S.Ked', 'karman.rahayu@yahoo.co.id', '', '', 2023122002, 21, 3, NULL, NULL, NULL),
+(127, 'Kasiran Saptono', 'suwarno.kiandra@haryanti.tv', '', '', 2023122003, 23, 3, NULL, NULL, NULL),
+(128, 'Gamani Pardi Pradipta S.Sos', 'hutagalung.asmadi@zulaika.org', '', '', 2023122004, 23, 3, NULL, NULL, NULL),
+(129, 'Salman Sitompul', 'shardiansyah@maheswara.name', '', '', 2023122005, 23, 3, NULL, NULL, NULL),
+(130, 'Caket Utama', 'purnawati.darmaji@sirait.ac.id', '', '', 2023122006, 23, 3, NULL, NULL, NULL),
+(131, 'Bakianto Prabowo', 'saefullah.daliman@kuswandari.net', '', '', 2023122007, 20, 3, NULL, NULL, NULL),
+(132, 'Elvin Adriansyah', 'bagya39@yahoo.com', '', '', 2023122008, 23, 3, NULL, NULL, NULL),
+(133, 'Juli Safitri', 'usudiati@andriani.co.id', '', '', 2023122009, 21, 3, NULL, NULL, NULL),
+(134, 'Icha Hastuti', 'vanesa.wijayanti@hasanah.go.id', '', '', 2023122010, 18, 3, NULL, NULL, NULL),
+(135, 'Patricia Hasna Anggraini S.E.I', 'rachel57@yahoo.com', '', '', 2023122011, 23, 3, NULL, NULL, NULL),
+(136, 'Wardi Rajasa', 'sitorus.adikara@tampubolon.sch.id', '', '', 2023122012, 23, 3, NULL, NULL, NULL),
+(137, 'Pia Utami', 'lusamah@suryatmi.co', '', '', 2023122013, 23, 3, NULL, NULL, NULL),
+(138, 'riza', 'riza@gmail.com', '', '', 5226523059, 1, 1, NULL, '2023-12-26 03:07:10', '2023-12-26 03:07:10'),
+(139, 'Harun', 'harun22@gmail.com', '', 'Jalan kenanga rt 05 rw 03', 5221223060, 18, 3, NULL, '2023-12-26 03:15:30', '2023-12-26 03:15:30'),
+(140, 'Dimas', 'dimas10@gmail.com', '089675012322', 'jalan bunga rt 04 rw 02', 5221223061, 19, 3, NULL, '2023-12-26 04:09:21', '2023-12-26 04:09:21');
 
 -- --------------------------------------------------------
 
@@ -291,19 +294,26 @@ INSERT INTO `pelanggans` (`id`, `nama`, `email`, `foto`, `no_rekening_air`, `id_
 --
 
 CREATE TABLE `pengaduans` (
-  `id` int UNSIGNED NOT NULL,
-  `id_pelanggan` int UNSIGNED NOT NULL,
-  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alamat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_kecamatan` int NOT NULL,
-  `id_desa` int NOT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `keluhan` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tema` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int DEFAULT '0',
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_pelanggan` int(10) UNSIGNED NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `id_kecamatan` int(11) NOT NULL,
+  `id_desa` int(11) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `keluhan` text NOT NULL,
+  `tema` varchar(255) NOT NULL,
+  `status` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pengaduans`
+--
+
+INSERT INTO `pengaduans` (`id`, `id_pelanggan`, `nama`, `alamat`, `id_kecamatan`, `id_desa`, `foto`, `keluhan`, `tema`, `status`, `created_at`, `updated_at`) VALUES
+(1, 140, 'Dimas', 'jalan kenanga rt 05 rw 03', 3, 19, 'team1.png', 'pipa pdam bocor', 'Kerusakan', 0, '2023-12-26 04:27:38', '2023-12-26 04:27:38');
 
 -- --------------------------------------------------------
 
@@ -312,12 +322,12 @@ CREATE TABLE `pengaduans` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -330,15 +340,15 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `profils` (
-  `id` int UNSIGNED NOT NULL,
-  `profil` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `instagram` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `no_telp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alamat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `visi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `misi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `profil` longtext NOT NULL,
+  `facebook` varchar(255) NOT NULL,
+  `instagram` varchar(255) NOT NULL,
+  `no_telp` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `visi` varchar(255) NOT NULL,
+  `misi` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -357,11 +367,12 @@ INSERT INTO `profils` (`id`, `profil`, `facebook`, `instagram`, `no_telp`, `emai
 --
 
 CREATE TABLE `tagihans` (
-  `id` int UNSIGNED NOT NULL,
-  `no_rekening_air` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alamat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jumlah_tagihan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `no_rekening_air` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `jumlah_tagihan` varchar(255) NOT NULL,
+  `status` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -373,12 +384,12 @@ CREATE TABLE `tagihans` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -489,73 +500,73 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `desas`
 --
 ALTER TABLE `desas`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `informasis`
 --
 ALTER TABLE `informasis`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kecamatans`
 --
 ALTER TABLE `kecamatans`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `pasangbarus`
 --
 ALTER TABLE `pasangbarus`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pelanggans`
 --
 ALTER TABLE `pelanggans`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `pengaduans`
 --
 ALTER TABLE `pengaduans`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `profils`
 --
 ALTER TABLE `profils`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tagihans`
 --
 ALTER TABLE `tagihans`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

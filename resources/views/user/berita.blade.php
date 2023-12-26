@@ -47,8 +47,8 @@
                             </h2>
                             <div class="entry-meta">
                                 <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">Administrator</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="{{$data->created_at}}">{{$data->created_at}}</time></a>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">Administrator</a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="{{$data->created_at}}">{{$data->created_at}}</time></a>
                                     </li>
                                 </ul>
                             </div>

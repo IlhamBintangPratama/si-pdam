@@ -11,12 +11,12 @@ class Pelanggan extends Authenticatable
     protected $fillable = [
         'id',
         'nama',
-        'id_desa',
-        'id_kecamatan',
-        'no_telp',
         'email',
-        'foto',
-        'no_rekening_air'
+        'no_telp',
+        'alamat',
+        'no_rekening_air',
+        'id_desa',
+        'id_kecamatan',  
     ];
     
     public function pengaduan()
