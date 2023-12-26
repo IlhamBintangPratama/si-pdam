@@ -78,31 +78,31 @@
                         
                         <tbody class="list">
                             
-                            @foreach($pelanggan as $no => $item)
+                            @foreach($laporan as $no => $item)
                             
                             <tr>
                             <td>{{ ++$no }}</td>
                             <th scope="row">
                                 <div class="media align-items-center">
                                 <div class="media-body">
-                                    <span class="name mb-0 text-sm">{{ $item->nama }}</span>
+                                    <span class="name mb-0 text-sm">{{ $item->tanggal }}</span>
                                 </div>
                                 </div>
                             </th>
                             <td class="budget">
-                                {{ $item->kecamatan->nama_kecamatan }}
+                                {{ $item->kecamatan }}
                             </td>
                             <td class="budget">
-                                {{ $item->desa->nama_desa }}
+                                {{ $item->jumlah }}
                             </td>
                             <!-- <td class="budget">
                                 {{ $item->email }}
                             </td> -->
-                            <td>
+                            {{-- <td>
                                 <a href="{{ url('/menu-admin/pelanggan/'.$item->id.'/show') }}" class="btn btn-warning"><i class="fa fa-eye"></i></a>
                                 <a href="{{ url('/menu-admin/pelanggan/'.$item->id.'/edit') }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                                 <a class="btn btn-danger" data-toggle="modal" id="smallButton" data-target="#smallModal" onclick="return openModal({{$item->id}})"><i class="fa fa-trash"></i></a>
-                            </td>
+                            </td> --}}
                             </tr>
                             @endforeach
                             </tbody>

@@ -113,8 +113,8 @@
                                     <td>
                                         <a href="{{ url('/menu-admin/pelanggan/' . $item->id . '/show') }}"
                                             class="btn btn-warning"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ url('/menu-admin/pelanggan/' . $item->id . '/edit') }}"
-                                            class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                        {{-- <a href="{{ url('/menu-admin/pelanggan/' . $item->id . '/edit') }}"
+                                            class="btn btn-primary"><i class="fa fa-edit"></i></a> --}}
                                         <a class="btn btn-danger" data-toggle="modal" id="smallButton"
                                             data-target="#smallModal" onclick="return openModal({{ $item->id }})"><i
                                                 class="fa fa-trash"></i></a>

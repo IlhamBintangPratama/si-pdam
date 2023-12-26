@@ -5,6 +5,7 @@ use App\Models\Kecamatan;
 use App\Models\Pelanggan;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class PelangganController extends Controller
@@ -33,7 +34,10 @@ class PelangganController extends Controller
 
         
         $kecamatan = Kecamatan::get();
-        // dd($kecamatan);
+
+        // $group = $pelanggan->groupBy('id_kecamatan')->get('id_kecamatan');
+        $jumlah = Pelanggan::query("SELECT id_kecamatan, count(*) AS jml");
+        dd($jumlah);
         // $profil = User::select('name','level')->where('level', '=', 1)->first();
         // dd($profil);
         return view('menu-admin.pelanggan.index', compact('pelanggan','kecamatan'));
