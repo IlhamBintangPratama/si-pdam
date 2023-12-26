@@ -38,6 +38,20 @@
                                 <td style="width: 20%">Jumlah Tagihan</td>
                                 <td>: Rp.{{number_format($tagihan->jumlah_tagihan)}}</td>
                             </tr>
+
+                            <tr>
+                                <td style="width: 20%">Status Pembayaran</td>
+                                <style>
+                                    .badge-dot{
+                                        border-radius: 5px;
+                                        width: 10px;
+                                        height: 10px;
+                                    }
+                                </style>
+                                <td>:
+                                <span class="status">{{($tagihan->status == 1) ? 'Selesai' : 'Belum Selesai'}}</span>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

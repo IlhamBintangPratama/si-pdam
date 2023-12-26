@@ -68,7 +68,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tanggal</th>
+                                {{-- <th>Bulan</th> --}}
                                 <th>Kecamatan</th>
                                 <th>Jumlah Laporan</th>
                                 <!-- <th>Email</th> -->
@@ -78,31 +78,25 @@
                         
                         <tbody class="list">
                             
+                            {{-- <tr>
+                                <td>1</td>
+                                <td>Desember</td>
+                                <td>Banjarharjo</td>
+                                <td>510</td>
+                            </tr> --}}
                             @foreach($laporan as $no => $item)
-                            
                             <tr>
                             <td>{{ ++$no }}</td>
-                            <th scope="row">
-                                <div class="media align-items-center">
-                                <div class="media-body">
-                                    <span class="name mb-0 text-sm">{{ $item->tanggal }}</span>
-                                </div>
-                                </div>
-                            </th>
                             <td class="budget">
-                                {{ $item->kecamatan }}
+                                {{ $item->nama_kecamatan }}
                             </td>
                             <td class="budget">
-                                {{ $item->jumlah }}
+                                @php
+                                    $pengaduan = \App\Models\Pengaduan::where('id_kecamatan', $item->id)->get()->groupBy('id_pelanggan');
+                                @endphp
+                                {{ count($pengaduan) ?? 0 }}
                             </td>
-                            <!-- <td class="budget">
-                                {{ $item->email }}
-                            </td> -->
-                            {{-- <td>
-                                <a href="{{ url('/menu-admin/pelanggan/'.$item->id.'/show') }}" class="btn btn-warning"><i class="fa fa-eye"></i></a>
-                                <a href="{{ url('/menu-admin/pelanggan/'.$item->id.'/edit') }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                <a class="btn btn-danger" data-toggle="modal" id="smallButton" data-target="#smallModal" onclick="return openModal({{$item->id}})"><i class="fa fa-trash"></i></a>
-                            </td> --}}
+                        
                             </tr>
                             @endforeach
                             </tbody>

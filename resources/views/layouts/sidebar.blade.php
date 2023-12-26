@@ -84,7 +84,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{url('menu-admin/laporan/index')}}">
+        <a class="nav-link" href="{{url('menu-admin/laporan')}}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Rekapitulasi Laporan Pengaduan</span></a>
     </li>

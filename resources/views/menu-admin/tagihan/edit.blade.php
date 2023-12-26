@@ -73,6 +73,15 @@
                             </div>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <label for="status">Status Pembayaran</label>
+                            <select name="status" id="status" class="form-control @error('status')
+                            is-invalid
+                            @enderror" onchange="getData(this)">
+                                <option value="" selected disabled>- pilih -</option>
+                                <option value="1">Pelunasan</option>
+                            </select>
+                        </div>
                         
                         <div style="margin-top: 17%;">
                             <button type="submit" class="btn btn-primary w-100 mb-2">Simpan</button>

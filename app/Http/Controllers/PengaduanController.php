@@ -1,6 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
 
+use App\Models\Kecamatan;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,6 +64,15 @@ class PengaduanController extends Controller
     public function create()
     {
         return view('menu-admin.pengaduan.create');
+    }
+
+    public function laporan()
+    {
+        // $laporan = Pengaduan::with('kecamatan.pelanggans')->get();
+
+        $laporan = Kecamatan::get();
+
+        return view('menu-admin.laporan.index', compact('laporan'));
     }
 
     public function store(Request $request)

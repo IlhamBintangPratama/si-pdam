@@ -68,7 +68,8 @@ class TagihanController extends Controller
                 'nama' => $request->nama,
                 'no_rekening_air' => $request->no_rekening_air,
                 'jumlah_tagihan' => $request->jumlah_tagihan,
-                'alamat' => $request->alamat
+                'alamat' => $request->alamat,
+                'status' => 0
             ]);
             
             $nilai->save();
@@ -111,7 +112,8 @@ class TagihanController extends Controller
                 'nama' => $request->nama,
                 'no_rekening_air' => $request->no_rekening_air,
                 'jumlah_tagihan' => $request->jumlah_tagihan,
-                'alamat' => $request->alamat
+                'alamat' => $request->alamat,
+                'status' => $request->status
             ]);
             // dd($tagihan);
             return redirect('menu-admin/tagihan')->with('updated', 'Data berhasil diubah!');

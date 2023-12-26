@@ -19,7 +19,7 @@ class PelangganController extends Controller
     {
         $search = $request->get('search');
         $kec = $request->get('kecamatan');
-        $pelanggan = Pelanggan::select('id','nama', 'email', 'foto', 'no_rekening_air','id_kecamatan','id_desa');
+        $pelanggan = Pelanggan::select('id','nama', 'email', 'no_telp','alamat', 'no_rekening_air','id_kecamatan','id_desa');
 
         if($search){
            $pelanggan -> where ('nama', 'LIKE', '%' . $search . '%' );
@@ -35,9 +35,7 @@ class PelangganController extends Controller
         
         $kecamatan = Kecamatan::get();
 
-        // $group = $pelanggan->groupBy('id_kecamatan')->get('id_kecamatan');
-        $jumlah = Pelanggan::query("SELECT id_kecamatan, count(*) AS jml");
-        dd($jumlah);
+        
         // $profil = User::select('name','level')->where('level', '=', 1)->first();
         // dd($profil);
         return view('menu-admin.pelanggan.index', compact('pelanggan','kecamatan'));
