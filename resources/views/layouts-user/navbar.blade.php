@@ -31,9 +31,8 @@
                 <li><a href="{{ url('berita') }}">Berita</a></li>
                 <li><a href="{{ url('pengaduan') }}">Pengaduan</a></li>
                 <li><a href="{{ url('pasang') }}">Pasang Baru</a></li>
-
                 <!-- <li><a href="contact.html">Contact</a></li> -->
-                {{-- <li><a href="index.html" class="getstarted">Login</a></li> --}}
+                <li><a href="{{ url('pengajuan') }}" class="getstarted">Pengajuan</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->

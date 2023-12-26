@@ -10,10 +10,12 @@ use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\PasangbaruController as ControllersPasangbaru;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\User\BeritaController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\PasangBaruController;
 use App\Http\Controllers\User\PengaduanController as UserPengaduanController;
+use App\Http\Controllers\User\PengajuanController;
 use App\Http\Controllers\User\TentangKamiController;
 
 /*
@@ -39,8 +41,12 @@ Route::get('berita', [BeritaController::class, 'index']);
 Route::get('/detail-berita/{id}', [BeritaController::class, 'detail']);
 Route::get('pengaduan', [UserPengaduanController::class, 'index']);
 Route::post('cek-pengaduan', [UserPengaduanController::class, 'cek']);
+Route::get('cek-pengaduan/{id}', [UserPengaduanController::class, 'getPengaduan'])->name('cek-pengaduan');
 Route::post('send-pengaduan', [UserPengaduanController::class, 'store']);
 Route::get('/pasang', [PasangBaruController::class, 'index']);
+Route::get('/pengajuan', [PengajuanController::class, 'index']);
+Route::post('send-pengajuan', [PengajuanController::class, 'store']);
+
 
 
 Route::group(['middleware'=>'isLogin','web'], function () {
@@ -90,13 +96,13 @@ Route::post('menu-admin/tagihan/{id}/delete', [TagihanController::class, 'destro
 Route::get('menu-admin/tagihan/listdata/{id}', [TagihanController::class, 'listdata']);
 Route::get('search-tagihan', [TagihanController::class, 'index']);
 
-Route::get('menu-admin/pasangbaru/{id}/edit', [ControllersPasangbaru::class, 'edit']);
-Route::post('menu-admin/pasangbaru/{id}/update', [ControllersPasangbaru::class, 'update']);
+    Route::get('menu-admin/pasangbaru/{id}/edit', [ControllersPasangbaru::class, 'edit']);
+    Route::post('menu-admin/pasangbaru/{id}/update', [ControllersPasangbaru::class, 'update']);
 
-Route::get('menu-admin/profil', [ProfilController::class, 'index']);
-Route::get('menu-admin/profil/{id}/edit', [ProfilController::class, 'edit']);
-Route::post('menu-admin/profil/{id}/update', [ProfilController::class, 'update']);
+    Route::get('menu-admin/profil', [ProfilController::class, 'index']);
+    Route::get('menu-admin/profil/{id}/edit', [ProfilController::class, 'edit']);
+    Route::post('menu-admin/profil/{id}/update', [ProfilController::class, 'update']);
 
-Route::get('menu-admin/broadcast/pesan', [BroadcastController::class, 'pesan']);
-Route::post('menu-admin/broadcast/broadcastWhatsapp', [BroadcastController::class, 'broadcastWhatsapp']);
+    Route::get('menu-admin/broadcast/pesan', [BroadcastController::class, 'pesan']);
+    Route::post('menu-admin/broadcast/broadcastWhatsapp', [BroadcastController::class, 'broadcastWhatsapp']);
 });

@@ -12,10 +12,12 @@ class Pengaduan extends Model
         'id_pelanggan',
         'nama',
         'alamat',
+        'id_kecamatan',
+        'id_desa',
         'foto',
         'keluhan',
+        'tema',
         'status',
-        'created_at'
     ];
 
     public function pelanggan()
