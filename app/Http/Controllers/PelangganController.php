@@ -1,6 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
 
+use App\Models\Kecamatan;
 use App\Models\Pelanggan;
 use Exception;
 use Illuminate\Http\Request;
@@ -16,18 +17,26 @@ class PelangganController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
-        $pelanggan = Pelanggan::paginate();
-        if($search != ""){
-        $pelanggan = Pelanggan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate()->setPath ( '' );
-        $pagination = $pelanggan->appends ( array (
-            'search' => $request->get('search') 
-            ) );
-        }
-        
+        $kec = $request->get('kecamatan');
+        $pelanggan = Pelanggan::select('id','nama', 'email', 'foto', 'no_rekening_air','id_kecamatan','id_desa');
 
+        if($search){
+           $pelanggan -> where ('nama', 'LIKE', '%' . $search . '%' );
+        }
+
+        if($kec){
+            $pelanggan -> where ('id_kecamatan', $kec );
+        }
+
+        $pelanggan = $pelanggan->get();
+
+
+        
+        $kecamatan = Kecamatan::get();
+        // dd($kecamatan);
         // $profil = User::select('name','level')->where('level', '=', 1)->first();
         // dd($profil);
-        return view('menu-admin.pelanggan.index', compact('pelanggan'));
+        return view('menu-admin.pelanggan.index', compact('pelanggan','kecamatan'));
         
     }
 
@@ -90,7 +99,7 @@ class PelangganController extends Controller
 
         $request->validate([
             'nama' => 'required',
-            'no_telp' => 'required|unique:pelanggans,no_telp|max:13',
+            'no_telp' => 'required|max:13',
             'email' => 'required',
             'foto' => 'mimes:jpg,jpeg,png|max:2048',
             'no_rekening_air' => 'required',

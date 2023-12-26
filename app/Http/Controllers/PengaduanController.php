@@ -112,7 +112,7 @@ class PengaduanController extends Controller
     }
     public function resWhatsapp(Request $request, $id)
     {
-        $token = '3u1cu_RH+pn@qegbmD9S';
+        $token = 'T3CStHawPm#MJuVjZy#A';
         $request->validate([
             'pesan' => 'required',
             'status' => 'required'

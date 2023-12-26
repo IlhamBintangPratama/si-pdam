@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Desa;
+use App\Models\Kecamatan;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
@@ -40,7 +42,9 @@ class PengaduanController extends Controller
     {
         $profil = Profil::findorfail(1);
         $pengaduan = Pelanggan::where('no_rekening_air', $id)->first();
-        return view('user.detail_pengaduan', compact('profil', 'pengaduan'));
+        $kec = Kecamatan::all();
+        $desa = Desa::all();
+        return view('user.detail_pengaduan', compact('profil', 'pengaduan', 'kec','desa'));
     }
 
     public function store(Request $request)
@@ -49,11 +53,17 @@ class PengaduanController extends Controller
         $request->validate([
             // 'nama' => 'required',
             // 'id_pelanggan' => 'required',
+            'kecamatan' => 'required',
+            'desa' => 'required',
             'keluhan' => 'required',
             'tema' => 'required',
             'foto' => 'required|mimes:jpg,jpeg,png|max:2048',
-            // 'alamat' => 'required'
-        ]);
+            'alamat' => 'required'
+        ],
+        [
+            'required' => ':attribute harus di isi',
+        ]
+    );
 
         $namaFile = $request->file('foto')->getClientOriginalName();
         $request->file('foto')->move('galeri/pengaduan', $namaFile);
@@ -61,10 +71,12 @@ class PengaduanController extends Controller
         $nilai = Pengaduan::create([
             'nama' => $request->nama,
             'id_pelanggan' => $request->id_pelanggan,
-            'keluhan' => $request->keluhan,
-            'tema' => $request->tema,
+            'alamat' => $request->alamat,
+            'id_kecamatan' => $request->kecamatan,
+            'id_desa' => $request->desa,
             'foto' => $namaFile,
-            'alamat' => $request->alamat
+            'keluhan' => $request->keluhan,
+            'tema' => $request->tema
         ]);
         // dd($nilai);
 

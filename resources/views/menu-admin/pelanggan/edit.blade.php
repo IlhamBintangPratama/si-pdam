@@ -38,17 +38,7 @@
                             @enderror
                           
                         </div>
-                        <div class="mb-3">
-                            <label for="no_telp">No Telp</label>
-                            <input class="form-control @error('no_telp')
-                                is-invalid
-                                @enderror" id="no_telp" value="{{ old('name', $pelanggan->no_telp) }}" name="no_telp" type="number"  placeholder="Masukan nomor telepon">
-                                @error('no_telp')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
-                        </div>
+                        
                         <div class="mb-3">
                             <label for="email">Email Address</label>
                             <input class="form-control @error('email')
@@ -84,11 +74,22 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="alamat">Alamat</label>
-                            <input class="form-control @error('alamat')
+                            <label for="kecamatan">Kecamatan</label>
+                            <input class="form-control @error('kecamatan')
                                 is-invalid
-                                @enderror" id="alamat" value="{{ old('name', $pelanggan->alamat) }}" name="alamat" type="text"  placeholder="Masukan alamat">
-                                @error('alamat')
+                                @enderror" id="kecamatan" value="{{ old('name', $pelanggan->kecamatan->nama_kecamatan) }}" name="kecamatan" type="text"  placeholder="Masukan nama kecamatan">
+                                @error('kecamatan')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="desa">Desa/Kelurahan</label>
+                            <input class="form-control @error('desa')
+                                is-invalid
+                                @enderror" id="desa" value="{{ old('name', $pelanggan->desa->nama_desa) }}" name="desa" type="text"  placeholder="Masukan nama desa">
+                                @error('desa')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
