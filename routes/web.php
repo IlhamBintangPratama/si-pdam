@@ -108,3 +108,5 @@ Route::get('menu-admin/laporan', [PengaduanController::class, 'laporan']);
     Route::get('menu-admin/broadcast/pesan', [BroadcastController::class, 'pesan']);
     Route::post('menu-admin/broadcast/broadcastWhatsapp', [BroadcastController::class, 'broadcastWhatsapp']);
 });
+
+Route::get('menu-admin/cetak-laporan/{id}', [PengaduanController::class, 'laporan_pdf'])->name('cetak-laporan-pengaduan');

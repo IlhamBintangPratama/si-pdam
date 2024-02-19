@@ -44,17 +44,24 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Rekapitulasi Laporan Pengaduan</h6>
-                <form action="{{ url('search-pelanggan')}}" id="navbar-search-main" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group py-2" style="margin-left: -1em">
-                        <div class="form-outline pr-2">
-                            <input id="search-focus" type="text" name="search" placeholder="Search..." class="form-control" />
-                            {{-- <label class="form-label" for="form1" style="margin-top: -10%">Search</label> --}}
+
+                <form action="{{ url('menu-admin/laporan')}}" id="navbar-search-main" method="GET" class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group py-2" >
+                        <div class="form-outline pr-2" style="justify-content: flex-start">
+                            <label class="form-label" for="form1" style="justify-self: start">Start Date</label>
+                            <input id="search-focus" type="date" name="start_date" value="{{$_GET['start_date'] ?? ''}}" placeholder="Start Date..." class="form-control" />
                         </div>
-                        <button type="submit" class="btn btn-primary" style="height: 37px">
+                        <div class="form-outline pr-2" style="justify-content: flex-start">
+                            <label class="form-label" for="form2" style="justify-self: start">End Date</label>
+                            <input id="search-focus" type="date" name="end_date" placeholder="End Date..." value="{{$_GET['end_date'] ?? ''}}" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="height: 37px; margin-top: 24px">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
                 </form>
+
+
                 {{-- <a href="{{url('menu-admin/pelanggan/create')}}" class="btn btn-primary btn-icon-split" style="float: right;">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
@@ -68,22 +75,14 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                {{-- <th>Bulan</th> --}}
                                 <th>Kecamatan</th>
                                 <th>Jumlah Laporan</th>
-                                <!-- <th>Email</th> -->
+                                <th>Cetak</th>
                                 
                             </tr>
                         </thead>
                         
                         <tbody class="list">
-                            
-                            {{-- <tr>
-                                <td>1</td>
-                                <td>Desember</td>
-                                <td>Banjarharjo</td>
-                                <td>510</td>
-                            </tr> --}}
                             @foreach($laporan as $no => $item)
                             <tr>
                             <td>{{ ++$no }}</td>
@@ -91,10 +90,20 @@
                                 {{ $item->nama_kecamatan }}
                             </td>
                             <td class="budget">
+                                {{ $item->pengaduan->count() }}
+                            </td>
+                            <td>
                                 @php
-                                    $pengaduan = \App\Models\Pengaduan::where('id_kecamatan', $item->id)->get()->groupBy('id_pelanggan');
+                                    $url = '/menu-admin/cetak-laporan/'.$item->id;
+
+                                    if(isset($_GET['start_date'])){
+                                        $url = $url.'?start_date='.$_GET["start_date"]."&end_date".$_GET["end_date"];
+                                    }
+
                                 @endphp
-                                {{ count($pengaduan) ?? 0 }}
+                                <a href="{{$url}}" target="_blank">
+                                    Cetak
+                                </a>
                             </td>
                         
                             </tr>

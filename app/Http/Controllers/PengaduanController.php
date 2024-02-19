@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\File;
 use PDF;
+use Carbon\Carbon;
 
 class PengaduanController extends Controller
 {
@@ -66,11 +67,21 @@ class PengaduanController extends Controller
         return view('menu-admin.pengaduan.create');
     }
 
-    public function laporan()
+    public function laporan(Request $request)
     {
-        // $laporan = Pengaduan::with('kecamatan.pelanggans')->get();
 
-        $laporan = Kecamatan::get();
+        $laporan = Kecamatan::with(['pengaduan' => function($q) use($request){
+            $startDate = $request->start_date;
+            $endDate = $request->end_date;
+            if($startDate && $endDate){
+                return $q->whereBetween('created_at', [
+                    $startDate, $endDate
+                ]);
+            }
+            return $q->whereBetween('created_at', [
+                Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()
+            ]);
+        }])->get();
 
         return view('menu-admin.laporan.index', compact('laporan'));
     }
@@ -233,6 +244,56 @@ class PengaduanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function laporan_pdf(Request $request, $id){
+        $kecamatan = Kecamatan::find($id);
+
+        $laporan = [];
+
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        $desa = [];
+            
+        if($startDate && $endDate){
+            $desaTemp = Pengaduan::with('desa')->select('id_desa', \DB::raw('COUNT(id_desa) as total'))
+            ->where('id_kecamatan', $kecamatan->id)->whereBetween('created_at',[$startDate, $endDate])
+            ->groupBy('id_desa')->get();
+        }else{
+            $desaTemp = Pengaduan::with('desa')->select('id_desa', \DB::raw('COUNT(id_desa) as total'))
+            ->where('id_kecamatan', $kecamatan->id)->whereBetween('created_at',[Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])
+            ->groupBy('id_desa')->get();
+        }
+
+        foreach($desaTemp as $i){
+            if($startDate && $endDate){
+                $tema = Pengaduan::select('tema', \DB::raw('COUNT(tema) as total'))
+            ->where('id_desa', $i->id_desa)->whereBetween('created_at',[$startDate, $endDate])
+            ->groupBy('tema')->get();
+            }else{
+                $tema = Pengaduan::select('tema', \DB::raw('COUNT(tema) as total'))
+            ->where('id_desa', $i->id_desa)->whereBetween('created_at',[Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])
+            ->groupBy('tema')->get();
+            }
+
+            $desa[] = [
+                'total' => $i->total,
+                'nama_desa' => $i->desa->nama_desa,
+                'tema' => (array) json_decode($tema, false) ?? null
+            ];
+        } 
+
+        $laporan = [
+            'id_kecamatan' => $kecamatan->id,
+            'kecamatan' => $kecamatan->nama_kecamatan,
+            'desa' => $desa ?? null
+        ];
+
+            
+        $pdf = PDF::loadView('pdf.pengaduan_laporan', compact('laporan', 'startDate', 'endDate'));
+        $pdf->setPaper('A4');
+        return $pdf->stream();
+     }
 }
 ?>
 

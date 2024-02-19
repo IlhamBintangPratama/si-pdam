@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Kecamatan extends Model
 {
@@ -27,5 +28,9 @@ class Kecamatan extends Model
 
         return $this->hasMany('App\Models\Pengaduan', 'id_kecamatan');
     
+    }
+
+    public function pengaduanCountTheme(){
+        return $this->hasMany('App\Models\Pengaduan', 'id_kecamatan')->select('tema', \DB::raw('COUNT(tema) as total'))->groupBy('tema');
     }
 }
