@@ -2,6 +2,7 @@
 
 namespace App\Charts;
 
+use App\Models\Kecamatan;
 use App\Models\Pengaduan;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 use Carbon\Carbon;
@@ -15,29 +16,25 @@ class PengaduanChart
     }
     public function build($idKecamatan, $startDate, $endDate)
     {
-        $startDateFormatted = Carbon::parse($startDate)->startOfDay();
-        $endDateFormatted = Carbon::parse($endDate)->endOfDay();
+        $startDateFormatted = Carbon::parse($startDate)->startOfMonth();
+        $endDateFormatted = Carbon::parse($endDate)->endOfMonth();
 
-        $pengaduanData = Pengaduan::where('id_kecamatan', $idKecamatan)
-            ->whereBetween('created_at', [$startDateFormatted, $endDateFormatted])
-            ->get();
+        if (!(empty($idKecamatan))) {
+            $pengaduanData = Pengaduan::where('id_kecamatan', $idKecamatan)
+                ->whereBetween('created_at', [$startDateFormatted, $endDateFormatted])
+                ->count();
 
-        if ($pengaduanData->isEmpty()) {
-            return $this->chart->lineChart()
-                ->addData('Pengaduan', [0, 0, 0, 0, 0, 0])
-                ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            // dd($pengaduanData);
+            $kecamatan = Kecamatan::findOrFail($idKecamatan);
+
+            // Membuat chart dengan data pengaduan
+            return $this->chart->barChart()
+                ->addData('Pengaduan', [$pengaduanData])
+                ->setXAxis([$kecamatan->nama_kecamatan]);
+        } else {
+            return $this->chart->barChart()
+                ->addData('Pengaduan', [0])
+                ->setXAxis(['No Kecamatan Selected']);
         }
-
-        $bulan = [];
-        $jumlahPengaduan = [];
-
-        foreach ($pengaduanData as $data) {
-            $bulan[] = $data->created_at->format('F');
-            $jumlahPengaduan[] = 1;
-        }
-
-        return $this->chart->lineChart()
-            ->addData('Pengaduan', $jumlahPengaduan)
-            ->setXAxis(array_unique($bulan));
     }
 }
