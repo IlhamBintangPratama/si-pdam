@@ -62,7 +62,8 @@
             <div class="col-xl-12 col-md-12 mb-12">
                 <div class="card shadow h-100 py-2">
                     <div class="card-header">
-                        <form action="{{ route('dashboard.index') }}" method="GET">
+                        <form action="{{ route('dashboard.index') }}" method="GET" autocomplete="off">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-4">
                                     <label for="kecamatan">Kecamatan:</label>
@@ -84,6 +85,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary mt-3">Filter</button>
+                            <a href="{{ route('dashboard.index') }}" class="btn btn-danger mt-3">Reset</a>
                         </form>
                     </div>
                     <div class="card-body">
@@ -111,5 +113,15 @@
         setTimeout(function() {
             $('.alert').fadeOut('slow');
         }, 3000);
+
+        $(document).ready(function() {
+            var kecamatan = "{{ request()->input('kecamatan') }}";
+            var startDate = "{{ request()->input('start_date') }}";
+            var endDate = "{{ request()->input('end_date') }}";
+
+            $('#kecamatan').val(kecamatan);
+            $('#start_date').val(startDate);
+            $('#end_date').val(endDate);
+        });
     </script>
 @endpush
