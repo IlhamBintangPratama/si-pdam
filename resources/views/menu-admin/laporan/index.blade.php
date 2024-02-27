@@ -13,24 +13,24 @@
         </symbol>
     </svg> --}} -->
     @if ($message = Session::get('created'))
-    <div class="alert alert-success ml-4 mr-4" role="alert">
-        {{$message}}
-    </div>
+        <div class="alert alert-success ml-4 mr-4" role="alert">
+            {{ $message }}
+        </div>
     @endif
     @if ($message = Session::get('updated'))
-    <div class="alert alert-success ml-4 mr-4" role="alert">
-        {{$message}}
-    </div>
+        <div class="alert alert-success ml-4 mr-4" role="alert">
+            {{ $message }}
+        </div>
     @endif
     @if ($message = Session::get('deleted'))
-    <div class="alert alert-success ml-4 mr-4" role="alert">
-        {{$message}}
-    </div>
+        <div class="alert alert-success ml-4 mr-4" role="alert">
+            {{ $message }}
+        </div>
     @endif
     @if ($message = Session::get('error'))
-    <div class="alert alert-danger ml-4 mr-4" role="alert">
-        {{$message}}
-    </div>
+        <div class="alert alert-danger ml-4 mr-4" role="alert">
+            {{ $message }}
+        </div>
     @endif
     {{-- <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js" integrity="sha384-sCI3dTBIJuqT6AwL++zH7qL8ZdKaHpxU43dDt9SyOzimtQ9eyRhkG3B7KMl6AO19" crossorigin="anonymous"></script> --}}
 
@@ -43,32 +43,29 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Rekapitulasi Laporan Pengaduan</h6>
-
-                <form action="{{ url('menu-admin/laporan')}}" id="navbar-search-main" method="GET" class="d-none d-sm-inline-block form-inline ml-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group py-2" >
-                        <div class="form-outline pr-2" style="justify-content: flex-start">
-                            <label class="form-label" for="form1" style="justify-self: start">Start Date</label>
-                            <input id="search-focus" type="date" name="start_date" value="{{$_GET['start_date'] ?? ''}}" placeholder="Start Date..." class="form-control" />
+                <button class="btn btn-success btn-sm mb-4" type="button" data-toggle="collapse" data-target="#filterData"
+                    aria-expanded="false" aria-controls="filterData">
+                    <i class="fa fa-filter" aria-hidden="true"></i> Filter
+                </button>
+                <div class="collapse" id="filterData">
+                    <form action="{{ route('dashboard.index') }}" method="GET" autocomplete="off">
+                        @csrf
+                        <div class="row align-items-center">
+                            <div class="col-md-4 mb-3">
+                                <label for="start_date">Tanggal Mulai:</label>
+                                <input type="date" name="start_date" id="start_date" class="form-control" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="end_date">Tanggal Akhir:</label>
+                                <input type="date" name="end_date" id="end_date" class="form-control" required>
+                            </div>
                         </div>
-                        <div class="form-outline pr-2" style="justify-content: flex-start">
-                            <label class="form-label" for="form2" style="justify-self: start">End Date</label>
-                            <input id="search-focus" type="date" name="end_date" placeholder="End Date..." value="{{$_GET['end_date'] ?? ''}}" class="form-control" />
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="height: 37px; margin-top: 24px">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </form>
-
-
-                {{-- <a href="{{url('menu-admin/pelanggan/create')}}" class="btn btn-primary btn-icon-split" style="float: right;">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Tambah Data</span>
-                </a> --}}
+                        <button type="submit" class="btn btn-primary btn-sm mt-md-0 mt-4 mr-2">Filter</button>
+                        <a href="{{ route('dashboard.index') }}" class="btn btn-danger btn-sm mt-md-0 mt-3">Reset</a>
+                    </form>
+                </div>
             </div>
+
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -78,41 +75,42 @@
                                 <th>Kecamatan</th>
                                 <th>Jumlah Laporan</th>
                                 <th>Cetak</th>
-                                
+
                             </tr>
                         </thead>
-                        
+
                         <tbody class="list">
-                            @foreach($laporan as $no => $item)
-                            <tr>
-                            <td>{{ ++$no }}</td>
-                            <td class="budget">
-                                {{ $item->nama_kecamatan }}
-                            </td>
-                            <td class="budget">
-                                {{ $item->pengaduan->count() }}
-                            </td>
-                            <td>
-                                @php
-                                    $url = '/menu-admin/cetak-laporan/'.$item->id;
+                            @foreach ($laporan as $no => $item)
+                                <tr>
+                                    <td>{{ ++$no }}</td>
+                                    <td class="budget">
+                                        {{ $item->nama_kecamatan }}
+                                    </td>
+                                    <td class="budget">
+                                        {{ $item->pengaduan->count() }}
+                                    </td>
+                                    <td>
+                                        @php
+                                            $url = '/menu-admin/cetak-laporan/' . $item->id;
 
-                                    if(isset($_GET['start_date'])){
-                                        $url = $url.'?start_date='.$_GET["start_date"]."&end_date".$_GET["end_date"];
-                                    }
+                                            if (isset($_GET['start_date'])) {
+                                                $url = $url . '?start_date=' . $_GET['start_date'] . '&end_date' . $_GET['end_date'];
+                                            }
 
-                                @endphp
-                                <a href="{{$url}}" target="_blank">
-                                    Cetak
-                                </a>
-                            </td>
-                        
-                            </tr>
+                                        @endphp
+                                        <a href="{{ $url }}" target="_blank">
+                                            Cetak
+                                        </a>
+                                    </td>
+
+                                </tr>
                             @endforeach
-                            </tbody>
+                        </tbody>
                     </table>
-                    
+
                 </div>
-                <div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" aria-hidden="true">
+                <div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -122,24 +120,22 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id='form_id' class="w-full" method="Post" 
-                        {{-- action="{{url('k_pendidik/'.$s->id.'/destroy')}}" --}}
-                                >
-                                    {{ csrf_field() }} 
-                                <div>
-                                    Apakah anda yakin?
-                                </div>
-                                <div class="modal-footer mt-3">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                                    <button type="submit" class="btn btn-primary">Iya</button>
-                                </div>
+                                <form id='form_id' class="w-full" method="Post" {{-- action="{{url('k_pendidik/'.$s->id.'/destroy')}}" --}}>
+                                    {{ csrf_field() }}
+                                    <div>
+                                        Apakah anda yakin?
+                                    </div>
+                                    <div class="modal-footer mt-3">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                        <button type="submit" class="btn btn-primary">Iya</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
                 {{-- <script src="{{asset('js')}}/jquery.min.js"></script> --}}
-                
+
             </div>
         </div>
 
@@ -147,38 +143,39 @@
     <!-- /.container-fluid -->
 @endsection
 
-@section("footer.script")
-<script>
-    setTimeout(function() {
-    $('.alert').fadeOut('slow');}, 3000
-    );
-    $(document).on('click', '#smallButton', function(event) {
-    event.preventDefault();
-    let href = $(this).attr('data-attr');
-    $.ajax({
-        url: href
-        , beforeSend: function() {
-            $('#loader').show();
-        },
-        // return the result
-        success: function(result) {
-            $('#smallModal').modal("show");
-            $('#smallBody').html(result).show();
+@section('footer.script')
+    <script>
+        setTimeout(function() {
+            $('.alert').fadeOut('slow');
+        }, 3000);
+        $(document).on('click', '#smallButton', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            $.ajax({
+                url: href,
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                // return the result
+                success: function(result) {
+                    $('#smallModal').modal("show");
+                    $('#smallBody').html(result).show();
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
+                error: function(jqXHR, testStatus, error) {
+                    console.log(error);
+                    alert("Page " + href + " cannot open. Error:" + error);
+                    $('#loader').hide();
+                },
+                timeout: 8000
+            })
+        });
+
+        function openModal(id) {
+            var form = document.querySelector('#form_id');
+            form.action = `{{ url('/menu-admin/pelanggan/${id}/delete') }}`
         }
-        , complete: function() {
-            $('#loader').hide();
-        }
-        , error: function(jqXHR, testStatus, error) {
-            console.log(error);
-            alert("Page " + href + " cannot open. Error:" + error);
-            $('#loader').hide();
-        }
-        , timeout: 8000
-    })
-});
-    function openModal(id){
-    var form = document.querySelector('#form_id');
-    form.action = `{{url('/menu-admin/pelanggan/${id}/delete')}}`
-}
-</script>
+    </script>
 @endsection

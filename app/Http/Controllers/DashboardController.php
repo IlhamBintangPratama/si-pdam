@@ -24,6 +24,15 @@ class DashboardController extends Controller
 
         $this->data['kecamatan'] = Kecamatan::all();
 
+        // Validasi tanggal
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        if ($startDate && $endDate && $endDate < $startDate) {
+
+            return redirect()->route('dashboard.index')->with('error', 'Tanggal Tidak Valid!');
+        }
+
         $this->data['pengaduan_chart'] = $pengaduanChart->build($request->kecamatan, $request->start_date, $request->end_date);
 
         return view('dashboard', $this->data);

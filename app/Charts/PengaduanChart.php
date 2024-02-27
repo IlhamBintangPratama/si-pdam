@@ -20,16 +20,27 @@ class PengaduanChart
         $endDateFormatted = Carbon::parse($endDate)->endOfMonth();
 
         if (!(empty($idKecamatan))) {
-            $pengaduanData = Pengaduan::where('id_kecamatan', $idKecamatan)
+            $pengaduanDataKerusakan = Pengaduan::where('id_kecamatan', $idKecamatan)
+                ->where('tema', 'Kerusakan')
                 ->whereBetween('created_at', [$startDateFormatted, $endDateFormatted])
                 ->count();
 
-            // dd($pengaduanData);
+            $pengaduanDataOperasional = Pengaduan::where('id_kecamatan', $idKecamatan)
+                ->where('tema', 'Operasional')
+                ->whereBetween('created_at', [$startDateFormatted, $endDateFormatted])
+                ->count();
+
+            $pengaduanDataKualitasAir = Pengaduan::where('id_kecamatan', $idKecamatan)
+                ->where('tema', 'Kualitas Air')
+                ->whereBetween('created_at', [$startDateFormatted, $endDateFormatted])
+                ->count();
+
             $kecamatan = Kecamatan::findOrFail($idKecamatan);
 
-            // Membuat chart dengan data pengaduan
             return $this->chart->barChart()
-                ->addData('Pengaduan', [$pengaduanData])
+                ->addData('Kerusakan', [$pengaduanDataKerusakan])
+                ->addData('Operasional', [$pengaduanDataOperasional])
+                ->addData('Kualitas Air', [$pengaduanDataKualitasAir])
                 ->setXAxis([$kecamatan->nama_kecamatan]);
         } else {
             return $this->chart->barChart()

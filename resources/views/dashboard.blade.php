@@ -6,6 +6,13 @@
             {{ $message }}
         </div>
     @endif
+
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger ml-4 mr-4" role="alert">
+            {{ $message }}
+        </div>
+    @endif
+
     <!-- Begin Page Content -->
     <div class="container-fluid">
 

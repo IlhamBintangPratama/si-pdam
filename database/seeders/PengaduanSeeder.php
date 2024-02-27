@@ -18,7 +18,11 @@ class PengaduanSeeder extends Seeder
         //
         $faker = Faker::create('id_ID');
 
-        for ($i = 1; $i <= 100; $i++) {
+        $temaOptions = ['Kerusakan', 'Operasional', 'Kualitas Air'];
+
+        $randomCreatedAt = $faker->dateTimeBetween('2011-01-01', '2024-02-28')->format('Y-m-d H:i:s');
+
+        for ($i = 1; $i <= 1000; $i++) {
             Pengaduan::create([
                 'id_pelanggan' => 79,
                 'nama' => $faker->name,
@@ -27,9 +31,9 @@ class PengaduanSeeder extends Seeder
                 'id_desa' => random_int(1, 40),
                 'foto' => 'team1.png',
                 'keluhan' => $faker->sentence,
-                'tema' => $faker->sentence,
+                'tema' => $faker->randomElement($temaOptions),
                 'status' => $faker->boolean,
-                'created_at' => $faker->dateTime
+                'created_at' => $randomCreatedAt
             ]);
         }
     }
