@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\BroadcastController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PelangganController;
@@ -49,54 +50,52 @@ Route::post('send-pengajuan', [PengajuanController::class, 'store']);
 
 
 
-Route::group(['middleware'=>'isLogin','web'], function () {
-Route::get('/menu-admin/dasboard', function () {
-    return view('dashboard');
-});
-//route pengaduan
-Route::get('menu-admin/pengaduan', [PengaduanController::class, 'index']);
-Route::get('menu-admin/pengaduan/create', [PengaduanController::class, 'create']);
-Route::post('menu-admin/pengaduan', [PengaduanController::class, 'store']);
-Route::get('menu-admin/pengaduan/{id}/edit', [PengaduanController::class, 'edit']);
-Route::post('menu-admin/pengaduan/{id}/update', [PengaduanController::class, 'update']);
-Route::get('menu-admin/pengaduan/{id}/show', [PengaduanController::class, 'show']);
-Route::get('menu-admin/pengaduan/{id}/print', [PengaduanController::class, 'print']);
-Route::get('menu-admin/pengaduan/{id}/pesan', [PengaduanController::class, 'pesan']);
-Route::post('menu-admin/pengaduan/{id}/resWhatsapp', [PengaduanController::class, 'resWhatsapp']);
-Route::post('menu-admin/pengaduan/{id}/delete', [PengaduanController::class, 'destroy']);
-Route::get('search-pengaduan', [PengaduanController::class, 'index']);
-Route::get('search-date', [PengaduanController::class, 'index']);
-Route::get('search-baru', [PengaduanController::class, 'index']);
-Route::get('search-selesai', [PengaduanController::class, 'index']);
-//route pelanggan
-Route::get('menu-admin/pelanggan', [PelangganController::class, 'index']);
-Route::get('menu-admin/pelanggan/create', [PelangganController::class, 'create']);
-Route::post('menu-admin/pelanggan', [PelangganController::class, 'store']);
-Route::get('menu-admin/pelanggan/{id}/edit', [PelangganController::class, 'edit']);
-Route::post('menu-admin/pelanggan/{id}/update', [PelangganController::class, 'update']);
-Route::get('menu-admin/pelanggan/{id}/show', [PelangganController::class, 'show']);
-Route::post('menu-admin/pelanggan/{id}/delete', [PelangganController::class, 'destroy']);
-//route informasi
-Route::get('menu-admin/informasi', [InformasiController::class, 'index']);
-Route::get('menu-admin/informasi/create', [InformasiController::class, 'create']);
-Route::post('menu-admin/informasi', [InformasiController::class, 'store']);
-Route::get('menu-admin/informasi/{id}/edit', [InformasiController::class, 'edit']);
-Route::post('menu-admin/informasi/{id}/update', [InformasiController::class, 'update']);
-Route::get('menu-admin/informasi/{id}/show', [InformasiController::class, 'show']);
-Route::post('menu-admin/informasi/{id}/delete', [InformasiController::class, 'destroy']);
-Route::get('search-informasi', [InformasiController::class, 'index']);
-//route tagihan
-Route::get('menu-admin/tagihan', [TagihanController::class, 'index']);
-Route::get('menu-admin/tagihan/create', [TagihanController::class, 'create']);
-Route::post('menu-admin/tagihan', [TagihanController::class, 'store']);
-Route::get('menu-admin/tagihan/{id}/edit', [TagihanController::class, 'edit']);
-Route::post('menu-admin/tagihan/{id}/update', [TagihanController::class, 'update']);
-Route::get('menu-admin/tagihan/{id}/show', [TagihanController::class, 'show']);
-Route::post('menu-admin/tagihan/{id}/delete', [TagihanController::class, 'destroy']);
-Route::get('menu-admin/tagihan/listdata/{id}', [TagihanController::class, 'listdata']);
-Route::get('search-tagihan', [TagihanController::class, 'index']);
+Route::group(['middleware' => 'isLogin', 'web'], function () {
+    Route::resource('dashboard', DashboardController::class)->only('index');
+    //route pengaduan
+    Route::get('menu-admin/pengaduan', [PengaduanController::class, 'index']);
+    Route::get('menu-admin/pengaduan/create', [PengaduanController::class, 'create']);
+    Route::post('menu-admin/pengaduan', [PengaduanController::class, 'store']);
+    Route::get('menu-admin/pengaduan/{id}/edit', [PengaduanController::class, 'edit']);
+    Route::post('menu-admin/pengaduan/{id}/update', [PengaduanController::class, 'update']);
+    Route::get('menu-admin/pengaduan/{id}/show', [PengaduanController::class, 'show']);
+    Route::get('menu-admin/pengaduan/{id}/print', [PengaduanController::class, 'print']);
+    Route::get('menu-admin/pengaduan/{id}/pesan', [PengaduanController::class, 'pesan']);
+    Route::post('menu-admin/pengaduan/{id}/resWhatsapp', [PengaduanController::class, 'resWhatsapp']);
+    Route::post('menu-admin/pengaduan/{id}/delete', [PengaduanController::class, 'destroy']);
+    Route::get('search-pengaduan', [PengaduanController::class, 'index']);
+    Route::get('search-date', [PengaduanController::class, 'index']);
+    Route::get('search-baru', [PengaduanController::class, 'index']);
+    Route::get('search-selesai', [PengaduanController::class, 'index']);
+    //route pelanggan
+    Route::get('menu-admin/pelanggan', [PelangganController::class, 'index']);
+    Route::get('menu-admin/pelanggan/create', [PelangganController::class, 'create']);
+    Route::post('menu-admin/pelanggan', [PelangganController::class, 'store']);
+    Route::get('menu-admin/pelanggan/{id}/edit', [PelangganController::class, 'edit']);
+    Route::post('menu-admin/pelanggan/{id}/update', [PelangganController::class, 'update']);
+    Route::get('menu-admin/pelanggan/{id}/show', [PelangganController::class, 'show']);
+    Route::post('menu-admin/pelanggan/{id}/delete', [PelangganController::class, 'destroy']);
+    //route informasi
+    Route::get('menu-admin/informasi', [InformasiController::class, 'index']);
+    Route::get('menu-admin/informasi/create', [InformasiController::class, 'create']);
+    Route::post('menu-admin/informasi', [InformasiController::class, 'store']);
+    Route::get('menu-admin/informasi/{id}/edit', [InformasiController::class, 'edit']);
+    Route::post('menu-admin/informasi/{id}/update', [InformasiController::class, 'update']);
+    Route::get('menu-admin/informasi/{id}/show', [InformasiController::class, 'show']);
+    Route::post('menu-admin/informasi/{id}/delete', [InformasiController::class, 'destroy']);
+    Route::get('search-informasi', [InformasiController::class, 'index']);
+    //route tagihan
+    Route::get('menu-admin/tagihan', [TagihanController::class, 'index']);
+    Route::get('menu-admin/tagihan/create', [TagihanController::class, 'create']);
+    Route::post('menu-admin/tagihan', [TagihanController::class, 'store']);
+    Route::get('menu-admin/tagihan/{id}/edit', [TagihanController::class, 'edit']);
+    Route::post('menu-admin/tagihan/{id}/update', [TagihanController::class, 'update']);
+    Route::get('menu-admin/tagihan/{id}/show', [TagihanController::class, 'show']);
+    Route::post('menu-admin/tagihan/{id}/delete', [TagihanController::class, 'destroy']);
+    Route::get('menu-admin/tagihan/listdata/{id}', [TagihanController::class, 'listdata']);
+    Route::get('search-tagihan', [TagihanController::class, 'index']);
 
-Route::get('menu-admin/laporan', [PengaduanController::class, 'laporan']);
+    Route::get('menu-admin/laporan', [PengaduanController::class, 'laporan']);
 
     Route::get('menu-admin/pasangbaru/{id}/edit', [ControllersPasangbaru::class, 'edit']);
     Route::post('menu-admin/pasangbaru/{id}/update', [ControllersPasangbaru::class, 'update']);

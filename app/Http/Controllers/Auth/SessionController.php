@@ -19,7 +19,7 @@ class SessionController extends Controller
         $request->validate([
             'username' => 'required',
             'password' => 'required'
-        ],[
+        ], [
             'username.required' => 'Username wajib diisi',
             'password.required' => 'Password wajib diisi'
         ]);
@@ -30,14 +30,11 @@ class SessionController extends Controller
         ];
 
         // dd($infologin);
-        if(Auth::attempt($infologin))
-        {
-            return redirect('/menu-admin/dasboard')->with('success', 'Selamat datang dihalaman admin dashboard');
-        
-        }else{
+        if (Auth::attempt($infologin)) {
+            return redirect('/dashboard')->with('success', 'Selamat datang dihalaman admin dashboard');
+        } else {
             return redirect('login')->with('error', 'Username dan password salah');
         }
-
     }
 
     function logout()

@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/menu-admin/dasboard')}}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard.index') }}">
         {{-- <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div> --}}
@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{url('/menu-admin/dasboard')}}">
+        <a class="nav-link" href="{{ route('dashboard.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -29,14 +29,14 @@
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="{{url('menu-admin/pelanggan')}}">
+        <a class="nav-link" href="{{ url('menu-admin/pelanggan') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Data Pelanggan</span></a>
     </li>
-        
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="{{url('menu-admin/pengaduan')}}">
+        <a class="nav-link" href="{{ url('menu-admin/pengaduan') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Data Pengaduan</span>
             @php
@@ -49,18 +49,18 @@
         </a>
     </li>
 
-        
+
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="{{url('menu-admin/informasi')}}">
+        <a class="nav-link" href="{{ url('menu-admin/informasi') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Informasi</span></a>
     </li>
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="{{url('menu-admin/tagihan')}}">
+        <a class="nav-link" href="{{ url('menu-admin/tagihan') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Data Tagihan Pelanggan</span></a>
     </li>
@@ -69,21 +69,21 @@
             use App\Models\Pasangbaru;
             $pasangbaru = Pasangbaru::select('id')->first('id');
             // dd(echo $pasangbaru);
-        @endphp 
+        @endphp
         {{-- @foreach ($pasangbaru as $key => $data) --}}
-        <a class="nav-link" href="{{url('menu-admin/pasangbaru/'.$pasangbaru->id.'/edit')}}">
+        <a class="nav-link" href="{{ url('menu-admin/pasangbaru/' . $pasangbaru->id . '/edit') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Pemasangan Sambung Baru</span></a>
         {{-- @endforeach --}}
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{url('menu-admin/broadcast/pesan')}}">
+        <a class="nav-link" href="{{ url('menu-admin/broadcast/pesan') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Broadcast</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{url('menu-admin/laporan')}}">
+        <a class="nav-link" href="{{ url('menu-admin/laporan') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Rekapitulasi Laporan Pengaduan</span></a>
     </li>
