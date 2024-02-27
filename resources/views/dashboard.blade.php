@@ -67,7 +67,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <label for="kecamatan">Kecamatan:</label>
-                                    <select name="kecamatan" id="kecamatan" class="form-control">
+                                    <select name="kecamatan" id="kecamatan" class="form-control" required>
                                         <option value="">Pilih Kecamatan</option>
                                         {{-- Loop through kecamatan data to populate options --}}
                                         @foreach ($kecamatan as $data)
@@ -77,11 +77,11 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="start_date">Tanggal Mulai:</label>
-                                    <input type="date" name="start_date" id="start_date" class="form-control">
+                                    <input type="date" name="start_date" id="start_date" class="form-control" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="end_date">Tanggal Akhir:</label>
-                                    <input type="date" name="end_date" id="end_date" class="form-control">
+                                    <input type="date" name="end_date" id="end_date" class="form-control" required>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary mt-3">Filter</button>
