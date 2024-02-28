@@ -1,22 +1,19 @@
-<?php 
+<?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Kecamatan;
 use App\Models\Pengaduan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\File;
-use PDF;
+// use PDF;
 use Carbon\Carbon;
 
 class PengaduanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $search = $request->get('search');
@@ -26,40 +23,42 @@ class PengaduanController extends Controller
         $dateto = $request->get('date_to');
 
         $pengaduan = Pengaduan::paginate();
-        if($search != ""){
-        $pengaduan = Pengaduan::where ('nama', 'LIKE', '%' . $search . '%' )->paginate ()->setPath ( '' );
-        $pagination = $pengaduan->appends ( array (
-            'search' => $request->get('search') 
-            ) );
+        if ($search != "") {
+            $pengaduan = Pengaduan::where('nama', 'LIKE', '%' . $search . '%')->paginate()->setPath('');
+            $pagination = $pengaduan->appends(array(
+                'search' => $request->get('search')
+            ));
         }
-            
-        if($baru != ""){
-            $pengaduan = Pengaduan::where ('status', 'LIKE', '%' . $baru . '%' )->paginate ()->setPath ( '' );
-            $pagination = $pengaduan->appends ( array (
-                'baru' => $request->get('baru') 
-                ) );
+
+        if ($baru != "") {
+            $pengaduan = Pengaduan::where('status', 'LIKE', '%' . $baru . '%')->paginate()->setPath('');
+            $pagination = $pengaduan->appends(array(
+                'baru' => $request->get('baru')
+            ));
         }
-        if($selesai != ""){
-            $pengaduan = Pengaduan::where ('status', 'LIKE', '%' . $selesai . '%' )->paginate ()->setPath ( '' );
-            $pagination = $pengaduan->appends ( array (
-                'selesai' => $request->get('selesai') 
-                ) );
+        if ($selesai != "") {
+            $pengaduan = Pengaduan::where('status', 'LIKE', '%' . $selesai . '%')->paginate()->setPath('');
+            $pagination = $pengaduan->appends(array(
+                'selesai' => $request->get('selesai')
+            ));
         }
-        if($datefrom != "" && $dateto != ""){
-            $pengaduan = Pengaduan::orderBy ('id', 'desc')->when($datefrom && $dateto, function (Builder $builder) use ($datefrom, $dateto) {
-                $builder->whereBetween(
-                    DB::raw('DATE(created_at)'),
-                    [
-                        $datefrom,
-                        $dateto
-                    ]
-                );
-            }
+        if ($datefrom != "" && $dateto != "") {
+            $pengaduan = Pengaduan::orderBy('id', 'desc')->when(
+                $datefrom && $dateto,
+                function (Builder $builder) use ($datefrom, $dateto) {
+                    $builder->whereBetween(
+                        DB::raw('DATE(created_at)'),
+                        [
+                            $datefrom,
+                            $dateto
+                        ]
+                    );
+                }
             )->paginate();
         }
         // $profil = User::select('name','level')->where('level', '=', 1)->first();
         // dd($profil);
-        return view('menu-admin.pengaduan.index', compact('pengaduan','datefrom','dateto'));
+        return view('menu-admin.pengaduan.index', compact('pengaduan', 'datefrom', 'dateto'));
     }
 
     public function create()
@@ -70,20 +69,29 @@ class PengaduanController extends Controller
     public function laporan(Request $request)
     {
 
-        $laporan = Kecamatan::with(['pengaduan' => function($q) use($request){
+        // Validasi tanggal
+        $startDate = $request->start_date ?? now()->format('Y-m-d');
+        $endDate = $request->end_date ?? now()->format('Y-m-d');
+
+        if ($startDate && $endDate && $endDate < $startDate) {
+
+            return redirect()->route('rekap.report')->with('error', 'Tanggal Tidak Valid!');
+        }
+
+        $laporan = Kecamatan::with(['pengaduan' => function ($q) use ($request) {
             $startDate = $request->start_date;
             $endDate = $request->end_date;
-            if($startDate && $endDate){
+            if ($startDate && $endDate) {
                 return $q->whereBetween('created_at', [
                     $startDate, $endDate
                 ]);
             }
             return $q->whereBetween('created_at', [
-                Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()
+                Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()
             ]);
         }])->get();
 
-        return view('menu-admin.laporan.index', compact('laporan'));
+        return view('menu-admin.laporan.index', compact('laporan', 'startDate', 'endDate'));
     }
 
     public function store(Request $request)
@@ -97,26 +105,26 @@ class PengaduanController extends Controller
             'alamat' => 'required'
         ]);
 
-        
-            $namaFile = $request->file('foto')->getClientOriginalName();
-            $request->file('foto')->move('galeri/pengaduan', $namaFile);
+
+        $namaFile = $request->file('foto')->getClientOriginalName();
+        $request->file('foto')->move('galeri/pengaduan', $namaFile);
         // try {
-            $nilai = Pengaduan::create([
-                'nama' => $request->nama,
-                'id_pelanggan' => $request->id_pelanggan,
-                'keluhan' => $request->keluhan,
-                'foto' => $namaFile,
-                // 'no_rekening_air' => $request->no_rekening_air,
-                'alamat' => $request->alamat
-            ]);
-            
-            $nilai->save();
-            // dd($nilai);
-            return redirect('menu-admin/pengaduan')->with('created', 'Data berhasil disimpan');
+        $nilai = Pengaduan::create([
+            'nama' => $request->nama,
+            'id_pelanggan' => $request->id_pelanggan,
+            'keluhan' => $request->keluhan,
+            'foto' => $namaFile,
+            // 'no_rekening_air' => $request->no_rekening_air,
+            'alamat' => $request->alamat
+        ]);
+
+        $nilai->save();
+        // dd($nilai);
+        return redirect('menu-admin/pengaduan')->with('created', 'Data berhasil disimpan');
         // } catch (Exception $e) {
         //     return redirect('menu-admin/pengaduan')->with('error', 'Terjadi kesalahan! Mohon periksa kembali.');
         // }
-        
+
     }
 
     public function edit($id)
@@ -137,7 +145,7 @@ class PengaduanController extends Controller
         $request->validate([
             'pesan' => 'required',
             'status' => 'required'
-            
+
         ]);
 
         $target = $request->no_telp;
@@ -147,22 +155,22 @@ class PengaduanController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.fonnte.com/send',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array(
-        'target' => $target,
-        'message' => $pesan, 
-        // 'countryCode' => '62', //optional
-        ),
-        CURLOPT_HTTPHEADER => array(
-            "Authorization: $token" //change TOKEN to your actual token
-        ),
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $target,
+                'message' => $pesan,
+                // 'countryCode' => '62', //optional
+            ),
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: $token" //change TOKEN to your actual token
+            ),
         ));
         $changestatus->update([
             'status' => $request->status
@@ -177,11 +185,12 @@ class PengaduanController extends Controller
     public function print($id)
     {
         $pengaduan = Pengaduan::find($id);
-        $pdf = PDF::loadView('menu-admin.pengaduan.cetak', ['pengaduan'=> $pengaduan]);
+        $pdf = PDF::loadView('menu-admin.pengaduan.cetak', ['pengaduan' => $pengaduan]);
         return $pdf->download('pengaduan.pdf');
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
 
         $request->validate([
             'nama' => 'required',
@@ -194,12 +203,12 @@ class PengaduanController extends Controller
 
         $pengaduan = Pengaduan::find($id);
 
-        if($request->file('foto') != ''){        
-            $path = public_path().'/galeri/pengaduan/';
+        if ($request->file('foto') != '') {
+            $path = public_path() . '/galeri/pengaduan/';
 
             //code for remove old file
-            if($pengaduan->foto != ''  && $pengaduan->foto != null){
-                $file_old = $path.$pengaduan->foto;
+            if ($pengaduan->foto != ''  && $pengaduan->foto != null) {
+                $file_old = $path . $pengaduan->foto;
                 unlink($file_old);
             }
 
@@ -245,55 +254,26 @@ class PengaduanController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function laporan_pdf(Request $request, $id){
+    public function laporan_pdf(Request $request, $id)
+    {
         $kecamatan = Kecamatan::find($id);
-
-        $laporan = [];
 
         $startDate = $request->start_date;
         $endDate = $request->end_date;
 
-        $desa = [];
-            
-        if($startDate && $endDate){
-            $desaTemp = Pengaduan::with('desa')->select('id_desa', \DB::raw('COUNT(id_desa) as total'))
-            ->where('id_kecamatan', $kecamatan->id)->whereBetween('created_at',[$startDate, $endDate])
-            ->groupBy('id_desa')->get();
-        }else{
-            $desaTemp = Pengaduan::with('desa')->select('id_desa', \DB::raw('COUNT(id_desa) as total'))
-            ->where('id_kecamatan', $kecamatan->id)->whereBetween('created_at',[Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])
-            ->groupBy('id_desa')->get();
-        }
+        $startDateFormatted = Carbon::parse($startDate)->startOfMonth();
+        $endDateFormatted = Carbon::parse($endDate)->endOfMonth();
 
-        foreach($desaTemp as $i){
-            if($startDate && $endDate){
-                $tema = Pengaduan::select('tema', \DB::raw('COUNT(tema) as total'))
-            ->where('id_desa', $i->id_desa)->whereBetween('created_at',[$startDate, $endDate])
-            ->groupBy('tema')->get();
-            }else{
-                $tema = Pengaduan::select('tema', \DB::raw('COUNT(tema) as total'))
-            ->where('id_desa', $i->id_desa)->whereBetween('created_at',[Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])
-            ->groupBy('tema')->get();
-            }
+        $pengaduan = Pengaduan::where('id_kecamatan', $id)
+            ->whereBetween('created_at', [$startDateFormatted, $endDateFormatted])
+            ->get();
 
-            $desa[] = [
-                'total' => $i->total,
-                'nama_desa' => $i->desa->nama_desa,
-                'tema' => (array) json_decode($tema, false) ?? null
-            ];
-        } 
+        // dd($pengaduan);
 
-        $laporan = [
-            'id_kecamatan' => $kecamatan->id,
-            'kecamatan' => $kecamatan->nama_kecamatan,
-            'desa' => $desa ?? null
-        ];
 
-            
-        $pdf = PDF::loadView('pdf.pengaduan_laporan', compact('laporan', 'startDate', 'endDate'));
+
+        $pdf = Pdf::loadView('pdf.pengaduan_laporan', compact('kecamatan', 'startDate', 'endDate', 'pengaduan'));
         $pdf->setPaper('A4');
         return $pdf->stream();
-     }
+    }
 }
-?>
-

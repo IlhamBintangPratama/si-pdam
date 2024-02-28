@@ -95,7 +95,7 @@ Route::group(['middleware' => 'isLogin', 'web'], function () {
     Route::get('menu-admin/tagihan/listdata/{id}', [TagihanController::class, 'listdata']);
     Route::get('search-tagihan', [TagihanController::class, 'index']);
 
-    Route::get('menu-admin/laporan', [PengaduanController::class, 'laporan']);
+    Route::get('menu-admin/laporan', [PengaduanController::class, 'laporan'])->name('rekap.report');
 
     Route::get('menu-admin/pasangbaru/{id}/edit', [ControllersPasangbaru::class, 'edit']);
     Route::post('menu-admin/pasangbaru/{id}/update', [ControllersPasangbaru::class, 'update']);
@@ -108,4 +108,5 @@ Route::group(['middleware' => 'isLogin', 'web'], function () {
     Route::post('menu-admin/broadcast/broadcastWhatsapp', [BroadcastController::class, 'broadcastWhatsapp']);
 });
 
-Route::get('menu-admin/cetak-laporan/{id}', [PengaduanController::class, 'laporan_pdf'])->name('cetak-laporan-pengaduan');
+Route::get('menu-admin/cetak-laporan/{id}/{start_date}/{end_date}', [PengaduanController::class, 'laporan_pdf'])
+    ->name('cetak-laporan-pengaduan');

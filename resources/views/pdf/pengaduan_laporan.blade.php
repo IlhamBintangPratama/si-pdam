@@ -1,73 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<title>Membuat Laporan PDF Dengan DOMPDF Laravel</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Laporan Rekapitulasi Pengaduan Report</title>
+
+    <style>
+        html,
+        body {
+            margin: 10px;
+            padding: 10px;
+            font-family: sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        span,
+        label {
+            font-family: sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0px !important;
+        }
+
+        table thead th {
+            height: 16px;
+            text-align: left;
+            font-size: 12px;
+            font-family: sans-serif;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        .heading {
+            font-size: 12px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            font-family: sans-serif;
+        }
+
+        .small-heading {
+            font-size: 18px;
+            font-family: sans-serif;
+        }
+
+        .total-heading {
+            font-size: 18px;
+            font-weight: 700;
+            font-family: sans-serif;
+        }
+
+        .order-details tbody tr td:nth-child(1) {
+            width: 20%;
+        }
+
+        .order-details tbody tr td:nth-child(3) {
+            width: 20%;
+        }
+
+        .text-start {
+            text-align: left;
+        }
+
+        .text-end {
+            text-align: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .company-data span {
+            margin-bottom: 4px;
+            display: inline-block;
+            font-family: sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .no-border {
+            border: 1px solid #fff !important;
+        }
+
+        .bg-blue {
+            background-color: #414ab1;
+            color: #fff;
+        }
+    </style>
 </head>
+
 <body>
-	<style type="text/css">
-		.container{
-			width: 100%;
-		}
 
-		.kecamatan-item {
-			width: 100%;
-			border-bottom: 1px solid gray;
-			padding-top: 8px;
-			padding-bottom: 8px;
-		}
+    <h2 style="text-align: center;">Laporan Rekapitulasi Pengaduan Report</h2>
+    <h4 class="text-start">Kecamatan : {{ $kecamatan->nama_kecamatan }}</h4>
+    <h4 class="text-start">Tanggal : {{ $startDate }} - {{ $endDate }}</h4>
 
-		.kecamatan-title {
-			font-size: 20px;
-			font-weight: 700;
-		}
+    <table>
+        <thead>
+            <tr class="bg-blue">
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Nama</th>
+                <th>Desa</th>
+                <th>Alamat</th>
+                <th>Keluhan</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($pengaduan as $index => $item)
+                <tr>
+                    <td>{{ $index++ }}</td>
+                    <td>{{ $item->created_at }}</td>
+                    <td>{{ $item->nama }}</td>
+                    <td>{{ $item->desa->nama_desa }}</td>
+                    <td>{{ $item->alamat }}</td>
+                    <td>{{ $item->keluhan }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
-		.list_kelurahan {
-			padding-left: 12px;
-		}
-
-		.kelurahan {
-			font-size: 16px;
-		}
-
-		.tema-item{
-			padding-left: 12px;
-		}
-
-		.tanggal {
-			float: right
-		}
-
-	</style>
-		<center>
-			<h1>Laporan Pengaduan</h1>
-		</center>
-
-		
-		<div class="container">
-			<div class="tanggal">
-				{{$startDate}} - {{$endDate}} 
-			</div>
-		<div class="kecamatan-item">
-					<div class="kecamatan-title">{{$laporan['kecamatan']}}</div>
-					<div class="list_kelurahan">
-						@forelse($laporan['desa'] as $desa)
-							<div>
-								<div class="kelurahan">{{$desa['nama_desa']}}:</div>
-								<div class="tema">
-									@forelse($desa['tema'] as $tema)
-									 <div class="tema-item">{{$tema->tema}} ({{$tema->total}})</div>
-									 @empty
-									 <div class="tema-item">Tidak ada data</div>
-									@endforelse
-								</div>
-							</div>
-						@empty
-							<div class="kelurahan">Tidak ada data</div>
-						@endforelse
-					</div>
-				</div>
-		</div>
- 
 </body>
+
 </html>

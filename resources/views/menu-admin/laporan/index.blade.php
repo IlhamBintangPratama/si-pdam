@@ -48,20 +48,18 @@
                     <i class="fa fa-filter" aria-hidden="true"></i> Filter
                 </button>
                 <div class="collapse" id="filterData">
-                    <form action="{{ route('dashboard.index') }}" method="GET" autocomplete="off">
-                        @csrf
-                        <div class="row align-items-center">
-                            <div class="col-md-4 mb-3">
+                    <form action="{{ route('rekap.report') }}" method="GET">
+                        <div class="row">
+                            <div class="col-md-6">
                                 <label for="start_date">Tanggal Mulai:</label>
                                 <input type="date" name="start_date" id="start_date" class="form-control" required>
                             </div>
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-6">
                                 <label for="end_date">Tanggal Akhir:</label>
                                 <input type="date" name="end_date" id="end_date" class="form-control" required>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm mt-md-0 mt-4 mr-2">Filter</button>
-                        <a href="{{ route('dashboard.index') }}" class="btn btn-danger btn-sm mt-md-0 mt-3">Reset</a>
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
                     </form>
                 </div>
             </div>
@@ -90,51 +88,17 @@
                                         {{ $item->pengaduan->count() }}
                                     </td>
                                     <td>
-                                        @php
-                                            $url = '/menu-admin/cetak-laporan/' . $item->id;
-
-                                            if (isset($_GET['start_date'])) {
-                                                $url = $url . '?start_date=' . $_GET['start_date'] . '&end_date' . $_GET['end_date'];
-                                            }
-
-                                        @endphp
-                                        <a href="{{ $url }}" target="_blank">
+                                        <a href="{{ route('cetak-laporan-pengaduan', ['id' => $item->id, 'start_date' => $startDate, 'end_date' => $endDate]) }}"
+                                            target="_blank">
                                             Cetak
                                         </a>
                                     </td>
-
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
 
                 </div>
-                <div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title fs-5" id="exampleModalLabel">Hapus Data</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form id='form_id' class="w-full" method="Post" {{-- action="{{url('k_pendidik/'.$s->id.'/destroy')}}" --}}>
-                                    {{ csrf_field() }}
-                                    <div>
-                                        Apakah anda yakin?
-                                    </div>
-                                    <div class="modal-footer mt-3">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                                        <button type="submit" class="btn btn-primary">Iya</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- <script src="{{asset('js')}}/jquery.min.js"></script> --}}
 
             </div>
         </div>
@@ -148,34 +112,5 @@
         setTimeout(function() {
             $('.alert').fadeOut('slow');
         }, 3000);
-        $(document).on('click', '#smallButton', function(event) {
-            event.preventDefault();
-            let href = $(this).attr('data-attr');
-            $.ajax({
-                url: href,
-                beforeSend: function() {
-                    $('#loader').show();
-                },
-                // return the result
-                success: function(result) {
-                    $('#smallModal').modal("show");
-                    $('#smallBody').html(result).show();
-                },
-                complete: function() {
-                    $('#loader').hide();
-                },
-                error: function(jqXHR, testStatus, error) {
-                    console.log(error);
-                    alert("Page " + href + " cannot open. Error:" + error);
-                    $('#loader').hide();
-                },
-                timeout: 8000
-            })
-        });
-
-        function openModal(id) {
-            var form = document.querySelector('#form_id');
-            form.action = `{{ url('/menu-admin/pelanggan/${id}/delete') }}`
-        }
     </script>
 @endsection
