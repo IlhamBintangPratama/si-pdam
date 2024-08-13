@@ -8,6 +8,7 @@ use App\Models\Kecamatan;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
+use App\Models\Tagihan;
 use App\Models\Profil;
 use Illuminate\Support\Facades\File;
 
@@ -30,12 +31,16 @@ class PengaduanController extends Controller
 
         $no_rekening_air = $request->no_pelanggan;
         $pengaduan = Pelanggan::where('no_rekening_air', $no_rekening_air)->first();
+        $tagihan =  Tagihan::where('no_rekening_air', $no_rekening_air)->first();
 
         if ($pengaduan == null) {
             return redirect('pengaduan')->with('error', 'No Rekening Tidak Terdaftar');
-        } else {
+        } elseif ($tagihan->status == 0) {
+            return redirect('pengaduan')->with('warning', 'Selesaikan Tagihan Anda Terlebih Dahulu');
+        } else{
             return redirect()->route('cek-pengaduan', $no_rekening_air);
         }
+        
     }
 
     public function getPengaduan($id)
