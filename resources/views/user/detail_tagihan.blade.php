@@ -28,6 +28,14 @@
                 <a href="{{url('/')}}" class="btn btn-light">Kembali</a>
             </div>
         </div>
+        @elseif ($tagihan->status == 1)
+        <div class="card bg-info text-white">
+            <h5 class="card-header">Data Tagihan</h5>
+            <div class="card-body">
+                <h5 class="card-title">Tagihan Anda Sudah Lunas</h5>
+                <a href="{{url('/')}}" class="btn btn-light">Kembali</a>
+            </div>
+        </div>
         @else
         <div class="card shadow-sm text-dark bg-light mb-3">
             <div class="card-header">Tagihan Anda Bulan Ini</div>
