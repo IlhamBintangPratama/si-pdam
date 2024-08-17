@@ -36,7 +36,8 @@ class PengaduanController extends Controller
         if ($pengaduan == null) {
             return redirect('pengaduan')->with('error', 'No Rekening Tidak Terdaftar');
         } elseif ($tagihan == null) {
-            return redirect('pengaduan')->with('warning', 'Anda Belum Memiliki Tagihan Saat Ini');
+            return redirect()->route('cek-pengaduan', $no_rekening_air);
+            // return redirect('pengaduan')->with('warning', 'Anda Belum Memiliki Tagihan Saat Ini');
         } elseif ($tagihan->status == 0) {
             return redirect('pengaduan')->with('warning', 'Selesaikan Tagihan Anda Terlebih Dahulu');
         } else{
