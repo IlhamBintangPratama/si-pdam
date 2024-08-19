@@ -76,7 +76,7 @@
                             <div class="col-sm-10">
                                 <select name="desa" id="" class="form-select @error('desa')
                                 is-invalid
-                                @enderror" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
+                                @enderror" onfocus='this.size=8;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
                                     <option value="">~Pilih Desa~</option>
                                     @foreach ($desa as $data)
                                     <option value="{{$data->id}}">{{$data->nama_desa}}</option>
